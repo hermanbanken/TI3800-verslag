@@ -1,0 +1,78 @@
+\section{Proces aanpak}
+
+\subsection{Stand up meetings}
+Om het overzicht binnen het project te waarborgen, zullen er iedere werkdag aan het begin van de dag stand up meetings met alle projectleden plaatsvinden. Bij deze stand up meetings wordt kort besproken waar momenteel aan gewerkt wordt, in hoeverre dit nog op schema ligt en waar de uitdagingen liggen voor de komende dagen. De opdrachtgever zal minstens twee keer per week aanwezig zijn bij deze meetings, hetgeen naar wens vanzelfsprekend vaker kan.
+
+\subsection{Scrum}
+In overleg met de opdrachtgever is er gekozen voor een scrum aanpak voor het project. Scrum is een flexibele manier om software te ontwikkelen. Hierbij gaan we werken in een multidisciplinair team waarmee we in korte sprints, met een vaste lengte van 2 weken, werkende software opleveren en geleidelijk stabiele functionaliteit toe voegen. Een scrum aanpak heeft als voordeel dat na iedere sprint er een werkend product af is, waarna de eisen en doelstellingen gemakkelijk bijgesteld kunnen worden. Met scrum kunnen na de gebruikerstest, halverwege het project, de doelstellingen bijgesteld worden aan de hand van de uitkomst van deze test. Door deze agile methode toe te passen sluit het eindproduct altijd zo goed mogelijk aan op de wensen van de opdrachtgever en de end-users.
+
+\subsection{\acl{tfs}}
+Emando gebruikt \ac{tfs} voor het versiebeheer van broncode, het bijhouden van het ontwikkelproces, het tracken van issues en het visualiseren van de voortgang in projecten. De gemakkelijke integratie van \ac{tfs} met Visual Studio zorgt ervoor dat issues en backlog items gemakkelijk toegewezen kunnen worden aan developers, waarna zij deze kunnen openen en hiermee aan de slag kunnen binnen hun IDE. De status van deze items kan zowel vanuit de IDE als online aangepast worden en bij het afvinken van items kunnen deze gekoppeld worden aan versie nummers, zodat deze achteraf makkelijk vindbaar zijn.
+Ook zorgt de visualisatie van de zogenaamde ‘burndown’ van het project voor een inzichtelijke manier, waarbij de opdrachtgever in een handomslag de voortgang van het project in kan zien. Daarnaast biedt \ac{tfs} inzicht in de tijd die ieder issue en backlog item kost, hetgeen een goede indicatie is voor de scrum sprint.
+
+\section{Project keuzes}
+
+\subsection{Back-end}
+
+De bestaande systemen van Emando draaien voornamelijk in Microsoft Azure als Cloud Service. Azure biedt onder andere ondersteuning voor projecten met .NET, NodeJS en PHP. Aangezien MyLaps voor ons een belangrijke databron is en de MyLaps SDK alleen voor C\#/.NET beschikbaar is, kan er veel werk bespaard worden door ook deze programmeertaal en runtime te gebruiken. Emando heeft daarnaast een laag over de MyLaps SDK heen geschreven waardoor de SDK bruikbaar is met Reactive Extensions. De andere ondersteunde runtimes voor de back-ends die Azure ondersteunt hebben we overwogen, maar door gebrek aan de MyLaps SDK waren dit geen echte opties.
+
+\subsubsection{Real-time}
+De communicatie tussen de back-end en de clients moet een real-time zijn. Real-time wil zeggen dat de server een update naar de client kan sturen. In `normaal' web verkeer kan de server niet op elk moment een bericht sturen naar de client. De server kan alleen reageren op een verzoek van de client, omdat de client geen vast IP-adres heeft en er standaard geen poort open staat. Pas wanneer de client een uitgaand verzoek heeft gaat er een poort open.
+
+Een oplossing hiervoor is WebSockets: bij WebSockets blijft de verbinding open en dus de poort en kan de server op elk moment een bericht sturen, als er bijvoorbeeld een schaatser voorbij komt. Een verbinding openhouden kost wel geheugen op de server en de server heeft dus een maximum aantal verbindingen dat hij kan openhouden. Er bestaan verschillende WebSocket frameworks die je het aanmaken en onderhouden van de verbindingen uit handen nemen. Een hiervan is SignalR voor .NET. Emando heeft SignalR succesvol gebruikt tijdens de Olympische Spelen van 2014 om \url{live.schaatsen.nl} te voorzien van live data en heeft dus de vuurdoop doorstaan. Tijdens de rit van Sven Kramer (of wie dan ook) waren er honderd miljoen miljard gelijktijdige verbindingen in SignalR. We hebben er dus vertrouwen in dat SignalR ook voor ons doel geschikt is. TODO!!
+
+[...]
+    % Bestaande systemen Emando: servers in Azure.
+    % Azure ondersteunt .Net, NodeJS, etc....
+    % Keuze voor .Net back-end vanwege MyLaps SDK
+    % Verder biedt .Net LINQ en Reactive Extensions
+    % Overige afwogen back-enden Meteor, NodeJS, Play-scala
+    % SignalR, dat door Emando al gebruikt is tijdens de Olympische Spelen heeft zichzelf bewezen als een stabiele en schaalbare dataverbinding tussen client en server. 
+    
+\subsection{Client}
+Er zijn tegenwoordig diverse manieren om mobiele applicaties te maken, voor diverse platformen (iOS, Android, Windows Phone). Deze verschillende methodes vereisen verschillende programmeertalen en architecturen. Een groot verschil tussen de verschillende methodes is de hoeveelheid code die kan worden hergebruikt tussen verschillende platformen. De uiterste daarvan zijn gebruiken een compleet gescheiden broncode versus een volledig gedeelde broncode. De volgende methodes hebben we overwogen:
+
+\begin{description}
+\item[Native applicatie:] Een native applicatie is een applicatie die ontworpen is voor een specifiek platform. Het design van dergelijke applicaties ligt (meestal) in het verlengde van de richtlijnen voor dit platform en het gebruik van platform specifieke handelingen (gestures) wordt gestimuleerd en gehanteerd binnen de applicatie. Vanwege de richtlijnen en het gebruik van deze gestures, zijn dergelijke applicaties zelfverklarend voor eindgebruikers. Een ander voordeel is dat door de native implementatie, de user interface performance van dergelijke applicaties doorgaans erg goed is.
+
+Een nadeel van native applicaties is dat applicatie code vaak in een platform specifieke programmeertaal wordt ontwikkeld en dat er daardoor 3 complete applicaties ontwikkeld moeten worden om de drie grootste platformen te ondersteunen (iOS, Android en Windows Phone). Het ontwikkelen hiervan kost daardoor vaak veel tijd.
+    
+\item[Web applicatie:]
+Een web applicatie is een applicatie die ontworpen is om op alle (mobiele) platformen te draaien. Deze applicatie is benaderbaar via het web (browsers) en heeft als groot voordeel dat deze maar 1x ontwikkeld hoeft te worden. Ook zijn veel ontwikkelaars bekend met de programmeertalen waarmee gewerkt moet worden (HTML, CSS en JavaScript).
+    
+Er zijn veel verschillende frameworks om mobiele applicaties te maken en daar ligt ook meteen een groot gevaar: elk framework heeft zijn eigen voordelen en wisselen tussen frameworks kan vaak betekenen dat grote delen van de applicatie opnieuw geschreven moeten worden. Ook tijdens ons project zijn diverse frameworks (Meteor, Angular, Backbone, Ember) ter sprake gekomen en voor elk genoemd framework wist er een projectlid voor- en nadelen te noemen.
+    
+\textbf{Frameworks:} jQuery Mobile~\cite{jq-mobile}, Sencha Touch~\cite{sencha}, Meteor~\cite{meteor}, AngularJS~\cite{angular}, Backbone.js~\cite{backbone}, Ember.js~\cite{ember}, Ionic~\cite{ionic}, React~\cite{React}
+    
+\item[Native applicatie met WebView:] Een ander belangrijk nadeel van web applicaties is het feit dat deze niet vindbaar zijn in de app stores. Native applicaties met een WebView\footnote{Een WebView is een soort van browser binnen een applicatie, zonder de mogelijkheid zelf een url in te voeren.} zijn applicaties waarin met behulp van een webview een reeds bestaande web applicatie geladen wordt. Hiermee kan met relatief weinig tijd worden meegeleund op het model van de applicatie winkels en is de applicatie in een klap vindbaar op de plek waar gebruikers zoeken naar applicaties.
+    
+Een nadeel van deze applicaties is hun performance. De applicatie laadt steeds webpagina's in en bij het wegvallen van de verbinding kan de applicatie doorgaans geen of weinig informatie of user interface tonen. Ook kan er doorgaans geen of weinig gebruik gemaakt worden van gestures. In sommige implementaties van deze applicaties wordt een onderscheid gemaakt tussen de offline user interface en de online web app, wat de performance verbetert en het probleem met het wegvallen van de verbinding oplost. De prestaties, vormgeving en gestures zijn echter vele malen minder praktisch ingericht dan bij een native applicatie. Gebruikers verwachten deze eigenschappen echter wel van applicaties die ze downloaden uit de applicatie winkels.
+    
+\textbf{Frameworks:} PhoneGap/Cordova~\cite{cordova}, Titanium~\cite{titanium}
+    
+\item[Cross Compiling: ] Cross Compiling is een techniek om broncode om te zetten naar uitvoerbare bestanden voor de verschillende platformen. Hiermee kan vaak de business- en servicelaag van de applicatie gedeeld worden tussen platformen, en sommige `cross-compilers' ondersteunen ook het delen van de presentatielaag. Vaak is dit echter niet wenselijk, omdat juist op de presentatielaag veel verschil gemaakt kan worden tussen platformen, om beter aan te sluiten bij de verwachtingen van de gebruiker. Met cross compiling wordt tijd bespaard op de business- en servicelaag, welke gebruikt kan worden om een presentatielaag te maken voor meerdere platformen. Applicaties die gemaakt zijn door middel van Cross Compilation zijn niet te onderscheiden van native applicaties (gemaakt in de programmeertaal van het platform) want de uitvoerbare bestanden zijn binair vrijwel gelijk.
+    
+Een nadeel van Cross Compiling is dat het opzetten van de architectuur direct op een juiste manier dient te gebeuren, hetgeen tijd extra tijd kan kosten. Het later aanpassen van de architectuur heeft tot gevolg dat er voor alle platformen een update nodig is voordat het project weer succesvol compileert. Ook moet er in tegenstelling tot een web app nog steeds voor meerdere platformen ontwikkeld worden.
+    
+\textbf{Frameworks:} Xamarin~\cite{xamarin}, Adobe AIR~\cite{adobeair}
+\end{description}
+    
+Wisselen tussen methodiek betekent het opnieuw ontwikkelen van de applicatie. Omdat onze applicatie niet alleen een proof-of-concept is, maar bedoeld is voor echt gebruik en doorontwikkeling, is het economischer om direct voor de uiteindelijke methodiek te kiezen.
+    
+Omdat performance en responsetijd een belangrijke rol speelt binnen onze applicatie, ligt het voor de hand om voor een native of gelijkwaardig presterende aanpak te gaan. Een implementatie met WebView biedt niet de performance waar we naar op zoek zijn. 
+    
+In overleg met de opdrachtgever is besloten de applicatie te ontwikkelen voor \'e\'en platform met een Cross Compiling-implementatie. Het ontwikkelen van deze applicatie (met de gestelde eisen) voor meerdere platform kost dusdanig veel tijd dat dit ten koste zou gaan van het MVP. Door een goede business- en servicelaag op te zetten, is het later mogelijk om de applicatie uit te rollen naar andere platformen, door enkel de platform specifieke views nog te ontwikkelen.
+
+We hebben voor Xamarin boven andere Cross Compiling implementaties gekozen omdat Xamarin werkt met het .NET framework en dit een paar belangrijke voordelen met zich meebrengt:
+
+\begin{itemize}
+\item Het platform .NET biedt LINQ en \acf{rx}. Met LINQ en \ac{rx} kunnen eenvoudig streams aan binnenkomende data efficient afgehandeld worden. Aangezien dit een belangrijk onderdeel is van onze applicatie is dit een groot voordeel.
+\item Aangezien we onze server zullen inrichten met SignalR is het fijn dat er al een SignalR component bestaat voor Xamarin. Dit maakt de communicatie met de server een `no-brainer'.
+\item Emando gebruikt \acf{tfs} en de integratie van Xamarin met Visual Studio en dus \ac{tfs} zal de eventuele latere doorontwikkeling en aansluiting op de bestaande werkwijze ten goede zou komen. 
+    % eerder al genoemd ?= Dit omdat TFS binnen de huidige werkomgeving gebruikt wordt voor vele doeleinden, waaronder versie-nummering, burn-down, scrum etc. TODO: netjes verwoorden 
+\end{itemize}
+
+\section{Tools}
+
+Visual Studio, Xamarin Studio, etc
+
