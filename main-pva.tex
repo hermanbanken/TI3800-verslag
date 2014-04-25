@@ -1,0 +1,71 @@
+\documentclass[dutch]{style/tudelft-report}
+
+\usepackage{acronym}
+\usepackage{wrapfig}
+\input{acronyms}
+\usepackage{longtable}
+\usepackage{array}
+
+\begin{document}
+
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+
+\frontmatter
+
+\title[Bachelorproject \\ ~ \\ Plan van Aanpak]{Vantage Practice}
+\author{H.J.\ Banken \\ P.A.\ van Hesteren \\ H.T.D.\ Visser}
+\affiliation{Technische Universiteit Delft}
+
+\input{style/titelpagina}
+
+\chapter{Voorwoord}
+In dit document wordt het plan van aanpak beschreven, dat zal worden gehandhaafd tijdens het bachelor-project “Trainingsapp voor Baansporten”. 
+
+\bigskip
+
+\noindent
+Dit project wordt door Herman Banken, Patrick van Hesteren en Hylke Visser uitgevoerd als Bachelor Eindproject voor de Bachelor Technische Informatica aan de Technische Universiteit Delft. Het project wordt uitgevoerd tussen 22 april en 27 juni 2014. Het project wordt uitgevoerd bij het bedrijf \textbf{Emando} onder begeleiding van Johan Stokking en wordt vanuit de Technische Universiteit Delft begeleid door Cor-Paul Bezemer. 
+
+\bigskip
+
+\noindent
+Wij willen Johan en Cor-Paul bedanken voor hun waardevolle hulp tijdens dit project.
+
+\bigskip
+
+\begin{flushright}
+{\makeatletter\itshape
+    Herman Banken \\
+    Patrick van Hesteren \\
+    Hylke Visser \\
+    Delft, April 2014
+\makeatother}
+\end{flushright}
+
+\tableofcontents
+
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
+
+\chapter{Plan van Aanpak} \label{ch:plan-van-aanpak} \input{partials/plan-van-aanpak}
+
+%% Use letters for the chapter numbers of the appendices.
+\appendix
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+% Appendices, zoals
+% - Definities en afko's
+% - Ontwerpen/schetsen
+% - UML diagrammen van architectuur
+% - Gebruikerstest verslagen
+% - SIG resultaten
+% - API documentatie?
+% - Bibliografie
+
+\chapter{Planning} \label{ch:planning} \input{partials/planning}
+
+%\bibliography{references}
+
+\end{document}

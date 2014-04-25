@@ -1,0 +1,133 @@
+\section{Introductie}
+\input{partials/aanleiding}
+
+Aan de hand van de projectopdracht, te lezen in Sectie~\ref{sec:projectopdracht}, en gesprekken met Johan en Cor-Paul hebben we dit Plan van Aanpak opgesteld. Dit Plan van Aanpak zal worden gebruikt als houvast bij het uitvoeren van het project en wordt daarom ook goedgekeurd door alle betrokken partijen.
+
+In dit document zal eerst de projectopdracht aan bod komen en zal worden toegelicht hoe deze tot stand is gekomen. Vervolgens wordt toegelicht op welke wijze we te werk zullen gaan en wat onze tijdsplanning is. Hierna wordt iets dieper ingegaan op de procesmatige inrichting van het project. Tot slot zal er nog aandacht worden besteed aan kwaliteitsborging.
+
+\section{Projectopdracht}
+\label{sec:projectopdracht}
+\subsection{Opdrachtomgeving}
+
+Emando is een bedrijf dat zich momenteel onder andere richt op het ontwikkelen van Vantage. Een onderdeel van Vantage is een systeem voor tijdregistratie tijdens wedstrijden in baansporten. Een groot deel van de door Vantage gebruikte infrastructuur zou ook gebruikt kunnen worden voor de recreatieve- of amateurvariant van de sport. Hiervoor zou het project ``Trainingsapp voor Baansporten'' verschillende mogelijkheden moeten bieden.
+
+\subsection{Doelstelling project}
+Het project is bedoeld als pilot. Dit houdt in dat het een mogelijke toevoeging zou kunnen zijn aan het bestaande Vantage platform, dat momenteel vooral gericht is op wedstrijden. Emando kan met dit project ook een dienst aanbieden voor recreatieve sporters en voor trainingen om hun prestaties in te zien en te vergelijken.
+
+\subsection{Opdrachtformulering}
+In overleg met Emando is de projectopdract als volgt gedefinieerd:
+
+\begin{quotation}
+Het ontwerpen en ontwikkelen van een systeem voor het weergeven en analyseren van (live) recreatieve en trainingsdata in de context van baansporten (bijvoorbeeld schaatsen en baanwielrennen). Dit systeem zal realtime gegevens van de baan, maar ook opgeslagen gegevens uit het verleden, inzichtelijk maken voor sporters, coaches en eventuele toeschouwers (volgers). Daarnaast zal er de mogelijkheid zijn om een sociale component en een competitie element toe te voegen, en een mogelijkheid om aggregatie op data uit te voeren.
+
+Het systeem ondersteunt het sporten: sporters hoeven hun training niet te onderbreken, doordat audio-cue's en sport-specifieke schermen geïmplementeerd worden. De sociale component bestaat uit het volgen van vrienden (mede-sporters) en het delen van resultaten. Het competitie element zal een virtuele competitie tussen vrienden omvatten.
+
+Technisch gezien zal er een scheiding gemaakt worden tussen de diverse toepassingen (clients) en de API. De API biedt toegang tot realtime data en de diverse modulaire (sport-specifieke) aggregaties, waarbij de mogelijkheid bestaat voor bijvoorbeeld coaches om te abonneren op meerdere sporters. De API zal gekoppeld worden op bestaande systemen die data van transponders ontsluiten.
+\end{quotation}
+
+\subsection{Op te leveren producten en diensten}
+Het project zal uiteindelijk resulteren in een product waarmee (live) recreatieve- en trainingsdata van baansporten wordt geanalyseerd en getoond aan sporters, coaches of toeschouwers. Verder zullen gedurende het project de volgende documenten worden opgeleverd: \begin{itemize}
+\item Plan van Aanpak
+\item Oriëntatie-verslag (onderdeel van verslag)
+\item Programma van eisen (onderdeel van verslag)
+\item Eindverslag
+\item Reflectie aangaande de gang van het proces
+\end{itemize}
+
+\subsection{Specifieke producteisen}
+Traditioneel gezien wordt bij software ontwikkeling het MoSCoW model gebruikt. Het MoSCoW model onderscheid functionaliteiten op basis van prioriteiten. De verschillende niveau's zijn must-, should-, could- en won't-haves. De vertaling van deze niveau's spreekt voor zich.
+
+Wij gebruiken het in combinatie met SCRUM veel gebruikte \acf{mvp} model. Hierbij wordt gedefinieerd wat het product minimaal moet kunnen om bruikbaar te zijn. In die zin komt onze \ac{mvp} dus overeen met de must-haves uit het MoSCoW model. Eventuele tegenslagen mogen er niet toe lijden dat het \ac{mvp} niet gemaakt wordt, daarom is de planning om het \ac{mvp} al in de 4e week af te hebben. Gebruikers kunnen op dat moment met de applicatie spelen en de kern-functionaliteit beoordelen.
+
+Het \ac{mvp} biedt op zich zelf nog niet alle features die zowel wij als de opdrachtgever graag geïmplementeerd zouden willen zien. Het eindproduct zal over enkele bijzondere functies moeten beschikken, de zogenaamde `killer-features' om het product populair te maken. Deze features zijn in die zin dus vergelijkbaar met de should-haves uit het MoSCoW model.
+
+Na het \ac{mvp} en de features die het verschil maken zijn er ook nog een aantal features die niet noodzakelijk zijn en geen groot verschil zouden maken. Deze features zijn te vergelijken met could-haves uit het MoSCoW model. We zullen zeker niet alle could-haves implementeren, en wellicht komen enkele should-features ook niet aan bod. Wellicht volgt uit een user study dat de door ons bedachte could-haves door users erg gewenste features zijn. In overleg met onze begeleiders kunnen we besluiten deze features te implementeren. Bovendien bieden de could-haves een goede leidraad bij toekomstige ontwikkeling na afloop van ons project.
+
+\subsubsection{Must-haves (\ac{mvp})}
+
+\begin{itemize}
+    \item Bruikbaar als applicatie op smartphone(s)
+    \item Architectuur is sport-agnostisch
+    \item De sport-specifieke weergave van tijden is voor schaatsbanen geïmplementeerd
+    \item Mogelijkheid om een account aan te maken
+    \item Real-time transponder doorkomsten tonen van geselecteerde sporters
+    \item Historische doorkomsten van een persoon, gegroepeerd per dag of training
+    \item De voor bovenstaande features ontwikkelde API, moet het mogelijk maken om de API uit te breiden en de applicatie aan te passen.
+\end{itemize}
+
+\subsubsection{Should-haves}
+\begin{itemize}
+    \item Mogelijkheid om account te koppelen aan Facebook
+    \item Audio-cues geven aan sporter over doorkomsten van een geselecteerde transponder
+    \item Leaderboards tonen met sporters gerangschikt naar prestaties en disciplines (virtuele competitie), zoals:
+    \begin{itemize}
+        \item rondetijd (actuele/gemiddelde/snelste)
+        \item snelheid (gemiddelde/snelste)
+        \item cumulatieve afstand (per seizoen/week/training)
+        \item rust/intensief-ratio (hoeveelheid rondjes, ratio)
+        \item achievements-punten (verbeter jezelf 10\%, voor 7 uur op de baan, 2 trainingen per week)
+    \end{itemize}
+    
+    \item Groepen-functionaliteit \begin{itemize}
+        \item Mogelijkheid om een lege groep te maken
+        \item Mogelijkheid om sporters uit te nodigen voor een groep
+        \item Mogelijkheid om op uitnodiging in een groep te gaan
+        \item Mogelijkheid om uit een groep te gaan
+    \end{itemize}
+
+    \item Zowel leaderboards als real-time doorkomst-schermen kunnen worden gefilterd op groep of baan
+     
+    \item Privacy instellingen bieden aan gebruikers
+    \begin{itemize}
+        \item Mogelijkheid om een account publiekelijk of anoniem te laten indexeren
+        \item Mogelijkheid om eigen data te delen met anderen
+    \end{itemize}
+
+\end{itemize}
+
+\subsubsection{Could-haves}
+\begin{itemize}
+\item Suggesties krijgen om met soortgelijke schaatsers te gaan schaatsen
+\item Training kunnen exporteren naar RunKeeper\footnote{Fitness logboek platform, \url{http://www.runkeeper.com}}
+\end{itemize}
+
+\subsubsection{Won't-haves}
+Het door Emando ontwikkelde systeem Vantage zal de huidige systemen voor wedstrijduitslagen vervangen. Koppelingen op het huidige systeem zouden dus snel niet meer werken en het nieuwe systeem is niet af tijdens ons project.
+\begin{itemize}
+    \item Wedstrijdloting en uitslagen bekijken
+    \item Persoonlijke records tonen
+\end{itemize}
+
+\section{Specifieke proceseisen}
+Gedurende het project zal er per teamlid 40 uur per week gewerkt worden aan het project, zoals overeen gekomen in de stageovereenkomst.
+De projectwerkzaamheden zullen voor het grootste deel plaatsvinden op het kantoor van Emando te Amsterdam. 
+De opdrachtgever zal ervoor zorgen dat de teamleden een werkplek hebben wanneer zij hun werkzaamheden uitvoeren op het kantoor van Emando. Om goed contact met de begeleider aan de TU Delft te behouden, zal er tevens gewerkt worden op de Technische Universiteit Delft.
+
+Het ontwikkelproces zal \textit{agile} zijn. Dat wil zeggen dat het product zal worden opgeleverd in verschillende iteraties, waarin telkens functionaliteit aan het product wordt toegevoegd.
+Er zal gewerkt worden met de \acl{mvp}-aanpak. Er wordt in eerste instantie een product opgeleverd met precies de kern-functionaliteiten en niet meer. In een latere stadium kan er op een iteratieve wijze extra functionaliteit worden toegevoegd.
+
+De teamleden zullen zorg uitdragen om de projectwerkzaamheden naar beste weten en kunnen uit te voeren. Daarbij worden echter geen garanties gedaan over de verwachte resultaten, zoals deze omschreven zijn in de projectopdracht.
+
+\section{Tijdsplanning}
+Iedere week zal er gefocust worden op bepaalde aspecten van het proces en functionaliteiten van het product. De planning is opgenomen als Appendix~\ref{ch:planning}.
+
+\section{Projectinrichting}
+
+\subsection{Proces}
+Naast de aspecten uit de tijdsplanning zullen we elke werkdag beginnen met een stand-up: elk teamlid vertelt gedurende maximaal tien minuten wat hij afgelopen dag bereikt heeft en wat hij van plan is die dag te doen. De opdrachtgever heeft aangegeven hier zo vaak als voor hem mogelijk is bij aanwezig te zijn. Aan het eind van elke week is er een demo. Door elke dag de problemen en uitdagingen te bespreken kunnen vertragingen zo vroeg mogelijk gedetecteerd of voorkomen worden. 
+
+De voortgang van het proces zal worden bijgehouden door middel van een issue tracker en een (digitaal) SCRUM\footnote{\url{http://en.wikipedia.org/wiki/Scrum_(software_development)}} bord. De teamleden zullen met behulp van deze tools de voortgang van het proces inzichtelijk maken en een overzicht kunnen geven van het project.
+
+Zoals per stagecontract afgesproken, zal er per teamlid 40 uur per week gewerkt worden aan het project, waarbij teamleden zorg zullen uitdragen om de projectwerkzaamheden naar beste weten en kunnen uit te voeren. Er is in die zin een gedeelde verantwoordelijkheid, waar teamleden elkaar zonodig bijsturing geven. 
+
+\subsection{Resources}
+De opdrachtgever stelt gedurende het project een werkplek ter beschikking in het kantoor aan het Leidseplein in Amsterdam. We zullen gedurende het project op onze eigen laptops werken. Via AcademicDownload\footnote{\url{http://academicdownload.com}} verschaft de TU Delft studenten licenties voor Windows 8.1 Enterprise. Overige licenties voor ontwikkeltools zullen door de opdrachtgever worden verzorgd.
+
+Via MyLaps zal de opdrachtgever ons toegang verschaffen tot de transponder-data. Overige data van onder andere de KNSB zal ook via het netwerk van de opdrachtgever worden verkregen.
+
+\section{Kwaliteitsborging}
+De kwaliteit van de code kan gewaarborgd worden door het aanhouden van best practices en conventies die worden gebruikt binnen Emando. Daarnaast kan gebruik gemaakt worden van de Code Review functionaliteit die in de ontwikkeltool beschikbaar is. Hiermee kunnen teamleden elkaars code beoordelen en waar nodig verbeteren. Ten slotte zal de code voor analyse worden opgestuurd naar de \ac{sig}. Afhankelijk van de \ac{sig} resultaten, kan de code verbeterd worden waar nodig.
+
+De kwaliteit van het opgeleverde product zal worden gewaarborgd door veelvuldig te testen. Dit zal niet alleen gedaan worden door middel van unit-tests, maar ook door tijdens het proces enkele integratie-tests en user-tests uit te voeren. De resultaten uit de user-tests kunnen eventueel ook gebruikt worden om het ontwerp van het product beter af te stemmen op de gebruikers.
+
+De kwaliteit en effici\"entie van het proces zal hoog worden gehouden door het gebruik van een online projectbeheeromgeving. De opdrachtgever kan via het SCRUM bord op deze omgeving de voortgang in de gaten houden en zal bij de dagelijkse stand-ups op de hoogte worden gesteld van de voortgang van het project en eventuele problemen of uitdagingen. Deze dagelijkse stand-ups zorgen er ook voor dat misverstanden tussen de opdrachtgever en het team worden voorkomen of in een vroeg stadium kunnen worden opgelost.

@@ -1,0 +1,69 @@
+\documentclass[dutch]{style/tudelft-report}
+
+\usepackage{acronym}
+\usepackage{wrapfig}
+\input{acronyms}
+\usepackage{longtable}
+\usepackage{array}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}p{5cm}}
+
+\begin{document}
+
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+\frontmatter
+
+\title[Bachelorproject]{Vantage Training}
+\author{H.J.\ Banken \\ P.A.\ van Hesteren \\ H.T.D.\ Visser}
+\affiliation{Technische Universiteit Delft}
+\coverimage{style/cover.jpg}
+\makecover
+
+\input{style/titelpagina}
+
+\input{partials/voorwoord}
+
+\tableofcontents
+
+\input{partials/samenvatting}
+
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
+
+\chapter{Inleiding} \label{ch:inleiding} \input{partials/inleiding}
+
+\chapter{Opdracht en Omschrijving} \label{ch:opdracht-en-omschrijving} \input{partials/opdracht-en-omschrijving}
+
+\chapter{Project methodologie} \label{ch:project-methodologie} \input{partials/project-methodologie}
+
+\chapter{Systeem ontwerp en implementatie} \label{ch:systeem-ontwerp-en-implementatie} \input{partials/systeem-ontwerp-en-implementatie}
+
+\chapter{Evaluatie} \label{ch:evaluatie} \input{partials/evaluatie}
+
+\chapter{Discussie} \label{ch:discussie} \input{partials/discussie}
+
+\chapter{Conclusie} \label{ch:conclusie} \input{partials/conclusie}
+
+%% Use letters for the chapter numbers of the appendices.
+\appendix
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+% Appendices, zoals
+% - Definities en afko's
+% - Ontwerpen/schetsen
+% - UML diagrammen van architectuur
+% - Gebruikerstest verslagen
+% - SIG resultaten
+% - API documentatie?
+% - Bibliografie
+
+\chapter{Planning} \label{ch:planning} \input{partials/planning}
+
+\chapter{Notulen van Meetings} \label{ch:notulen-van-meetings} \input{partials/notulen-van-meetings}
+
+\chapter{Plan van Aanpak} \label{ch:plan-van-aanpak} \input{partials/plan-van-aanpak}
+
+\bibliography{references}
+
+\end{document}
