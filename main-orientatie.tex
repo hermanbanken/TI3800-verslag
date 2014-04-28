@@ -1,0 +1,55 @@
+\documentclass[dutch]{style/tudelft-report}
+
+\usepackage{acronym}
+\usepackage{wrapfig}
+\input{acronyms}
+\usepackage{longtable}
+\usepackage{array}
+
+\begin{document}
+
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+
+\frontmatter
+
+\title[Bachelorproject \\ ~ \\ Orientatieverslag]{Vantage Practice}
+\author{H.J.\ Banken \\ P.A.\ van Hesteren \\ H.T.D.\ Visser}
+\affiliation{Technische Universiteit Delft}
+
+\input{style/titelpagina}
+
+\chapter{Voorwoord}
+Dit document is het orientatieverslag, dat is geschreven voor aanvang van het bachelor-project “Trainingsapp voor Baansporten”. 
+
+\bigskip
+
+\noindent
+Dit project wordt door Herman Banken, Patrick van Hesteren en Hylke Visser uitgevoerd als Bachelor Eindproject voor de Bachelor Technische Informatica aan de Technische Universiteit Delft. Het project wordt uitgevoerd tussen 22 april en 27 juni 2014. Het project wordt uitgevoerd bij het bedrijf \textbf{Emando} onder begeleiding van Johan Stokking en wordt vanuit de Technische Universiteit Delft begeleid door Cor-Paul Bezemer.
+
+\bigskip
+
+\begin{flushright}
+{\makeatletter\itshape
+    Herman Banken \\
+    Patrick van Hesteren \\
+    Hylke Visser \\
+    Delft, April 2014
+\makeatother}
+\end{flushright}
+
+\tableofcontents
+
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
+
+\chapter{Orientatieverslag} \label{ch:orientatie} \input{partials/orientatie}
+
+%% Use letters for the chapter numbers of the appendices.
+\appendix
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+\bibliography{references}
+
+\end{document}
