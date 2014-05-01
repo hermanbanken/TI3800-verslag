@@ -28,3 +28,38 @@ Ideaal gezien zou het systeem opgedeeld worden in (onafhankelijke) componenten J
 \end{itemize}
 
 \end{description}
+
+\subsection*{1 mei 2014}
+\label{sec:meeting-1-mei}
+
+Aanwezig: \textit{Herman, Patrick, Johan}\\
+Locatie: aan bureau's
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{style/images/meeting1mei}
+\caption{Flow bij het binnenkomen van nieuwe Passings}
+\label{fig:not1mei}
+\end{figure}
+
+\begin{description}
+\item[Aggregaties] Aggregaties worden opgeslagen met de timestamp van de laatste Passing die meegenomen is in de berekening. Het doen van de aggregaties kan dus verdeeld worden over meerdere instances, want de laatste Passing die binnenkwam heeft altijd de nieuwste data. De client gebruikt alleen aggregaties met een nieuwe timestamp dan die hij al had. Dit is geschetst en staat in figuur~\ref{fig:not1mei}.
+
+Opslaan van aggregaties kan in Azure Table Store. De partitie id is de (virtuele) groep en de row is de user. De kolommen zijn de verschillende aggregaties. Wanneer er voor een user een nieuwe aggregatie is gedaan worden de normale groepen geupdate en ook de virtuele groepen zoals de aggregatie specifiek voor passings op de specifieke baan waar de laatste passing van binnenkwam.
+
+\begin{table}
+\begin{tabular}{lccccc}
+\centering
+\textbf{group  } & \textbf{ person } & langste training & snelste ronde & percentage rust/runs \\
+\textbf{g1     } & \textbf{ p1     } & 30               & 31            & 10 \\
+\textbf{g2     } & \textbf{ p1     } & 31               & 32            & 30 \\
+\textbf{g2     } & \textbf{ p2     } & 30               & 30            & 24 \\
+\textbf{g3     } & \textbf{ p2     } & 50               & 34            & 60 \\
+\textbf{b1     } & \textbf{ p1     } & 32               & 32            & 10 \\
+\textbf{b2     } & \textbf{ p1     } & 35               & 30            & 80 \\
+\end{tabular}
+\label{tab:tablestore} 
+\caption{Idee voor aggregatie tabel}
+\end{table}
+
+\end{description}
