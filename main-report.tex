@@ -6,6 +6,7 @@
 \usepackage{longtable}
 \usepackage{array}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}p{5cm}}
+\usepackage{subfigure}
 
 \begin{document}
 
@@ -13,11 +14,11 @@
 %% contents.
 \frontmatter
 
-\title[Bachelorproject]{Vantage Training}
+\title[Bachelorproject]{Vantage Practice}
 \author{H.J.\ Banken \\ P.A.\ van Hesteren \\ H.T.D.\ Visser}
 \affiliation{Technische Universiteit Delft}
 \coverimage{style/cover.jpg}
-\makecover
+%\makecover
 
 \input{style/titelpagina}
 
@@ -63,6 +64,8 @@
 \chapter{Notulen van Meetings} \label{ch:notulen-van-meetings} \input{partials/notulen-van-meetings}
 
 \chapter{Plan van Aanpak} \label{ch:plan-van-aanpak} \input{partials/plan-van-aanpak}
+
+\chapter{Interface Ontwerpen} \label{ch:interface-ontwerpen} \input{partials/interface-ontwerpen}
 
 \bibliography{references}
 

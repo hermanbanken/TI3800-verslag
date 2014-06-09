@@ -1,0 +1,47 @@
+\subsection{View Models en Reactive UI} 
+\label{sec:vm-reactive-ui}
+
+Voor de koppeling tussen views en data gebruiken we speciale ViewModels die een `lifetime' hebben die langer is dan de views die deze modellen gebruiken. Controllers vragen de ViewModels op en geven ze door aan de views. Elke view bind zich vast aan het ViewModel en als een veld van het model verandert, dan updaten de views automatisch. Dit werkt met ReactiveUI~\footnote{\url{http://www.reactiveui.net/}}, een UI framework dat gebruikmaakt van \ac{rx}. Elk veld van de ViewModels stuurt een notificatie naar alle luisterende views als het wordt aangepast. ReactiveUI levert hiervoor zowel het notificatie-systeem als het koppel systeem voor views. Een versimpeld voorbeeld is als volgt:
+
+\begin{verbatim}
+public class SpeedViewModel : ReactiveObject {
+  private double _speed = 0;
+  public double Speed { 
+    get { return _speed; }
+    set { RaiseAndSetIfChanged(ref _speed, value); }
+  }
+}
+
+public class View : UIView, IViewFor<SpeedViewModel> {
+  public View(SpeedViewModel model) {
+    OneWayBind(
+      model, vm => vm.Speed, 
+      view => view.speedLabel.Text, 
+      field => field.ToString("F") + " km/h"
+    );
+  }
+}
+\end{verbatim}
+%\caption{Voorbeeld van ReactiveUI: een ViewModel en View}
+
+Wanneer de controller nu een ViewModel aanpast, of er via SignalR een update binnenkomt, dan wordt de view direct aangepast. 
+
+Naast het updaten van alleenstaande modellen, gebruiken we ook lijsten van modellen. Hiervoor gebruiken we ReactiveList's, uit ReactiveUI, welke notificaties kunnen sturen wanneer er een element wordt toegevoegd of wordt verwijderd uit de lijst. We updaten dan de bestaande tabel en hoeven niet de hele tabel opnieuw te tekenen.
+
+Door gebruik te maken van ReactiveUI wordt het heel simpel om views te maken die `live' zijn en het zorgt er voor dat de code overzichtelijk blijft, omdat het invullen en updaten van de views met dezelfde code gebeurt en deze erg simpel is.
+
+\subsection{Grafische user interface}
+
+{\par \bigskip \par \color{red} TODO: Belachelijk veel screenshots toevoegen \par \bigskip \par }
+
+De gebruikersinterface van de applicatie staat in principe los van de rest van de applicatie. Hoewel het grootste deel van de code gebruikt kan worden op verschillende platforms, moet de gebruikersinterface voor elk platform apart ontwikkeld worden. Tijdens dit bachelorproject is ervoor gelozen om alleen een specifieke gebruikersinterface te maken voor iPhones. Zoals eerder besproken, is hiervoor gekozen omdat het grootste deel van de KNSB top een iPhone gebruikt. Wanneer zij besluiten dat de applicatie ook daadwerkelijk gebruikt gaat worden, kunnen er nog gebruikersinterfaces gebouwd worden voor andere populaire platforms.
+
+Door het gebruik van Xamarin gaat de implementatie van de iOS user interface iets anders dan met reguliere iOS applicaties. Er kan deels gebruikgemaakt worden van het Interface Builder onderdeel van Xcode, de officiele ontwikkelomgeving voor iOS. Na het opslaan van de gebruikersinterface in Xcode, genereert de Xamarin omgeving bestanden waarmee de interface kan worden aangesloten op C\#.
+
+De gebruikersinterface van de applicatie is in twee lagen gestructureerd. Allereerst zijn er de verschillende tabs waarmee de gebruiker kan wisselen tussen de verschillende contexten: persoonlijk, favorieten, groepen en banen. Deze onderverdeling is geïmplementeerd met behulp van de in iOS ingebouwde TabViewController. Voor elk van deze contexten hebben we geprobeerd een icoontje te ontwerpen dat overeen komt met de stijl die in iOS 7 wordt gehandhaafd, maar tegelijkertijd ook duidelijk genoeg aangeeft wat er met het icoontje bedoeld wordt. Voor de gebruikers, favorieten en groepen was dit redelijk simpel, maar voor de banen was dit toch een grotere uitdaging, aangezien de baan er voor verschillende sporten anders uitziet. Daarom hebben we uiteindelijk besloten om een weg te gebruiken voor het representeren van banen.
+
+De tweede laag van de interface-structuur bestaat eigenlijk voor een groot deel uit overzicht-detail schermen. Het profielscherm van een gebruiker bevat bijvoorbeeld een overzicht van al zijn sessies, een sessiescherm is weer een overzicht van alle runs, met daarin weer de afzonderlijke rondes. Deze structuur, die ook voorkomt bij de favorieten, groepen en banen, wordt geimplementeerd met behulp van een XXXNavigationController.
+
+Binnen ongeveer alle schermen wordt er gebruikgemaakt van tabel-views. Om deze views realtime te kunnen voorzien van actuele data, zijn er speciale tabel-viewcontrollers ontwikkeld die aansluiten op de reactive ViewModels. Telkens als er iets wordt aangepast in de ViewModels zal deze tabel-viewcontroller de nodige tabelcellen invoegen, verwijderen, verplaatsen of bijwerken.
+
+Een ander belangrijk deel van de gebruikersinterface is de functionaliteit die ervoor zorgt dat er grafiekjes getekend worden. Dit wordt gedaan met behulp van de CoreGraphics functies in iOS. Het was hierbij belangrijk dat ook deze grafieken automatisch bijgewerkt worden als de data verandert. Dit is gedaan door […]. Helaas had dit wel tot gevolg dat de applicatie erg langzaam werd. Als oplossing hiervoor worden de grafieken waarvan het onwaarschijnlijk is dat deze zullen veranderen, omgezet in afbeeldingen en opgeslagen.

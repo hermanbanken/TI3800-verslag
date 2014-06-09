@@ -1,27 +1,45 @@
-\section{Globale systeem opzet}
-
 Zoals besproken tijdens de meeting van 23 april (Pagina \pageref{sec:meeting-23-apr}), worden applicaties die Emando ontwikkelt opgedeeld in vier lagen. Deze opzet zullen wij ook aanhouden.
 
 \begin{description}
-\item[De presentatielaag] zal de platform-specifieke User Interface elementen bevatten.
-\item[De servicelaag] is eigenlijk de API die gebouwd zal worden met behulp van SignalR
+\item[De presentatielaag] verzorgt de weergave. De presentatielaag bevind zich in de code van de mobiele applicatie en bevat zowel platform onafhankelijke View-Models en hulpmiddelen als platform specifieke User Interface elementen.
+\item[De servicelaag] is de interface tussen de server en de mobiele apps. Deze gebruikt de twee technieken SignalR en WebApi.
 \item[De businesslaag] is verantwoordelijk voor het ophalen van de gegevens
-\item[De datalaag] omvat de verschillende databronnen: MyLaps, ...
+\item[De datalaag] omvat de verschillende databronnen: Entity Framework, Table Storage, MyLaps, ...
 \end{description}
+
+{\par \bigskip \par \color{red} TODO: Cross-cutting toelichten \par \bigskip \par }
+
   % 4 lagen
   % - presentatie laag
   % - service laag: API
   % - business laag: analyse en aggregatie
   % - data laag
   
-\section{Server design en implementatie}
+\input{partials/server-datalaag}
+\section{Businesslaag}
+  De businesslaag bestaat uit meerdere grote onderdelen. Zowel aggregatie als de workflows zijn twee gescheiden onderdelen die zich in de businesslaag bevinden.
+  
+  {\par \bigskip \par \color{red} TODO: Waarom zit de businesslaag in de Azure Cloud, upgrades doorvoegen zonder hele App te updaten \par \bigskip \par }
+  
+  \input{partials/server-businesslaag-pipes-filters-aggregatie}
+  \input{partials/server-businesslaag-workflows}
+\input{partials/server-servicelaag}
+\input{partials/client-servicelaag}
 
-
-\section{Client design en implementatie}
-
-
-\section{Grafische user interface}
-
+\section{Presentatielaag}
+  De presentatielaag bevind zich in de mobiele applicatie. Hieronder komen enkele karakteristieke onderdelen aan bod.
+  \input{partials/client-presentatielaag}
 
 \section{Testomgeving}
+Er zijn maar een paar gedeelten van de App die effectief automatisch getest kunnen worden. Dit heeft te maken met het feit dat de App de data die van de server komt, bijna letterlijk overneemt in views. Het testen van views komt erop neer dat er automatisch zou worden getest of er dingen op het scherm verschijnen, wat erg veel werk zou zijn voor iets wat heel simpel handmatig getest kan worden.
 
+{\par \bigskip \par \color{red} TODO: Uitbreiden, Visual Studio Testomgeving toelichten, iOS Testomgeving en tests toelichten \par \bigskip \par }
+
+Binnen het server-gedeelte van de applicatie worden alle transponder-doorkomsten realtime verwerkt. De filters die te maken hebben met het verwerken van deze doorkomsten worden uitgebreid getest om er zeker van te zijn dat ze correct functioneren. Dit testen wordt gedaan met een set unit-tests die elk van deze filters aanroept met bepaalde input en controleert of de uitvoer overeenkomt met de verwachte uitvoer van deze filters.
+
+\subsection{Integratietesten van client en server}
+Een bijkomend voordeel van het hebben van een platformonafhankelijke client is dat deze ook uit te voeren is op hetzelfde platform als waar de server draait. Het is erg fijn om op deze manier te kunnen controleren of de server en client code integreerd, aangezien je snel door zowel de server als de client kan `steppen' - het regel voor regel door de lopende applicatie heen stappen tijdens het debuggen - in Visual Studio.
+
+Het is niet mogelijk een test van het hele platform te automatiseren op zo'n manier dat alles op een test-server draait. Voor het uitvoeren van het Azure project is een Azure Queue nodig die alleen in de Cloud bestaat. Azure is alleen te bereiken met de Azure SDK die alleen voor Visual Studio beschikbaar is, en dus alleen op Windows werkt, terwijl de Xamarin projecten voor iOS alleen op een MacBook kunnen opstarten. Om een speciale Mac test-server op te zetten met daarop een virtuele machine met Windows was te veel werk voor dit project, dus worden integratie-tests uitgevoerd op onze persoonlijke MacBooks, waar we deze set-up wel hebben geïnstalleerd.
+
+% TODO: we moeten nog integratie tests schrijven in iOS.Test

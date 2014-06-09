@@ -79,6 +79,7 @@
         BoldItalicFont = *-Bold,
         BoldItalicFeatures = FakeSlant
     ]{Tahoma}
+    \renewcommand{\normalsize}{\fontsize{10}{14}\selectfont}
 \else
     %% If the document is not compiled with XeLaTeX, we need to use the native
     %% fonts.

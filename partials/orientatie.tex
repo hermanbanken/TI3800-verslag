@@ -6,18 +6,74 @@
 
 Aan de hand van de projectopdracht, ons Plan van Aanpak (te vinden in Appendix~\ref{ch:plan-van-aanpak}) en gesprekken met Johan en Cor-Paul hebben we dit Ori\"entatieverslag opgesteld. Dit verslag biedt inzicht in de mogelijke technieken voor het ontwikkelen van mobiele applicaties en server back-ends, geschikt voor onze toepassing. Ook zullen in dit verslag de keuzes voor het gebruik van bepaalde technieken worden toegelicht.
 
+\section{Soortgelijke oplossingen}
+
+Er bestaan al enkele oplossingen die functionaliteit bieden die vergelijkbaar is met die van de applicatie die wij gaan bouwen. Strava (Figuur~\ref{fig:strava}) en RunKeeper (Figuur~\ref{fig:runkeeper}) maken gebruik van GPS om onderandere hardlopers en wielrenners van realtime informatie te voorzien. MyLaps Practice (Figuur~\ref{fig:mylapspractice}) is een website waar je na je training je prestaties kan terugkijken. Coach Watch (Figuur~\ref{fig:coachwatch}) is een iPad applicatie waarmee coaches hun teams kunnen volgen.
+
+\begin{figure}[ht]
+\centering
+\subfigure[Strava]{
+    \includegraphics[height=4cm]{style/images/Strava}
+    \label{fig:strava}
+}
+\subfigure[RunKeeper]{
+    \includegraphics[height=4cm]{style/images/RunKeeper}
+    \label{fig:runkeeper}
+}
+\subfigure[MyLaps Practice]{
+    \includegraphics[height=4cm]{style/images/MyLapsPractice}
+    \label{fig:mylapspractice}
+}
+\subfigure[Coach Watch]{
+    \includegraphics[height=4cm]{style/images/CoachWatch}
+    \label{fig:coachwatch}
+}
+\caption{Soortgelijke oplossingen}
+\label{fig:soortgelijke-oplossingen}
+\end{figure}
+
+Strava en RunKeeper zijn voor baansporten als schaatsen niet goed bruikbaar, aangezien GPS op de banen slecht presteert, waardoor de informatie niet nauwkeurig goenoeg is. MyLaps Practice en Coach Watch maken wel gebruik van de detectielussen in de schaatsbanen. MyLaps Practice kan alleen gebruikt worden voor het achteraf bekijken van sportprestaties en CoachWatch is een (vrij dure) applicatie die vooral gericht is op coaches.
+
+Emando ziet de mogelijkheid om een applicatie te bieden die gebruikmaakt van de detectielussen in de banen, live gegevens kan tonen op een smartphone en ook nog eens goedkoop of gratis is. Onze applicatie richt zich dus op het invullen van de stukken die missen in de bestaande oplossingen.
+
+\section{Doelgroep \& gebruikers}
+
+\subsection{Schaatsers}
+De voornaamste doelgroep van onze applicatie zijn de recreatieve en amateur schaatsers. Zij moeten met behulp van onze applicatie meer inzicht krijgen in hun prestaties en trainingen. 
+Om er voor te zorgen dat deze groep gebruikers onze applicatie verkiest boven de reeds bestaande (minder uitgebreide) systemen, dienen zij snel en gemakkelijk met de applicatie aan de slag te kunnen gaan.
+Bij een té ingewikkeld systeem zullen zij afhaken en de overstap naar onze applicatie wellicht niet willen maken.
+Omdat zij de belangrijkste doelgroep zijn van de applicatie, is het belangrijk dat zij gemotiveerd worden om de applicatie te blijven gebruiken en hen tevens motiveren om ook anderen aan te sporen dit te doen.
+Met behulp van sociale componenten zoals trainingsgroepen, het volgen van andere schaatsers en leaderboards kan onze applicatie hen hierin stimuleren.
+\subsection{Coaches}
+Als tweede doelgroep zijn er de coaches van de schaatsers. Dit zijn mensen die de schaatsers begeleiden bij hun trainingen en wedstrijden. Zij beschikken zelf niet altijd over een transponder, omdat niet iedere coach zelf schaatst.
+Zij willen graag snel en gemakkelijk inzicht in de data van de schaatsers die zij coachen. Het moet voor hen dus gemakkelijk zijn om snel tussen schaatsers te kunnen switchen en deze prestaties zowel onderling als per training gemakkelijk te kunnen vergelijken.
+\subsection{Overige gebruikers}
+Tot slot is er de groep gebruikers die zelf geen deel uitmaakt van de schaatswereld. Zij zijn geen schaatsers of coaches en zijn met name geïnteresseerd in de mogelijkheden van de applicatie en het volgen van kennissen of bekende schaatsersn.
+Ook zij moeten in staat zijn om de applicatie gebruiken, welliswaar in mindere mate.
+
 \section{Back-end}\label{sec:orientatie-back-end}
 Afhankelijk van welk back-end platform we kiezen, zijn er verschillende mogelijkheden voor de servers waarop de back-end kan draaien. Ook is er de keuze tussen traditionele server clusters en een cloud-oplossing, zoals een \ac{paas}. Er zijn verschillende redenen om wel of niet voor een cloud oplossing te gaan. De voor- en nadelen van een cloud oplossing staan hieronder opgesomd.
-\begin{itemize} 
-    \item[+] Automatisch en vrijwel onbeperkt schaalbaar
-    \item[+] Opzetten besturingssysteem is niet nodig
-    \item[+] Geen onderhoud nodig
-    \item[+] Gegarrandeerde hoge uptime
-    \item[-] Mogelijk duurder vanwege winstmarge \ac{paas}
-    \item[-] Minder keuze in hoeveelheid beschikbare talen/frameworks
-\end{itemize}
+
+Bij het vergelijken van een cloud oplossing met een traditioneel serverpark zijn we er vanuit gegaan dat dit serverpark zelf beheerd wordt en niet uitbesteed is wordt een externe partij. Dit houdt ook in dat het onderhoud hiervan door ons zelf gedaan zou worden.
+
+\subsection{Schaalbaarheid}
+Cloud oplossingen bieden de mogelijkheid om gemakkelijk en (automatisch) vrijwel onbeperkt te schalen bij een hoge load. Sommige cloud oplossingen zoals Windows Azure bieden de mogelijkheid om dit automatisch op te laten schalen aan de hand van de load. Bij een traditioneel serverpark is dit niet het geval. Hierbij dienen handmatig servers aangesloten te worden op het moment van een hoge load. 
+
+
+\subsection{Besturingsssyteem}
+In tegenstelling tot bij een traditioneel serverpark, ligt de verantwoordelijkheid van het beheren van de besturingssystemen niet bij ons, maar bij de beheerder van de cloud service. Het instellen en optimaliseren van alle besturingsssystemen voor alle frameworks en programmeertalen kan veel tijd kosten. Door deze verantwoordelijkheid bij de beheerder van de cloud service te  leggen, kan veel tijd bespaard worden.
+
+\subsection{Onderhoud \& Uptime}
+Cloud oplossingen worden beheerd en onderhouden door de service provider, waar dit bij een traditioneel serverpark bij ons zelf zou liggen. Ook bieden cloud oplossingen een gegarrandeerde hoge update, zonder dat we hier zelf iets voor hoeven doen.
+
+\subsection{Kosten}
+Bovenop de kosten van die de service provider van de cloud oplossing maakt, wordt een winstmarge geheven. Dit is bij het traditionele serverpark niet het geval. Bij een cloud oplossing zijn de onderhoudskosten (voor ons) vele malen lager, waardoor deze kosten zowel hoger als lager uit kunnen vallen in vergelijking tot de kosten van een traditioneel serverpark.
+
+\subsection{Beschikbaarheid frameworks/programmeertalen}
+Doordat cloud oplossingen door de service provider beheerd worden is er doorgaans minder vrijheid in het kiezen van frameworks/programmeertalen. Alleen de bekendste en meest gebruikte frameworks/programmeertalen worden ondersteund. Bij een traditioneel serverpark hebben we de mogelijkheid om deze volledig zelf in te richten en hebben we daarmee meer vrijheid. Vanwege onze keuze voor C\# en .NET, is dit geen probleem voor ons.
 
 \begin{table}
+\centering
 \begin{tabular}{lccccc}
 \textbf{}        & \multicolumn{1}{l}{\textbf{Azure}} & \multicolumn{1}{l}{\textbf{App Engine}} & \multicolumn{1}{l}{\textbf{AWS}} & \multicolumn{1}{l}{\textbf{Heroku}} & \multicolumn{1}{l}{\textbf{AppFog}} \\
 \textbf{.NET}    & \times &        & \times &         &        \\
@@ -123,7 +179,7 @@ Aan de hand van een lijst met Passings kunnen we enkele berekeningen doen. Met d
 \end{figure}
 
 \section{Database}
-Uit figuur~\ref{fig:entities} blijkt dat een deel van onze data relationeel is. De gebruikers zijn gekoppeld aan transponders en transponders zijn gekoppeld aan Passings. Gebruikers kunnen deel uitmaken van groepen en kunnen een lijst met favoriete gebruikers hebben, welke ze willen volgen. Een deel van de data zullen we opslaan in een relationele database. Data die relatief weinig wordt aangepast zoals de gebruiker-accounts en bijbehorende transponders leent zich hier uitstekend voor. Met een \textit{join} is eenvoudig een lijst van transponders van een gebruiker op te halen. In figuur~\ref{fig:dbengines} is (een abstractie en deel van) de relationele data weergegeven in het blauw. De user-id's uit de account-tabel komen terug in de transponder-tabel.
+Zoals in figuur~\ref{fig:entities}, is een deel van onze data relationeel.. De gebruikers zijn gekoppeld aan transponders en transponders zijn gekoppeld aan Passings. Gebruikers kunnen deel uitmaken van groepen en kunnen een lijst met favoriete gebruikers hebben, welke ze willen volgen. Een deel van de data zullen we opslaan in een relationele database. Data die relatief weinig wordt aangepast zoals de gebruiker-accounts en bijbehorende transponders leent zich hier uitstekend voor. Met een \textit{join} is eenvoudig een lijst van transponders van een gebruiker op te halen. In figuur~\ref{fig:dbengines} is (een abstractie en deel van) de relationele data weergegeven in het blauw. De user-id's uit de account-tabel komen terug in de transponder-tabel.
 
 \begin{figure}
 \centering
@@ -132,7 +188,7 @@ Uit figuur~\ref{fig:entities} blijkt dat een deel van onze data relationeel is. 
 \label{fig:dbengines}
 \end{figure}
 
-Naast de relationele data, genereren we met aggregaties heel veel platte data, zoals de snelste rondetijd, de langste run, of de hoogste snelheid per persoon. Deze data is gebonden aan de groepen waarin een gebruiker zit en de banen waarop de Passing plaatsvond. In de meeting van 1 mei (Appendix~\ref{sec:meeting-1-mei}) is besproken om hiervoor de Azure Table Storage te gebruiken. Table Storage heeft twee keys per rij, de PartitionKey en de RowKey~\cite{azuretablestorage}. Wij slaan de (virtuele) groep op in de PartitionKey (PK) en de gebruikers in de RowKey (RK). Op die manier is snel voor een groep alle data op te halen, voor bijvoorbeeld een Leaderboard. Ook kan bij het opslaan van de aggregaties snel op de RowKey gefilterd worden. De verschillende aggregaties worden opgeslagen in verschillende kolommen. Azure Table Storage biedt de namelijk mogelijkheid arbitraire objecten te koppelen aan een PartitionKey en RowKey (de combinatie van de twee keys is uniek). In figuur~\ref{fig:dbengines} is (abstractie van) de platte data weergegeven in het oranje. In de Passing aggregatie tabel is de unieke key gebaseerd op de transponder en de timestamp van de Passing. Een transponder kan niet twee keer gedetecteerd worden op hetzelfde moment zonder dat het dezelfde Passing is. Aggregaties per passing zoals bij welke run en sessie de Passing hoorde slaan we hier in op.
+Naast de relationele data, genereren we met aggregaties heel veel nieuwe data, zoals de snelste rondetijd, de langste run, of de hoogste snelheid per persoon. Deze data is gebonden aan de groepen waarin een gebruiker zit en de banen waarop de Passing plaatsvond. In de meeting van 1 mei (Appendix~\ref{sec:meeting-1-mei}) is besproken om hiervoor de Azure Table Storage te gebruiken. Table Storage heeft twee keys per rij, de PartitionKey en de RowKey~\cite{azuretablestorage}. Wij slaan de (virtuele) groep op in de PartitionKey (PK) en de gebruikers in de RowKey (RK). Op die manier is snel voor een groep alle data op te halen, voor bijvoorbeeld een Leaderboard. Ook kan bij het opslaan van de aggregaties snel op de RowKey gefilterd worden. De verschillende aggregaties worden opgeslagen in verschillende kolommen. Azure Table Storage biedt de namelijk mogelijkheid arbitraire objecten te koppelen aan een PartitionKey en RowKey (de combinatie van de twee keys is uniek). In figuur~\ref{fig:dbengines} is (abstractie van) de platte data weergegeven in het oranje. In de Passing aggregatie tabel is de unieke key gebaseerd op de transponder en de timestamp van de Passing. Een transponder kan niet twee keer gedetecteerd worden op hetzelfde moment zonder dat het dezelfde Passing is. Aggregaties per passing zoals bij welke run en sessie de Passing hoorde slaan we hier in op.
 
 Deze data wordt real-time verwerkt en doorgestuurd naar de client wanneer nodig. Om deze aggregaties snel en onafhankelijk van elkaar te laten verlopen, moet rekening worden gehouden met de mogelijkheid om bij pieken meerdere instanties van deze aggregatie-pijpen te draaien. Elke instantie ontvangt dan andere Passings. Om te zorgen dat de client altijd de laatste versie ontvangt wordt elke aggregatie vergezeld van de \textit{timestamp} van de laatste Passing. Als een client een aggregatie ontvangt met een oudere timestamp dan degene die hij al ontvangen heeft dan kan hij deze negeren.
 
