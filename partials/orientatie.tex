@@ -8,48 +8,19 @@ Aan de hand van de projectopdracht, ons Plan van Aanpak (te vinden in Appendix~\
 
 \section{Soortgelijke oplossingen}
 
-Er bestaan al enkele oplossingen die functionaliteit bieden die vergelijkbaar is met die van de applicatie die wij gaan bouwen. Strava (Figuur~\ref{fig:strava}) en RunKeeper (Figuur~\ref{fig:runkeeper}) maken gebruik van GPS om onderandere hardlopers en wielrenners van realtime informatie te voorzien. MyLaps Practice (Figuur~\ref{fig:mylapspractice}) is een website waar je na je training je prestaties kan terugkijken. Coach Watch (Figuur~\ref{fig:coachwatch}) is een iPad applicatie waarmee coaches hun teams kunnen volgen.
-
-\begin{figure}[ht]
-\centering
-\subfigure[Strava]{
-    \includegraphics[height=4cm]{style/images/Strava}
-    \label{fig:strava}
-}
-\subfigure[RunKeeper]{
-    \includegraphics[height=4cm]{style/images/RunKeeper}
-    \label{fig:runkeeper}
-}
-\subfigure[MyLaps Practice]{
-    \includegraphics[height=4cm]{style/images/MyLapsPractice}
-    \label{fig:mylapspractice}
-}
-\subfigure[Coach Watch]{
-    \includegraphics[height=4cm]{style/images/CoachWatch}
-    \label{fig:coachwatch}
-}
-\caption{Soortgelijke oplossingen}
-\label{fig:soortgelijke-oplossingen}
-\end{figure}
-
-Strava en RunKeeper zijn voor baansporten als schaatsen niet goed bruikbaar, aangezien GPS op de banen slecht presteert, waardoor de informatie niet nauwkeurig goenoeg is. MyLaps Practice en Coach Watch maken wel gebruik van de detectielussen in de schaatsbanen. MyLaps Practice kan alleen gebruikt worden voor het achteraf bekijken van sportprestaties en CoachWatch is een (vrij dure) applicatie die vooral gericht is op coaches.
-
-Emando ziet de mogelijkheid om een applicatie te bieden die gebruikmaakt van de detectielussen in de banen, live gegevens kan tonen op een smartphone en ook nog eens goedkoop of gratis is. Onze applicatie richt zich dus op het invullen van de stukken die missen in de bestaande oplossingen.
+\ifx\vergelijkbaresystemen\undefined
+\input{partials/vergelijkbare-systemen}
+\else
+In Sectie~\ref{sec:vergelijkbare-systemen} is een overzicht gegeven van soortgelijke oplossingen.
+\fi
 
 \section{Doelgroep \& gebruikers}
 
-\subsection{Schaatsers}
-De voornaamste doelgroep van onze applicatie zijn de recreatieve en amateur schaatsers. Zij moeten met behulp van onze applicatie meer inzicht krijgen in hun prestaties en trainingen. 
-Om er voor te zorgen dat deze groep gebruikers onze applicatie verkiest boven de reeds bestaande (minder uitgebreide) systemen, dienen zij snel en gemakkelijk met de applicatie aan de slag te kunnen gaan.
-Bij een té ingewikkeld systeem zullen zij afhaken en de overstap naar onze applicatie wellicht niet willen maken.
-Omdat zij de belangrijkste doelgroep zijn van de applicatie, is het belangrijk dat zij gemotiveerd worden om de applicatie te blijven gebruiken en hen tevens motiveren om ook anderen aan te sporen dit te doen.
-Met behulp van sociale componenten zoals trainingsgroepen, het volgen van andere schaatsers en leaderboards kan onze applicatie hen hierin stimuleren.
-\subsection{Coaches}
-Als tweede doelgroep zijn er de coaches van de schaatsers. Dit zijn mensen die de schaatsers begeleiden bij hun trainingen en wedstrijden. Zij beschikken zelf niet altijd over een transponder, omdat niet iedere coach zelf schaatst.
-Zij willen graag snel en gemakkelijk inzicht in de data van de schaatsers die zij coachen. Het moet voor hen dus gemakkelijk zijn om snel tussen schaatsers te kunnen switchen en deze prestaties zowel onderling als per training gemakkelijk te kunnen vergelijken.
-\subsection{Overige gebruikers}
-Tot slot is er de groep gebruikers die zelf geen deel uitmaakt van de schaatswereld. Zij zijn geen schaatsers of coaches en zijn met name geïnteresseerd in de mogelijkheden van de applicatie en het volgen van kennissen of bekende schaatsersn.
-Ook zij moeten in staat zijn om de applicatie gebruiken, welliswaar in mindere mate.
+\ifx\doelgroep\undefined
+\input{partials/doelgroep}
+\else
+In Sectie~\ref{sec:doelgroep} is behandeld wat de doelgroep van de applicatie is en welke verschillende soorten gebruikers er verwacht worden.
+\fi
 
 \section{Back-end}\label{sec:orientatie-back-end}
 Afhankelijk van welk back-end platform we kiezen, zijn er verschillende mogelijkheden voor de servers waarop de back-end kan draaien. Ook is er de keuze tussen traditionele server clusters en een cloud-oplossing, zoals een \ac{paas}. Er zijn verschillende redenen om wel of niet voor een cloud oplossing te gaan. De voor- en nadelen van een cloud oplossing staan hieronder opgesomd.
@@ -101,7 +72,7 @@ Bij onze keuze hebben ook de andere platformen overwogen, maar door de beperkte 
 \subsection{Real-time}\label{sec:orientatie-real-time}
 De trainingsapplicatie moet zonder dat de gebruiker de applicatie handmatig ververst de laatste doorkomsten binnenkrijgen en tonen. Ook moet de getoonde rondetijd up to date zijn, en niet een ronde tijd van een vorig rondje. De communicatie tussen de back-end en de clients moet dus real-time zijn. Real-time wil zeggen dat de server een update naar de client kan sturen. In `normaal' web verkeer kan de server niet op elk moment een bericht sturen naar de client. De server kan alleen reageren op een verzoek van de client, omdat de client geen vast IP-adres heeft en er standaard geen poort open staat. Pas wanneer de client een uitgaand verzoek heeft gaat er een poort open.
 
-Een oplossing hiervoor is WebSockets: bij WebSockets blijft de verbinding open en dus de poort en kan de server op elk moment een bericht sturen, als er bijvoorbeeld een schaatser voorbij een detectie-lus komt. Een verbinding openhouden kost geheugen op de server en de server heeft dus een maximum aantal verbindingen dat hij kan openhouden. Er bestaan verschillende WebSocket frameworks die je het aanmaken en onderhouden van de verbindingen uit handen nemen. Een hiervan is SignalR voor .NET. Emando heeft SignalR\footnote{http://www.asp.net/signalr} succesvol gebruikt tijdens de Olympische Spelen van 2014 om \url{http://live.schaatsen.nl} te voorzien van live data. SignalR is inmiddels een officiele ASP.NET library en wordt ontwikkeld en ondersteund door Microsoft ontwikkelaars.
+Een oplossing hiervoor is WebSockets: bij WebSockets blijft de verbinding open en dus de poort en kan de server op elk moment een bericht sturen, als er bijvoorbeeld een schaatser voorbij een detectie-lus komt. Een verbinding openhouden kost geheugen op de server en de server heeft dus een maximum aantal verbindingen dat hij kan openhouden. Er bestaan verschillende WebSocket frameworks die je het aanmaken en onderhouden van de verbindingen uit handen nemen. Een hiervan is SignalR voor .NET. Emando heeft SignalR\footnote{\url{http://www.asp.net/signalr}} succesvol gebruikt tijdens de Olympische Spelen van 2014 om \url{http://live.schaatsen.nl} te voorzien van live data. SignalR is inmiddels een officiele ASP.NET library en wordt ontwikkeld en ondersteund door Microsoft ontwikkelaars.
 
 \section{Client}
 Er zijn tegenwoordig diverse manieren om mobiele applicaties te maken, voor diverse platformen (iOS, Android, Windows Phone). Deze verschillende methodes vereisen verschillende programmeertalen en architecturen. Een groot verschil tussen de verschillende methodes is de hoeveelheid code die kan worden hergebruikt tussen verschillende platformen. De uitersten hiervan gebruiken een compleet gescheiden broncode ten opzichte van een volledig gedeelde broncode. De volgende methodes zijn meegenomen in onze ontwerpkeuze:
@@ -154,7 +125,7 @@ Omdat er voor slechts één platform een applicatie uitgerold wordt, is de keuze
 \item Moeilijkheidsgraad om naar platform uit te rollen
 \end{itemize}
 
-De moeilijkheidsgraad om naar een specifiek platform uit te rollen bleek bij alle platformen nagenoeg even hoog. Platformen als \textit{Windows Phone}\footnote{http://www.windowsphone.com/} en \textit{BlackBerry}\footnote{http://www.blackberry.com} hebben niet genoeg market share en aantal gebruikers om het uitrollen van de applicatie rendabel te maken. \textit{Android}\footnote{http://www.android.com/} en \textit{iOS}\footnote{http://www.apple.com/nl/ios/} hebben een grote market share en veel actieve gebruikers. Van de medewerkers van de schaatsbond beschikt de meerderheid over een mobiel aparaat dat \textit{iOS} draait, hetgeen de doorslaggevende factor is geweest om aanvankelijk de applicatie eerst voor \textit{iOS} te ontwikkelen.
+De moeilijkheidsgraad om naar een specifiek platform uit te rollen bleek bij alle platformen nagenoeg even hoog. Platformen als \textit{Windows Phone}\footnote{\url{http://www.windowsphone.com/}} en \textit{BlackBerry}\footnote{\url{http://www.blackberry.com}} hebben niet genoeg market share en aantal gebruikers om het uitrollen van de applicatie rendabel te maken. \textit{Android}\footnote{\url{http://www.android.com/}} en \textit{iOS}\footnote{\url{http://www.apple.com/nl/ios/}} hebben een grote market share en veel actieve gebruikers. Van de medewerkers van de schaatsbond beschikt de meerderheid over een mobiel aparaat dat \textit{iOS} draait, hetgeen de doorslaggevende factor is geweest om aanvankelijk de applicatie eerst voor \textit{iOS} te ontwikkelen.
 
 \section{Entiteiten}
 De data binnen onze applicatie bestaat uit verschillende entiteiten. In figuur~\ref{fig:entities} is de relatie tussen de entiteiten afgebeeld. De entiteit op het kleinste niveau is \textit{Passing}, de doorkomst bij een detectie-lus. Een doorkomst heeft velden voor het moment van registratie, welke lus detecteerde, welke baan de lus staat en welke transponder er bij hoort. Passings komen uit de MyLaps SDK en zijn dus externe data, die we wel zelf moeten opslaan. De MyLaps SDK is namelijk niet bedoeld als database om Passings te selecteren, maar slechts om real-time Passings te verkrijgen.

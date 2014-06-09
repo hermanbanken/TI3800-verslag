@@ -32,71 +32,12 @@ Het project zal uiteindelijk resulteren in een product waarmee (live) recreatiev
 \end{itemize}
 
 \subsection{Specifieke producteisen}
-Traditioneel gezien wordt bij software ontwikkeling het MoSCoW model gebruikt. Het MoSCoW model onderscheid functionaliteiten op basis van prioriteiten. De verschillende niveau's zijn must-, should-, could- en won't-haves. De vertaling van deze niveau's spreekt voor zich.
 
-Wij gebruiken het in combinatie met SCRUM veel gebruikte \acf{mvp} model. Hierbij wordt gedefinieerd wat het product minimaal moet kunnen om bruikbaar te zijn. In die zin komt onze \ac{mvp} dus overeen met de must-haves uit het MoSCoW model. Eventuele tegenslagen mogen er niet toe lijden dat het \ac{mvp} niet gemaakt wordt, daarom is de planning om het \ac{mvp} al in de 4e week af te hebben. Gebruikers kunnen op dat moment met de applicatie spelen en de kern-functionaliteit beoordelen.
-
-Het \ac{mvp} biedt op zich zelf nog niet alle features die zowel wij als de opdrachtgever graag geïmplementeerd zouden willen zien. Het eindproduct zal over enkele bijzondere functies moeten beschikken, de zogenaamde `killer-features' om het product populair te maken. Deze features zijn in die zin dus vergelijkbaar met de should-haves uit het MoSCoW model.
-
-Na het \ac{mvp} en de features die het verschil maken zijn er ook nog een aantal features die niet noodzakelijk zijn en geen groot verschil zouden maken. Deze features zijn te vergelijken met could-haves uit het MoSCoW model. We zullen zeker niet alle could-haves implementeren, en wellicht komen enkele should-features ook niet aan bod. Wellicht volgt uit een user study dat de door ons bedachte could-haves door users erg gewenste features zijn. In overleg met onze begeleiders kunnen we besluiten deze features te implementeren. Bovendien bieden de could-haves een goede leidraad bij toekomstige ontwikkeling na afloop van ons project.
-
-\subsubsection{Must-haves (\ac{mvp})}
-
-\begin{itemize}
-    \item Bruikbaar als applicatie op smartphone(s)
-    \item Architectuur is sport-agnostisch
-    \item De sport-specifieke weergave van tijden is voor schaatsbanen geïmplementeerd
-    \item Mogelijkheid om een account aan te maken
-    \item Real-time transponder doorkomsten tonen van geselecteerde sporters
-    \item Historische doorkomsten van een persoon, gegroepeerd per dag of training
-    \item De voor bovenstaande features ontwikkelde API, moet het mogelijk maken om de API uit te breiden en de applicatie aan te passen.
-\end{itemize}
-
-\subsubsection{Should-haves}
-\begin{itemize}
-    \item Mogelijkheid om account te koppelen aan Facebook
-    \begin{itemize}
-        \item Mogelijkheid om prestaties en records te delen op Facebook
-    \end{itemize}
-    \item Audio-cues geven aan sporter over doorkomsten van een geselecteerde transponder
-    \item Leaderboards tonen met sporters gerangschikt naar prestaties en disciplines (virtuele competitie), zoals:
-    \begin{itemize}
-        \item rondetijd (actuele/gemiddelde/snelste)
-        \item snelheid (gemiddelde/snelste)
-        \item cumulatieve afstand (per seizoen/week/training)
-        \item rust/intensief-ratio (hoeveelheid rondjes, ratio)
-        \item achievements-punten (verbeter jezelf 10\%, voor 7 uur op de baan, 2 trainingen per week)
-    \end{itemize}
-    
-    \item Groepen-functionaliteit \begin{itemize}
-        \item Mogelijkheid om een lege groep te maken
-        \item Mogelijkheid om sporters uit te nodigen voor een groep
-        \item Mogelijkheid om op uitnodiging in een groep te gaan
-        \item Mogelijkheid om uit een groep te gaan
-    \end{itemize}
-
-    \item Zowel leaderboards als real-time doorkomst-schermen kunnen worden gefilterd op groep of baan
-     
-    \item Privacy instellingen bieden aan gebruikers
-    \begin{itemize}
-        \item Mogelijkheid om een account publiekelijk of anoniem te laten indexeren
-        \item Mogelijkheid om eigen data te delen met anderen
-    \end{itemize}
-
-\end{itemize}
-
-\subsubsection{Could-haves}
-\begin{itemize}
-\item Suggesties krijgen om met soortgelijke schaatsers te gaan schaatsen
-\item Training kunnen exporteren naar RunKeeper\footnote{Fitness logboek platform, \url{http://www.runkeeper.com}}
-\end{itemize}
-
-\subsubsection{Won't-haves}
-Het door Emando ontwikkelde systeem Vantage zal de huidige systemen voor wedstrijduitslagen vervangen. Koppelingen op het huidige systeem zouden dus snel niet meer werken en het nieuwe systeem is niet af tijdens ons project.
-\begin{itemize}
-    \item Wedstrijdloting en uitslagen bekijken
-    \item Persoonlijke records tonen
-\end{itemize}
+\ifx\programmavaneisen\undefined
+\input{partials/programma-van-eisen}
+\else
+Zie Sectie~\ref{sec:programma-van-eisen} voor de specifieke producteisen.
+\fi
 
 \section{Specifieke proceseisen}
 Gedurende het project zal er per teamlid 40 uur per week gewerkt worden aan het project, zoals overeen gekomen in de stageovereenkomst.

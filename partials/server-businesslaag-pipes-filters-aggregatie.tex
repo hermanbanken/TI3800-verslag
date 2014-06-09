@@ -3,7 +3,7 @@ De business laag is de plek waar de communicatie met de datalaag en de service l
 Hoewel er meerdere soortgelijke cloud oplossingen bestaan, ging door de bestaande infrastructuur van Emando de voorkeur uit naar Windows Azure. Daarnaast integreert Windows Azure eenvoudig met Visual Studio, waardoor het deployen naar de cloud- of test-omgeving gemakkelijk kon.
 
 
-\subsection{Aggregatie}
+\subsection{Pijpleiding structuur}
 Omdat de ruwe doorkomsten niet direct betekenis hebben voor gebruikers, dient deze data verrijkt te worden om zo inzicht te geven in trainingen van gebruikers. Dit proces noemen we de aggregatie van data.
 
 Zodra er een doorkomst binnenkomt binnen de data laag, wordt het Id hiervan naar de aggregatie laag overgestuurd via de Azure Service Bus. Zodra de aggregatie laag deze ontvangt, wordt de bijbehorende doorkomst opgevraagd. Hierna start het aggregatie proces, dat bestaat uit de volgende onderdelen:
@@ -58,8 +58,17 @@ Met behulp van SignalR wordt de doorkomst doorgegeven aan de juiste personen.
 \item 10. Ronde leaderboard updaten en dispatchen
 Zodra er een ronde is gevonden voor een gebruiker, kan dit gevolgen hebben voor het ronde leaderboard. De gereden ronde wordt vergeleken met de records voor een gebruiker van zijn eigen totale records, zijn records op deze baan en zijn records in al zijn groepen. Daarnaast wordt altijd de gereden afstand op de baan, tijdsinterval etc. bijgewerkt in de totalen binnen dit leaderboard. Wanneer de zojuist gereden rondetijd een record blijkt te zijn voor een van zojuist genoemde contexten, wordt deze up to date gebracht in de leaderboards. Daarna wordt het gehele leaderboard voor deze context naar alle geïnteresseerden toegestuurd via SignalR.
 
-\item 11. Ronde leaderboard updaten en dispatchen
+\item 11. Run/rust leaderboard updaten en dispatchen
 Zodra er een ronde is gevonden voor een gebruiker, kan dit gevolgen hebben voor het run/rust leaderboard. De gereden rondetijd wordt toegevoegd aan de desbetreffende run/rust periode en aan de hand hiervan wordt het totaal hiervan vergeleken met de records voor een gebruiker van zijn eigen totale records, zijn records op deze baan en zijn records in al zijn groepen. Daarnaast wordt altijd de gereden afstand op de baan, tijdsinterval etc. bijgewerkt in de totalen binnen dit leaderboard. Wanneer de zojuist gereden rondetijd een record blijkt te zijn voor een van zojuist genoemde contexten, wordt deze up to date gebracht in de leaderboards. Daarna wordt het gehele leaderboard voor deze context naar alle geïnteresseerden toegestuurd via SignalR.
+
+\item 11. Sessie leaderboard updaten en dispatchen
+Zodra er een ronde is gevonden voor een gebruiker, kan dit gevolgen hebben voor het sessie leaderboard. De gereden rondetijd wordt toegevoegd aan de desbetreffendesessie en aan de hand hiervan wordt het totaal hiervan vergeleken met de records voor een gebruiker van zijn eigen totale records, zijn records op deze baan en zijn records in al zijn groepen. Daarnaast wordt altijd de gereden afstand op de baan, tijdsinterval etc. bijgewerkt in de totalen binnen dit leaderboard. Wanneer de zojuist gereden rondetijd een record blijkt te zijn voor een van zojuist genoemde contexten, wordt deze up to date gebracht in de leaderboards. Daarna wordt het gehele leaderboard voor deze context naar alle geïnteresseerden toegestuurd via SignalR.
+
+\subsection{Data consistentie en paralellisering}
+Vanwege de meeschalende cloud oplossing, kan het voorkomen dat aggregaties van 1 persoon over meerdere instances berekend worden. Het is belangrijk dat deze aggregaties paralel lopen om gebruikers van realtime updates te kunnen voorzien. Dit brengt echter wel het probleem met zich mee dat sommige data afhankelijk is van andere data en dat deze data consistent moet blijven met elkaar. De bovengenoemde pijpleiding architectuur zorgt er voor dat bij ieder filter bekend is welke afhankelijkheden hierop berusten. Zodra het filter klaar is met zijn aggregatie, wordt gekeken of de aggregatie bruikbaar is voor zijn afhankelijkheden en geeft zijn aggregatie aan de hand hiervan door. Deze afhankelijkheden kunnen op hun beurt over verschillende instances verdeeld worden, zonder dat er opstoppingen ontstaan.
+
+Omdat onze aggregatielaag berust op de MyLAPS SDK en een service bus, kan het in theorie voorkomen dat een eerdere doorkomst pas later bij deze laag binnenkomt dan een latere doorkomst. Ook kan het voorkomen dat het berekenen van een aggregatie van een eerdere doorkomst langer duurt dan die van een latere doorkomst, waardoor de updates hiervan door elkaar heen gaan lopen. Daarom is het belangrijk dat de data ten alle tijden consistent is, ook over meerdere
+
 
 \end{itemize}
 
