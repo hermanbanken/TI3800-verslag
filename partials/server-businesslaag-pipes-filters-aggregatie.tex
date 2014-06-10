@@ -5,7 +5,15 @@ Hoewel er meerdere soortgelijke cloud oplossingen bestaan, ging door de bestaand
 \subsection{Aggregatie structuur}
 Omdat de ruwe doorkomsten niet direct betekenis hebben voor gebruikers, dient deze data verrijkt te worden om zo inzicht te geven in trainingen van gebruikers. Dit proces noemen we de aggregatie van data.
 
-Zodra er een doorkomst binnenkomt binnen de data laag, wordt het Id hiervan naar de aggregatie laag overgestuurd via de Azure Service Bus. Zodra de aggregatie laag deze ontvangt, wordt de bijbehorende doorkomst opgevraagd. Hierna start het aggregatie proces, dat bestaat uit de volgende onderdelen:
+\begin{wrapfigure}{r}{0.4\textwidth}
+  \begin{center}
+    \includegraphics[width=.4\textwidth]{style/images/Aggregatie-flow}
+  \end{center}
+  \caption{Flow-diagram van het aggregatie process \\ deze afbeelding is in groot formaat opgenomen in Appendix~\ref{ch:aggregation-flow} op pagina~\pageref{fig:aggregatie-flow-large}}
+  \label{fig:aggregatie-flow}
+\end{wrapfigure}
+
+Zodra er een doorkomst binnenkomt binnen de data laag, wordt het Id hiervan naar de aggregatie laag overgestuurd via de Azure Service Bus. Zodra de aggregatie laag deze ontvangt, wordt de bijbehorende doorkomst opgevraagd. Hierna start het aggregatie proces, dat bestaat uit de volgende onderdelen, zoals ook te zien is in figuur~\ref{fig:aggregatie-flow}:
 
 \begin{itemize}
 \item \textbf{Reguliere filters.}
@@ -19,18 +27,10 @@ Voorbeeld: Live doorkomsten van gebruikers van een groep/baan.
 
 De filters zijn opgebouwd volgens een pijpleiding structuur een filter geen aggregatie uit kan voeren, stopt de vertakking van aggregaties. De overige filters die hier van gebruik maken, kunnen immers niet aggregeren zonder de aggregatie uit de vorige pijpleiding.
 
-\begin{figure}[ht]
-  \begin{center}
-    \includegraphics[height=7cm]{style/images/Aggregatie-flow}
-  \end{center}
-  \caption{Flow-diagram van het aggregatie process \\ deze afbeelding is in groot formaat opgenomen in Appendix~\ref{ch:aggregation-flow} op pagina~\pageref{fig:aggregatie-flow-large}}
-  \label{fig:aggregatie-flow}
-\end{figure}
-
 \begin{enumerate}
 
 \item \textbf{Account koppelen aan doorkomsten.}
-Allereerst wordt bij een doorkomst aan de hand van het transponder nummer een account gezocht, zoals ook te zien is in figuur~\ref{fig:aggregatie-flow}. Als er een bestaande gebruiker is die dit transponder nummer momenteel aan zijn account gekoppeld heeft, wordt dit account gekoppeld aan deze doorkomst. Dit wordt opgeslagen in een aparte tabel in Azure Table Storage.
+Allereerst wordt bij een doorkomst aan de hand van het transponder nummer een account gezocht. Als er een bestaande gebruiker is die dit transponder nummer momenteel aan zijn account gekoppeld heeft, wordt dit account gekoppeld aan deze doorkomst. Dit wordt opgeslagen in een aparte tabel in Azure Table Storage.
 
 \item \textbf{Doorkomsten koppelen aan segmenten.}
 Een doorkomst maakt deel uit van een training, soms gekoppeld aan een trainingsschema. Deze kunnen bestaan uit een of meerdere sessies. (zie begrippenlijst). Een segment van doorkomsten houdt in dat er 2 doorkomsten van dezelfde gebruiker binnen 30 minuten plaatst hebben gevonden op dezelfde baan. Wanneer de vorige doorkomst van deze gebruiker en de huidige doorkomst binnen een segment vallen, vallen deze doorkomsten onder dezeflde trainingssessie. Wanneer dit het geval is, krijgt de doorkomst dezelfde sessie Id toegewezen als zijn vorige doorkomst. Wanneer dit niet het geval is of er geen vorige doorkomst is, kan er geen segment gevonden worden.

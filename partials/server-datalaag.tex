@@ -40,42 +40,46 @@ De geaggregeerde data kan plat worden opgeslagen met behulp van NoSQL. Dit komt 
 
 Vanuit Emando ging de voorkeur voor het opslaan van de geaggregeerde data  uit naar de NoSQL Azure Table Storage. De Table Storage integreert eenvoudig met de reeds bestaande infrastructuur van het bedrijf. Bovendien biedt een gepartitioneerde en gesorteerde Table Storage tabel een groot performance voordeel: het goedkoop en snel kunnen selecteren van de laatste entiteiten per context.
 
-Vanuit de Data Collector worden de doorkomsten die realtime binnen komen opgeslagen in Table Storage als backup. De structuur van deze tabel is terug te vinden in {\color{red} ref en tabel toevoegen }. Verderop in het aggregatieproces worden deze doorkomsten gekoppeld aan gebruikers. Deze aggregaties worden vervolgens opgeslagen in een aparte tabel binnen Azure Table Storage. De structuur van deze tabel is terug te vinden in {\color{red} ref en tabel toevoegen }.
+Bij het gebruik van NoSQL is het belangrijk dat de Partition- en Row Key efficiënt gekozen worden, aangezien dit de snelheid van het zoeken bepaald. Verder is het belangrijk dat de combinatie van Partition en Row Key uniek is. In figuren \ref{fig:passingTableStructure}, \ref{fig:userPassingTableStructure}, \ref{fig:lapTableStructure} en \ref{fig:lapLeaderboardTableStructure} is te zien hoe deze keys gekozen zijn en wat de structuur van deze tabellen is.
 
-Van snelheden, rondes, run/rust periodes en sessies worden leaderboards bijgehouden in Azure Table Storage. Deze hebben allen een eigen corresponderende tabel, zodat aggregaties parallel aan elkaar leaderboards kunnen updaten {\color{red} ref aggregatielaag }.
-Alle leaderboards zijn voorzien van een leaderboard Id en een user Id. Het leaderboard Id houdt bij voor welke context het leaderboard geldig is. Dit kunnen banen, groepen, maar ook gebruikers zijn. Wanneer een gebruiker een ronde rijdt op een baan X, moeten zijn records voor de baan, zijn groepen en zijn eigen totalen geüpdatet worden. 
+Vanuit de Data Collector worden de doorkomsten die realtime binnen komen opgeslagen in Table Storage als backup. De structuur van deze tabel is terug te vinden in figuur \ref{fig:passingTableStructure}. Verderop in het aggregatieproces worden deze doorkomsten gekoppeld aan gebruikers. Deze aggregaties worden vervolgens opgeslagen in een aparte tabel binnen Azure Table Storage. De structuur van deze tabel is terug te vinden in figuur \ref{fig:userPassingTableStructure}.
 
-\begin{figure}[ht]
+Verderop in het aggregatieproces worden doorkomsten van gebruikers gekoppeld aan sessies, run/rust periodes en rondes. Deze aggregaties worden opgeslagen in de ronde tabel binnen Azure Table Storage. De structuur hiervan is terug te vinden in figuur \ref{fig:lapTableStructure}.
+
+
+Van snelheden, rondes, run/rust periodes en sessies worden leaderboards bijgehouden in Azure Table Storage. Deze hebben allen een eigen corresponderende tabel, zodat aggregaties parallel aan elkaar leaderboards kunnen updaten.
+Alle leaderboards zijn voorzien van een leaderboard Id en een user Id. Het leaderboard Id houdt bij voor welke context het leaderboard geldig is. Dit kunnen banen, groepen, maar ook gebruikers zijn. Wanneer een gebruiker een ronde rijdt op een baan X, moeten zijn records voor de baan, zijn groepen en zijn eigen totalen geüpdatet worden. Een voorbeeld structuur van deze leaderboards is te vinden in figuur \ref{fig:lapLeaderboardTableStructure}.
+
+\begin{figure}[h!]
   \begin{center}
-  \includegraphics[width=.6\textwidth]{style/images/passingsStructure}    
+  \includegraphics[width=\textwidth]{style/images/passingsStructure}    
   \end{center}
-  \caption{De doorkomsten tabel met voorbeeld records. Hierbij is de Partition Key het type trasponder + transponder nummer en de Row Key het tijdstip waarop de doorkomst binnen kwam.}
+  \caption{De doorkomsten tabel met voorbeeld records. Hierbij is de Partition Key het type trasponder + transpondernummer en de Row Key het tijdstip waarop de doorkomst binnen kwam.}
   \label{fig:passingTableStructure}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[h!]
   \begin{center}
-  \includegraphics[width=.6\textwidth]{style/images/userPassingsStructure}    
+  \includegraphics[width=\textwidth]{style/images/userPassingsStructure}    
   \end{center}
-  \caption{De doorkomsten tabel met voorbeeld records. Hierbij is de Partition Key het account Id met een prefix voor gebruikers en de Row Key het tijdstip waarop de doorkomst binnen kwam.}
+  \caption{De doorkomsten tabel met voorbeeld records. Hierbij is de Partition Key het account Id \\met een prefix voor gebruikers en de Row Key het tijdstip waarop de doorkomst binnen kwam.}
   \label{fig:userPassingTableStructure}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[h!]
   \begin{center}
-  \includegraphics[width=.6\textwidth]{style/images/lapLeaderboardStructure}    
+  \includegraphics[width=\textwidth]{style/images/aggregationLapsStructure}    
   \end{center}
   \caption{De ronde tabel met voorbeeld records. Hierbij is de Partition Key het account Id en de Row Key het ronde Id.}
   \label{fig:lapTableStructure}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[h!]
   \begin{center}
-  \includegraphics[width=.6\textwidth]{style/images/aggregationLapsStructure}    
+  \includegraphics[width=\textwidth]{style/images/lapLeaderboardStructure}    
   \end{center}
-  \caption{De ronde leaderboard tabel, een voorbeeld van een leaderboard tabel. Hierbij is de Partition Key het account Id en de Row Key het context Id (groep, baan of account Id).}
-  \label{fig:entiteiten}
+  \caption{De ronde leaderboard tabel, een voorbeeld van een leaderboard tabel. Hierbij is de Partition Key het account Id\\ en de Row Key het context Id (groep, baan of account Id).}
+  \label{fig:lapLeaderboardTableStructure}
 \end{figure}
 
-De structuur van de leaderboard tabellen ziet er als volgt uit.
-{\color{red} tabel toevoegen}
+\clearpage
