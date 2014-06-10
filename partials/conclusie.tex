@@ -3,12 +3,14 @@
 {\par \bigskip \par \color{red} TODO \par \bigskip \par }
 
 \section{Doorontwikkeling}
+Hoewel de applicatie momenteel geschikt is om uit te brengen op de markt, zijn er nog een tal van mogelijkheden om de applicatie door te ontwikkelen. Zoals uit de enquêtes en de meetings met de \ac{KNSB} gebleken is, is er veel vraag naar de applicatie, maar ook naar verdere functionaliteit. Ook een vergroting van de doelgroep door de applicatie uit te brengen op andere platformen is wenselijk. Binnen \ac{tfs} zijn backlog items aangemaakt voor alle functionaliteit die later wenselijk is, maar nog niet geïmplementeerd is. Deze backlog items zijn gesorteerd op volgorde van prioriteit en kan gebruikt worden als leidraad bij de doorontwikkeling van het project.
 
-{\par \bigskip \par \color{red} TODO \par \bigskip \par }
+In het theoretische geval dat er een azure cloud instance crasht kan het voorkomen dat er aggregaties meerdere malen berekent. Dit resulteert niet in "verkeerde" data, maar kan wel zorgen voor dubbele berekeningen over intervallen. Dit probleem is te verhelpen door aggregaties niet te laten werken met een synchronisatie tijdstip, maar in plaats daarvan aggregaties die vertraagt raken de "te vroeg" uitgerekende aggregaties te verwijderen en opnieuw uit te laten rekenen. Omdat de kans dat een dergelijke instance crasht bijzonder klein is en het oplossen van dit probleem op technisch vlak een grote hoeveelheid tijd zou kosten is in overleg met Emando er gekozen om in het kader van het Bachelor Eindproject dit voorlopig niet te verhelpen. Dit is een probleem dat in de doorontwikkeling zeker verholpen kan worden.
 
 \subsection{Documentatie}
+Om eventuele doorontwikkeling van het project te bevorderen bevatten is alle code, waar nodig, voorzien van commentaar. Ook zijn er voor de API's documenten gemaakt waarin hun werk- en gebruikswijze gedocumenteerd is. 
 
-{\par \bigskip \par \color{red} TODO \par \bigskip \par }
+Naast deze documentatie voor de code, zijn er ook een aantal documenten geschreven waarin beschreven staat hoe andere developers aan de slag kunnen met het project. Hierin staat de volgorde van stappen beschreven die ondernomen dient te worden om alle afhankelijkheden en cloud instances draaiende te krijgen.
 
 \section{Toekomst}
 

@@ -12,10 +12,11 @@ Zoals besproken tijdens de meeting van 23 april (Pagina \pageref{sec:meeting-23-
 \item[De presentatielaag] verzorgt de weergave. De presentatielaag bevind zich in de code van de mobiele applicatie en bevat zowel platform onafhankelijke View-Models en hulpmiddelen als platform specifieke User Interface elementen.
 \item[De servicelaag] is de interface tussen de server en de mobiele apps. Deze gebruikt de twee technieken SignalR en WebApi.
 \item[De businesslaag] is verantwoordelijk voor het ophalen en verwerken van de data. Deze laag bevat een verbinding met de service- en datalaag. Met deze verbindingen is deze laag is staat met behulp van logica data op te halen, te verwerken, eventueel op te slaan en door te sturen naar de servicelaag. 
-\item[De datalaag] is verantwoordelijk voor alle verschillende databronnen: Entity Framework, Table Storage, MyLaps*
+\item[De datalaag] is verantwoordelijk voor alle verschillende databronnen: Entity Framework, Table Storage en MyLaps. Deze laag bevat zelf geen verbindingen andere lagen, maar de data kan met behulp van repositories vanuit de business laag opgevraagd worden.
+
 \end{description}
 
-Naast deze vier lagen is er ook nog een deel van de code die gedeeld wordt door alle andere lagen: ``cross-cutting''. In de cross-cutting laag bevinden zich voornamelijk de domein entiteiten, zodat alle server-lagen deze entiteiten kunnen gebruiken. Naast de entiteiten wordt ook de JSON serialisatie van de entiteiten in de cross-cutting laag geregeld: er zijn  speciale te serialiseren afgeleide modellen, met zo weinig afhankelijkheden van frameworks dat ze in een \ac{pcl} kunnen. Hierdoor kunnen de mobiele applicaties dezelfde modellen gebruiken als de servicelaag, en kunnen de modellen via de Websockets- en HTTP-verbinding van SignalR en WebAPI verstuurd worden.
+Naast deze vier lagen is er ook nog een deel van de code die gedeeld wordt door alle andere lagen: \textbf{``cross-cutting''}. In de cross-cutting laag bevinden zich voornamelijk de domein entiteiten, zodat alle server-lagen deze entiteiten kunnen gebruiken. Naast de entiteiten wordt ook de JSON serialisatie van de entiteiten in de cross-cutting laag geregeld: er zijn  speciale te serialiseren afgeleide modellen, met zo weinig afhankelijkheden van frameworks dat ze in een \ac{pcl} kunnen. Hierdoor kunnen de mobiele applicaties dezelfde modellen gebruiken als de servicelaag, en kunnen de modellen via de Websockets- en HTTP-verbinding van SignalR en WebAPI verstuurd worden. Deze entiteiten bevatten allen een context Id en user Id, welke aangeeft voor welke context (groep, baan of gebruiker) bedoelt is en van wie deze entiteit is. Op deze manier is SignalR in staat om deze entiteiten te versturen naar de juiste gebruikers.
 
   % 4 lagen
   % - presentatie laag
@@ -28,7 +29,9 @@ Naast deze vier lagen is er ook nog een deel van de code die gedeeld wordt door 
   De businesslaag bestaat uit meerdere grote onderdelen. Zowel aggregatie als de workflows zijn twee gescheiden onderdelen die zich in de businesslaag bevinden.
  
 \begin{figure}[ht]
-  \includegraphics[width=\textwidth]{style/images/Businesslaag}    
+  \begin{center}
+  \includegraphics[width=.6\textwidth]{style/images/Businesslaag}    
+  \end{center}
   \caption{Opbouw en interactie van de businesslaag}  
   \label{fig:lagen-businesslaag}
 \end{figure}
@@ -46,15 +49,43 @@ Naast deze vier lagen is er ook nog een deel van de code die gedeeld wordt door 
   \input{partials/client-presentatielaag}
 
 \section{Testomgeving}
-Er zijn maar een paar gedeelten van de App die effectief automatisch getest kunnen worden. Dit heeft te maken met het feit dat de App de data die van de server komt, bijna letterlijk overneemt in views. Het testen van views komt erop neer dat er automatisch zou worden getest of er dingen op het scherm verschijnen, wat erg veel werk zou zijn voor iets wat heel simpel handmatig getest kan worden.
+Bij elke applicatie is het van belang dat er goed getest wordt. In het geval van onze applicatie was het toch een behoorlijke uitdaging om effectief te testen. Allereerst werkt de applicatie met realtime data van een externe leverancier. Deze data kan gesimuleerd worden, maar het is lastig om unit-tests te maken die realtime en asynchrone datastromen kunnen testen. Daarnaast is het testen van een iOS App vrij lastig en tijdrovend, aangezien het veel tijd kost om vingerbewegingen te simuleren, te controleren of deze de gewenste gevolgen hebben en of de juiste data getoond wordt.
 
-{\par \bigskip \par \color{red} TODO: Uitbreiden, Visual Studio Testomgeving toelichten, iOS Testomgeving en tests toelichten \par \bigskip \par }
+Gezien het feit dat de App lastig te testen is, terwijl het grootste gedeelte van de App de data vanuit de server direct overneemt in de views, hebben we besloten de App handmatig te testen. De server daarentegen wordt wel uitgebreid getest met behulp van automatische unit-tests. 
 
-Binnen het server-gedeelte van de applicatie worden alle transponder-doorkomsten realtime verwerkt. De filters die te maken hebben met het verwerken van deze doorkomsten worden uitgebreid getest om er zeker van te zijn dat ze correct functioneren. Dit testen wordt gedaan met een set unit-tests die elk van deze filters aanroept met bepaalde input en controleert of de uitvoer overeenkomt met de verwachte uitvoer van deze filters.
+Binnen het server-gedeelte van de applicatie worden alle transponder-doorkomsten realtime verwerkt. De filters die te maken hebben met het verwerken van deze doorkomsten worden elk afzonderlijk getest om er zeker van te zijn dat ze correct functioneren. Dit testen wordt gedaan met een set unit-tests die elk van deze filters aanroept met bepaalde input en controleert of de uitvoer overeenkomt met de verwachte uitvoer van deze filters.
+
+{\par \bigskip \par \color{red} TODO: Screenshots van testomgeving toevoegen \par \bigskip \par }
+
+Dit houdt in dat in elke test een nep-omgeving wordt gecreëerd. Deze omgeving bevat de gebruikers, groepen en relaties die tijdens de test voor het betreffende filter gebruikt worden. Alle hulpklassen voor het filter worden gemockt, wat inhoudt dat er een gesimuleerd object wordt gemaakt dat het gedrag van de oorspronkelijke klasse nabootst. Tijdens de tests wordt gecontroleerd of de juiste methoden van de hulpklassen worden aangeroepen en of de juiste uitvoer wordt geproduceerd.
+
+Al deze tests worden uitgevoerd in de testomgeving van Visual Studio. In deze omgeving kan men zien welke tests slagen of falen en kan in debug-modus achterhaald worden wat de oorzaak is van falende tests.
 
 \subsection{Integratietesten van client en server}
-Een bijkomend voordeel van het hebben van een platformonafhankelijke client is dat deze ook uit te voeren is op hetzelfde platform als waar de server draait. Het is erg fijn om op deze manier te kunnen controleren of de server en client code integreerd, aangezien je snel door zowel de server als de client kan `steppen' - het regel voor regel door de lopende applicatie heen stappen tijdens het debuggen - in Visual Studio.
+Een bijkomend voordeel van het hebben van een platformonafhankelijke client is dat een deel van de App ook uit te voeren is op hetzelfde platform als waar de server draait. Dit heeft tot gevolg dat er toch integratietests uitgevoerd kunnen worden om te controleren of de App aansluit op de server. Ook maakt dit het debuggen makkelijker, aangezien je  in Visual Studio door de programma's heen kan `steppen' (het regel voor regel door de lopende applicatie heen stappen).
 
-Het is niet mogelijk een test van het hele platform te automatiseren op zo'n manier dat alles op een test-server draait. Voor het uitvoeren van het Azure project is een Azure Queue nodig die alleen in de Cloud bestaat. Azure is alleen te bereiken met de Azure SDK die alleen voor Visual Studio beschikbaar is, en dus alleen op Windows werkt, terwijl de Xamarin projecten voor iOS alleen op een MacBook kunnen opstarten. Om een speciale Mac test-server op te zetten met daarop een virtuele machine met Windows was te veel werk voor dit project, dus worden integratie-tests uitgevoerd op onze persoonlijke MacBooks, waar we deze set-up wel hebben geïnstalleerd.
+In Figuur~\ref{fig:integratie-project} zijn de schermen te zien die onderdeel uitmaken van het integratietestproject. Het scherm bij \subref{fig:integratie-azure} is de Azure Emulator, hierin worden de datalaag, businesslaag (de Aggregatie) en servicelaag (de API) uitgevoerd. Bij \subref{fig:integratie-passing-input} kunnen er met behulp van het toetsenbord transponderdoorkomsten worden gesimuleerd, die vervolgens in Azure worden verwerkt. Ten slotte wordt in \subref{fig:integratie-client} getoond welke data de API Client binnen krijgt.
+
+\begin{figure}[ht]
+\centering
+\subfigure[De Azure Emulator]{
+    \includegraphics[height=5cm]{style/images/screenshots/IntegrationAzure}
+    \label{fig:integratie-azure}
+}
+
+\subfigure[De Passing Input Console]{
+    \includegraphics[height=4cm]{style/images/screenshots/IntegrationPassingInput}
+    \label{fig:integratie-passing-input}
+}
+
+\subfigure[De Client Console]{
+    \includegraphics[height=4cm]{style/images/screenshots/IntegrationClient}
+    \label{fig:integratie-client}
+}
+\caption{Het integratieproject voor het testen van de API Client}
+\label{fig:integratie-project}
+\end{figure}
+
+Het is niet mogelijk een test van het hele platform te automatiseren op zo'n manier dat alles op een test-server draait. Voor het uitvoeren van het Azure project is een Azure Service Bus nodig die alleen in de Cloud bestaat. Azure is alleen te bereiken met de Azure SDK die alleen voor Visual Studio beschikbaar is, en dus alleen op Windows werkt, terwijl de Xamarin projecten voor iOS alleen op een MacBook kunnen opstarten. Om een speciale Mac test-server op te zetten met daarop een virtuele machine met Windows was te veel werk voor dit project, dus worden integratie-tests uitgevoerd op onze persoonlijke MacBooks, waar we deze set-up wel hebben geïnstalleerd.
 
 % TODO: we moeten nog integratie tests schrijven in iOS.Test

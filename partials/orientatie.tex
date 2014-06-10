@@ -150,6 +150,8 @@ Aan de hand van een lijst met Passings kunnen we enkele berekeningen doen. Met d
 \end{figure}
 
 \section{Database}
+\label{sec:database}
+
 Zoals in figuur~\ref{fig:entities}, is een deel van onze data relationeel.. De gebruikers zijn gekoppeld aan transponders en transponders zijn gekoppeld aan Passings. Gebruikers kunnen deel uitmaken van groepen en kunnen een lijst met favoriete gebruikers hebben, welke ze willen volgen. Een deel van de data zullen we opslaan in een relationele database. Data die relatief weinig wordt aangepast zoals de gebruiker-accounts en bijbehorende transponders leent zich hier uitstekend voor. Met een \textit{join} is eenvoudig een lijst van transponders van een gebruiker op te halen. In figuur~\ref{fig:dbengines} is (een abstractie en deel van) de relationele data weergegeven in het blauw. De user-id's uit de account-tabel komen terug in de transponder-tabel.
 
 \begin{figure}
