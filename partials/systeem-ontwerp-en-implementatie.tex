@@ -4,15 +4,15 @@ Zoals besproken tijdens de meeting van 23 april (Pagina \pageref{sec:meeting-23-
   \begin{center}
     \includegraphics[width=0.5\textwidth]{style/images/Layers}
   \end{center}
-  \label{fig:diagram-layers}
   \caption{Diagram van de lagen van de applicatie}
+  \label{fig:diagram-layers}
 \end{figure}
 
 \begin{description}
 \item[De presentatielaag] verzorgt de weergave. De presentatielaag bevind zich in de code van de mobiele applicatie en bevat zowel platform onafhankelijke View-Models en hulpmiddelen als platform specifieke User Interface elementen.
 \item[De servicelaag] is de interface tussen de server en de mobiele apps. Deze gebruikt de twee technieken SignalR en WebApi.
-\item[De businesslaag] {\color{red} is verantwoordelijk voor het ophalen van de gegevens}
-\item[De datalaag] {\color{red} omvat de verschillende databronnen: Entity Framework, Table Storage, MyLaps, ...}
+\item[De businesslaag] is verantwoordelijk voor het ophalen en verwerken van de data. Deze laag bevat een verbinding met de service- en datalaag. Met deze verbindingen is deze laag is staat met behulp van logica data op te halen, te verwerken, eventueel op te slaan en door te sturen naar de servicelaag. 
+\item[De datalaag] is verantwoordelijk voor alle verschillende databronnen: Entity Framework, Table Storage, MyLaps*
 \end{description}
 
 Naast deze vier lagen is er ook nog een deel van de code die gedeeld wordt door alle andere lagen: ``cross-cutting''. In de cross-cutting laag bevinden zich voornamelijk de domein entiteiten, zodat alle server-lagen deze entiteiten kunnen gebruiken. Naast de entiteiten wordt ook de JSON serialisatie van de entiteiten in de cross-cutting laag geregeld: er zijn  speciale te serialiseren afgeleide modellen, met zo weinig afhankelijkheden van frameworks dat ze in een \ac{pcl} kunnen. Hierdoor kunnen de mobiele applicaties dezelfde modellen gebruiken als de servicelaag, en kunnen de modellen via de Websockets- en HTTP-verbinding van SignalR en WebAPI verstuurd worden.
@@ -28,9 +28,9 @@ Naast deze vier lagen is er ook nog een deel van de code die gedeeld wordt door 
   De businesslaag bestaat uit meerdere grote onderdelen. Zowel aggregatie als de workflows zijn twee gescheiden onderdelen die zich in de businesslaag bevinden.
  
 \begin{figure}[ht]
-  \includegraphics[width=\textwidth]{style/images/Businesslaag}      
+  \includegraphics[width=\textwidth]{style/images/Businesslaag}    
+  \caption{Opbouw en interactie van de businesslaag}  
   \label{fig:lagen-businesslaag}
-  \caption{Opbouw en interactie van de businesslaag}
 \end{figure}
   
   
