@@ -1,4 +1,3 @@
-\section{Servicelaag}
 Onze applicatie bevat data met verschillende relevantie over tijd. Tijdens het sporten zijn vooral doorkomsten interessant evenals informatie over de actuele training. Ná het sporten zijn vergelijkingen met andere sporters interessant en analyses op de training. Zowel SignalR\footnote{\url{http://www.asp.net/signalr}} als WebApi\footnote{\url{http://www.asp.net/web-api}} zijn technieken om data door te sturen, maar SignalR is gemaakt voor live data en WebApi voor het toegankelijk maken van al bestaande data via een REST API~\footnote{\url{http://en.wikipedia.org/wiki/Representational_state_transfer}}. In onze applicatie gebruiken we dan ook beide technieken naast elkaar. Een derde techniek die we gebruiken is OWIN~\footnote{\url{http://www.asp.net/aspnet/overview/owin-and-katana}}, een brug tussen de webserver en de web-applicatie. OWIN verzorgt het opstarten en configureren van de web-applicatie.
 
 \subsection{SignalR}

@@ -5,23 +5,16 @@ De applicatie bevat data uit verschillende bronnen, en slaat zijn data in versch
 
 \subsection{Ruwe inkomende data}
 
-{\par \bigskip \par \color{red} TODO: MyLaps Uitwerken \par \bigskip \par }
+De transponderleverancier MYLAPS heeft een SDK beschikbaar gesteld aan Emando, waarmee het mogelijk is om de doorkomsten van transponders realtime binnen te krijgen. Om deze databron te benaderen bevat datalaag uit een Azure Cloud Worker Role, welke nonstop draait op één cloud instance. Dit proces onderhoud tde verbinding met de MYLAPS SDK.
 
-Één databron is de SDK van transponderleverancier MyLaps. In de datalaag hebben we een Azure Cloud Worker Role gemaakt, die non-stop draait op een enkele instance. Dit process onderhoudt een verbinding met de MyLaps SDK.
-
-Vanuit de MyLAPS SDK ontvangt de data laag realtime de doorkomsten van iedere transponder die langs een lus komt. Deze doorkomsten bevatten een tijdstip, een transponder nummer en een plaats op de baan. Zodra een van deze doorkomsten binnen komt, wordt deze direct opgeslagen voor toekomstig gebruik in een doorkomsten tabel. Het kan namelijk voorkomen dat er op dit moment geen gebruiker van onze applicatie is, welke zijn transponder nummer heeft gekoppeld aan zijn account. Wanneer dit het geval is, kunnen er (nog) geen aggregaties uitgevoerd worden op deze data.
+Vanuit de MyLAPS SDK ontvangt de data laag realtime de doorkomsten van iedere transponder die langs een lus komt. Deze doorkomsten bevatten een tijdstip, een transponder nummer en een plaats op de baan. Zodra een van deze doorkomsten binnen komt, wordt deze direct opgeslagen voor toekomstig gebruik in een doorkomsten tabel in Azure Table Storage. Het kan namelijk voorkomen dat er op dit moment geen gebruiker van onze applicatie is, welke zijn transponder nummer heeft gekoppeld aan zijn account. Wanneer dit het geval is, kunnen er (nog) geen aggregaties uitgevoerd worden op deze data.
 
 Door deze data op te slaan, is het mogelijk om later functionaliteit in te bouwen om alsnog over deze data te kunnen aggregeren.
 
 Nadat de data opgeslagen is, wordt via een Azure Service Bus het Id van de doorkomst doorgestuurt naar het aggregatie process in de businesslaag. Het aggregatie process raadpleegt bij het binnenkrijgen van dit Id opnieuw de doorkomst, om zo minder data over de service bus te versturen en altijd over up to date data te beschikken.
 
-TODO: schema hiervan
+{\par \bigskip \par \color{red} TODO: Schema hiervan \par \bigskip \par }
 
-% "Write-review" van Herman: data laag is niet alleen cloud/mylaps, maar ook entity framework en SQL server. Je huidige zinsbouw zegt eigenlijk dat cloud/mylaps de enige dingen zijn in de datalaag, dat klopt niet.
-
-% ik heb alvast even iets geschreven over Entity Framework voor je
-
-\subsection{Table Storage}
 
 \subsection{Entity Framework}
 Naast doorkomst-data bevat onze applicatie ook relationele data zoals gebruikersaccounts en hun eigenschappen, transponder, groepen en favorieten. Het Entity Framework~\cite{entityframework-msdn, entityframework-facto} is de defacto standaard voor relationele datalagen in ASP.NET. Entity Framework kan bijvoorbeeld relaties tussen entiteiten automatisch opzoeken. Ook hoeft er geen SQL code geschreven te worden, maar kan platform ontafhankelijke LINQ code geschreven worden om entiteiten op te halen.

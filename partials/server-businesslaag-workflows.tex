@@ -3,15 +3,16 @@
 Een onderdeel van de Businesslaag zijn de workflows. Workflows zijn afgebakende taken, 
 welke door de eenvoudig door de servicelaag en andere businesslaagprocessen zijn aan te roepen, 
 en waarbij de servicelaag niet hoeft te weten hoe de taken worden uitgevoerd, 
-als er maar het beoogde resultaat oplevert. In onze applicatie zijn er op 3 gebieden workflows:
-
-{\par \bigskip \par \color{red} TODO: Schema/Diagram toevoegen \par \bigskip \par }
+als er maar het beoogde resultaat oplevert. In onze applicatie zijn er op 3 gebieden workflows, zoals ook te zien is in figuur~\ref{fig:lagen-businesslaag}:
 
 \begin{itemize}
-	\item{\textbf{Gebruikersaccounts beheren.}} De AccountWorkflow biedt mogelijkheden om accounts aan te maken met zowel gebruikersnaam en wachtwoord als met een Facebook authenticatie sleutel (``access token''). Verder kunnen accounts worden opgezocht aan de hand van hun emailadres of unieke nummer. De servicelaag biedt deze workflow rechtstreeks aan via de API.
+	\item{\textbf{Gebruikersaccounts beheren.}} 
+	De AccountWorkflow biedt mogelijkheden om accounts aan te maken met zowel gebruikersnaam en wachtwoord als met een Facebook authenticatie sleutel (``access token''). Verder kunnen accounts worden opgezocht aan de hand van hun emailadres of unieke nummer. De servicelaag biedt deze workflow rechtstreeks aan via de API.
 
-	\item{\textbf{Transponders beheren.}} Gebruikers kunnen per tijdseenheid maar één transponder hebben en deze kan niet door meer mensen tegelijk geregisteerd zijn. Deze logica wordt verzorgt voor de servicelaag, zodat gebruikers transponders kunnen toevoegen en kunnen ontkoppelen van hun account en daar de juiste eventuele foutmeldingen bij krijgen. Daarnaast moet de businesslaag snel kunnen opzoeken welke gebruiker bij een transponder hoort, op het moment dat een doorkomst binnenkomt. De TransponderWorkflow bevat de logica ervoor om deze checks te doen en de transponders op te zoeken.
+	\item{\textbf{Transponders beheren.}} 
+	Gebruikers kunnen per tijdseenheid maar één transponder hebben en deze kan niet door meer mensen tegelijk geregisteerd zijn. Deze logica wordt verzorgt voor de servicelaag, zodat gebruikers transponders kunnen toevoegen en kunnen ontkoppelen van hun account en daar de juiste eventuele foutmeldingen bij krijgen. Daarnaast moet de businesslaag snel kunnen opzoeken welke gebruiker bij een transponder hoort, op het moment dat een doorkomst binnenkomt. De TransponderWorkflow bevat de logica ervoor om deze checks te doen en de transponders op te zoeken.
 
-	\item{\textbf{Groepen beheren.}} Het aanmaken en beheren van groepen zijn ook specifieke taken waar een GroupWorkflow voor bestaat. Deze workflow zorgt er voor dat de actieve gebruiker wordt toegevoegd aan de aangemaakte groep en dat er alleen wijzigingen plaatsvinden die mogen worden uitgevoerd. Deze logica voornamelijk door de servicelaag gebruikt, om de groepen functionaliteit aan te bieden. Daarnaast wordt beschikbare nieuwe informatie doorgestuurd naar de gebruikers uit dezelfde groepen. Ook hiervoor wordt de workflow gebruikt.
+	\item{\textbf{Groepen beheren.}} 
+	Het aanmaken en beheren van groepen zijn ook specifieke taken waar een GroupWorkflow voor bestaat. Deze workflow zorgt er voor dat de actieve gebruiker wordt toegevoegd aan de aangemaakte groep en dat er alleen wijzigingen plaatsvinden die mogen worden uitgevoerd. Deze logica voornamelijk door de servicelaag gebruikt, om de groepen functionaliteit aan te bieden. Daarnaast wordt beschikbare nieuwe informatie doorgestuurd naar de gebruikers uit dezelfde groepen. Ook hiervoor wordt de workflow gebruikt.
 
 \end{itemize}

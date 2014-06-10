@@ -1,31 +1,40 @@
 \newcommand{\aanleiding}{}
 
-{\par \bigskip \par \color{red} TODO: Meer uitleg over begrippen \par \bigskip \par }
-
 \begin{wrapfigure}{r}{4cm}
   \begin{center}
     \includegraphics[width=4cm]{style/images/transponder}
   \end{center}
-  \caption{MyLaps ProFlex transponder, op schaal} 
+  \caption{MyLaps ProFlex transponder, op schaal}
+  \label{fig:transponder}
+  \vspace{15mm}
 \end{wrapfigure}
 
-In baansporten is de laatste jaren een ontwikkeling gaande om tijdregistratie te digitaliseren door het gebruik van transponders en detectie-lussen in de baan. Door deze ontwikkeling zijn nieuwe mogelijkheden ontstaan om ook naast het wedstrijdmoment de sportprestaties in te zien. Het constateren van de hierna genoemde nieuwe mogelijkheden was de aanleiding van dit project.
+In baansporten is de laatste jaren een ontwikkeling gaande om tijdregistratie te digitaliseren door het gebruik van transponders (bijvoorbeeld de MyLaps ProFlex transponder in Figuur~\ref{fig:transponder}) en detectie-lussen (Figuur~\ref{fig:detection-loop}) in de baan. Door deze ontwikkeling zijn nieuwe mogelijkheden ontstaan om ook naast het wedstrijdmoment de sportprestaties in te zien. Het constateren van de hierna genoemde nieuwe mogelijkheden was de aanleiding van dit project.
+
+\begin{wrapfigure}{r}{4cm}
+  \begin{center}
+    \includegraphics[width=4cm]{style/images/DetectionLoop}
+  \end{center}
+  \caption{Een schema van een detectielus en en decoder}
+  \label{fig:detection-loop}
+  \vspace{5mm}
+\end{wrapfigure}
 
 Een grote speler op de tijdregistratie-markt is MyLaps\footnote{\url{http://www.mylaps.com}}. Dit bedrijf installeert en beheert detectie-lussen en is actief bij diverse sporten zoals schaatsen, wielrennen, zwemmen, atletiek en diverse motorsporten. Bij sporten met permanente banen liggen de detectie-lussen het gehele jaar in de baan. Er bestaat de mogelijkheid om op de website van MyLaps doorkomst-tijden in te zien. De informatie die uit deze tijden is af te leiden, wordt door sporters als erg waardevol gezien om zich willen blijven verbeteren, waardoor er steeds meer getraind wordt met deze transponders.
 
 \begin{figure}
-  \label{fig:track-transponders}
   \begin{center}
-    \includegraphics[width=\textwidth]{style/images/BaanoverzichtHaarlem}
+    \includegraphics[width=0.8\textwidth]{style/images/BaanoverzichtHaarlem}
   \end{center}
   \caption{L1 tot en met L9 zijn de negen MyLaps transponderlussen in Haarlem}
+  \label{fig:track-transponders}
 \end{figure}
 
 Voor aanvang van het seizoen worden door MyLaps detectielussen geïnstalleerd. De lussen bevinden zich in het ijs of onder het houten oppervlak van een baanwielrenbaan. Elke lus heeft een elektromagnetisch veld. Wanneer een sporter met transponder over dat veld heen rijdt wordt de transponder geactiveerd en stuurt deze een unieke puls, die de lus opvangt. De MyLaps X2 server die aan de lussen zit aangesloten stuurt vervolgens het signaal door naar de MyLaps Cloud.
 
 Het huidige gebruik van transponders - buiten wedstrijden - is voornamelijk achteraf, terwijl juist tijdens de training zowel sporter als coach het meeste bezig zijn met de prestaties. Het is daarom wenselijk om de resultaten in real-time door te geven aan coaches en sporters zelf.
 
-Op de banen zijn meerdere detectie-lussen geïnstalleerd, terwijl er op de website van MyLaps slechts 1 wordt ontsloten. In Thialf\footnote{Schaatsbaan in Heerenveen, Friesland; van alle Nederlandse banen wordt deze baan het meeste gebruikt voor professionele wedstrijden.} liggen bijvoorbeeld 12 detectie-lussen en op de andere schaatsbanen liggen er tenminste 2. Door de data van meerdere lussen te combineren is een betere indicatie te maken van de snelheid van sporters.
+Op veel banen zijn meerdere detectie-lussen geïnstalleerd, terwijl er op de website van MyLaps slechts één wordt ontsloten. In Thialf, de schaatsbaan in Heerenveen, Friesland, liggen bijvoorbeeld twaalf detectie-lussen, in Haarlem (Figuur~\ref{fig:track-transponders}) negen en op de andere schaatsbanen liggen er tenminste twee. Door de data van meerdere lussen te combineren is een betere indicatie te maken van de snelheid van sporters.
 
 \begin{wrapfigure}{r}{0.4\textwidth}
  \includegraphics[width=0.4\textwidth]{style/images/training}
