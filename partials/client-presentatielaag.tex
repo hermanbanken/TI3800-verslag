@@ -53,16 +53,16 @@ Door gebruik te maken van ReactiveUI wordt het heel simpel om views te maken die
 
 \subsection{Grafische user interface}
 
-De gebruikersinterface van de App staat in principe los van de rest van de App. Hoewel het grootste deel van de code gebruikt kan worden op verschillende platforms, moet de gebruikersinterface voor elk platform apart ontwikkeld worden. Tijdens dit bachelorproject is ervoor gelozen om alleen een specifieke gebruikersinterface te maken voor iPhones. Hiervoor is gekozen omdat het grootste deel van de KNSB-top een iPhone gebruikt. Wanneer zij besluiten dat de applicatie ook daadwerkelijk gebruikt gaat worden, kunnen er nog gebruikersinterfaces gebouwd worden voor andere populaire platforms.
+De gebruikersinterface van de applicatie staat in principe los van de rest van de applicatie. Hoewel het grootste deel van de code gebruikt kan worden op verschillende platforms, moet de gebruikersinterface voor elk platform apart ontwikkeld worden. Tijdens dit bachelorproject is ervoor gelozen om alleen een specifieke gebruikersinterface te maken voor iPhones. Hiervoor is gekozen omdat het grootste deel van de KNSB-top een iPhone gebruikt. Wanneer zij besluiten dat de applicatie ook daadwerkelijk gebruikt gaat worden, kunnen er nog gebruikersinterfaces gebouwd worden voor andere populaire platforms.
 
 \begin{figure}[h!t]
 \centering
-\includegraphics[width=0.8\textwidth]{style/images/screenshots/InterfaceBuilder}
+\includegraphics[width=\textwidth]{style/images/screenshots/InterfaceBuilder}
 \caption{De XCode Interface Builder}
 \label{fig:interface-builder}
 \end{figure}
 
-Door het gebruik van Xamarin gaat de implementatie van de iOS user interface iets anders dan met reguliere iOS applicaties. Er kan deels gebruikgemaakt worden van de Interface Builder (Figuur~\ref{fig:interface-builder}) die ingebouwd zit in Xcode, de officiële ontwikkelomgeving voor iOS.
+Door het gebruik van Xamarin gaat de implementatie van de iOS user interface iets anders dan met reguliere iOS applicaties. Er kan deels gebruikgemaakt worden van de Interface Builder (figuur~\ref{fig:interface-builder}) die ingebouwd zit in Xcode, de officiële ontwikkelomgeving voor iOS.
 
 Na het opslaan van de gebruikersinterface in Xcode, genereert de Xamarin omgeving automatisch code zoals hieronder weergegeven, waarmee de native interface kan worden aangesloten op C\#.
 
@@ -90,7 +90,7 @@ Na het opslaan van de gebruikersinterface in Xcode, genereert de Xamarin omgevin
   \PY{n}{MonoTouch}\PY{p}{.}\PY{n}{UIKit}\PY{p}{.}\PY{n}{UITextField} \PY{n}{txtEmailAddress} \PY{p}{\PYZob{}} \PY{k}{get}\PY{p}{;} \PY{k}{set}\PY{p}{;} \PY{p}{\PYZcb{}}
 \end{Verbatim}
 
-De gebruikersinterface van de applicatie is in twee lagen gestructureerd. Allereerst zijn er de verschillende tabs waarmee de gebruiker kan wisselen tussen de verschillende contexten: persoonlijk, favorieten, groepen en banen. Deze onderverdeling is geïmplementeerd met behulp van de in iOS ingebouwde TabBarController, te zien in Figuur~\ref{fig:tab-view}. Voor elk van deze contexten hebben we geprobeerd een icoontje te ontwerpen dat overeen komt met de stijl die in iOS 7 wordt gehandhaafd, maar tegelijkertijd ook duidelijk genoeg aangeeft wat er met het icoontje bedoeld wordt. Voor de gebruikers, favorieten en groepen was dit redelijk simpel, maar voor de banen was dit toch een grotere uitdaging, aangezien de baan er voor verschillende sporten anders uitziet. Daarom hebben we uiteindelijk besloten om een weg te gebruiken voor het representeren van banen.
+De gebruikersinterface van de applicatie is in twee lagen gestructureerd. Allereerst zijn er de verschillende tabs waarmee de gebruiker kan wisselen tussen de verschillende contexten: persoonlijk, favorieten, groepen en banen. Deze onderverdeling is geïmplementeerd met behulp van de in iOS ingebouwde TabBarController, te zien in figuur~\ref{fig:tab-view}. Voor elk van deze contexten hebben we geprobeerd een icoontje te ontwerpen dat overeen komt met de stijl die in iOS 7 wordt gehandhaafd, maar tegelijkertijd ook duidelijk genoeg aangeeft wat er met het icoontje bedoeld wordt. Voor de gebruikers, favorieten en groepen was dit redelijk simpel, maar voor de banen was dit toch een grotere uitdaging, aangezien de baan er voor verschillende sporten anders uitziet. Daarom hebben we uiteindelijk besloten om een weg te gebruiken voor het representeren van banen.
 
 \begin{figure}[h!t]
 \centering
@@ -99,7 +99,7 @@ De gebruikersinterface van de applicatie is in twee lagen gestructureerd. Allere
 \label{fig:tab-view}
 \end{figure}
 
-De tweede laag van de interface-structuur bestaat eigenlijk voor een groot deel uit overzicht-detail schermen. Het profielscherm van een gebruiker bevat bijvoorbeeld een overzicht van al zijn sessies, een sessiescherm is weer een overzicht van alle runs, met daarin weer de afzonderlijke rondes. Deze structuur, die ook voorkomt bij de favorieten, groepen en banen, wordt geïmplementeerd met behulp van een NavigationController (Figuur~\ref{fig:navigation-view}).
+De tweede laag van de interface-structuur bestaat eigenlijk voor een groot deel uit overzicht-detail schermen. Het profielscherm van een gebruiker bevat bijvoorbeeld een overzicht van al zijn sessies, een sessiescherm is weer een overzicht van alle runs, met daarin weer de afzonderlijke rondes. Deze structuur, die ook voorkomt bij de favorieten, groepen en banen, wordt geïmplementeerd met behulp van een NavigationController (figuur~\ref{fig:navigation-view}). Een overzicht van de interface-schetsen van de schermen die in de applicatie bestaan, is te vinden in appendix~\ref{ch:interface-ontwerpen}.
 
 \begin{figure}[h!t]
 \centering
@@ -110,6 +110,10 @@ De tweede laag van de interface-structuur bestaat eigenlijk voor een groot deel 
 
 Binnen ongeveer alle schermen wordt er gebruikgemaakt van tabel-views. Om deze views realtime te kunnen voorzien van actuele data, zijn er speciale tabel-viewcontrollers ontwikkeld die aansluiten op de reactive ViewModels. Telkens als er iets wordt aangepast in de ViewModels zal deze tabel-viewcontroller de nodige tabelcellen invoegen, verwijderen, verplaatsen of bijwerken.
 
+Een ander belangrijk deel van de gebruikersinterface is de functionaliteit die ervoor zorgt dat er grafiekjes getekend worden. Dit wordt gedaan met behulp van de CoreGraphics functies in iOS. Voor elke ronde wordt een balkje getekend, waarbij de hoogte van het balkje correspondeert met de bijbehorende rondetijd. De kleur van het balkje geeft aan of de ronde een run-ronde of een rust-ronde was. De balkjes worden geschaald zodat uiteindelijk een overzicht van de volledige sessie te zien is.
+
+Bij het tekenen van de grafieken was het van groot belang dat de grafieken automatisch bijgewerkt worden als er nieuwe data beschikbaar is, maar tegelijkertijd niet te veel impact heeft op de performance van de applicatie. Dit is gedaan door gebruik te maken van de Reactive UI (zie Sectie~\ref{sec:vm-reactive-ui}). Als er een item aan de databron wordt toegevoegd, wordt er automatisch een nieuwe balk toegevoegd. Wanneer er een rondetijd zou veranderen, wat momenteel overigens niet kan voorkomen, wordt de hoogte van het corresponderende balkje direct aangepast.
+
 \begin{wrapfigure}{r}{4cm}
   \begin{center}
     \includegraphics[width=4cm]{style/images/screenshots/I-03-Home}
@@ -118,8 +122,4 @@ Binnen ongeveer alle schermen wordt er gebruikgemaakt van tabel-views. Om deze v
   \label{fig:profiel-scherm}
 \end{wrapfigure}
 
-Een ander belangrijk deel van de gebruikersinterface is de functionaliteit die ervoor zorgt dat er grafiekjes getekend worden. Dit wordt gedaan met behulp van de CoreGraphics functies in iOS. Voor elke ronde wordt een balkje getekend, waarbij de hoogte van het balkje correspondeert met de bijbehorende rondetijd. De kleur van het balkje geeft aan of de ronde een run-ronde of een rust-ronde was. De balkjes worden geschaald zodat uiteindelijk een overzicht van de volledige sessie te zien is.
-
-Bij het tekenen van de grafieken was het van groot belang dat de grafieken automatisch bijgewerkt worden als er nieuwe data beschikbaar is, maar tegelijkertijd niet te veel impact heeft op de performance van de App. Dit is gedaan door gebruik te maken van de Reactive UI (zie Sectie~\ref{sec:vm-reactive-ui}). Als er een item aan de databron wordt toegevoegd, wordt er automatisch een nieuwe balk toegevoegd. Wanneer er een rondetijd zou veranderen, wat momenteel overigens niet kan voorkomen, wordt de hoogte van het corresponderende balkje direct aangepast.
-
-Om ervoor te zorgen dat de App nog steeds snel aanvoelt, worden de grafiekjes die waarschijnlijk niet meer zullen veranderen, omgezet in afbeeldingen en gecached, zodat ze niet telkens opnieuw getekend hoeven te worden.
+Om ervoor te zorgen dat de applicatie nog steeds snel aanvoelt, worden de grafiekjes die waarschijnlijk niet meer zullen veranderen, omgezet in afbeeldingen en gecached, zodat ze niet telkens opnieuw getekend hoeven te worden.

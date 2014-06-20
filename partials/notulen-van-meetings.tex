@@ -16,7 +16,7 @@ Ideaal gezien zou het systeem opgedeeld worden in (onafhankelijke) componenten J
 
 \item[Ontwikkelomgeving en versiebeheer] Johan laat de Visual Studio Online omgeving en Visual Studio zien.
 
-\item[Testen en MYLAPS X2 introductie] Johan laat de MyLaps X2 Manager zien.
+\item[Testen en \mylaps X2 introductie] Johan laat de \mylaps X2 Manager zien.
 
 \item[Architectuur] Johan vertelt hoe andere applicaties van Emando globaal zijn opgezet. Er zijn verschillende lagen die elk verantwoordelijk zijn voor een bepaald aspect van de applicatie. Deze lagen kunnen onafhankelijk van elkaar ontwikkeld en getest worden.
 
@@ -37,7 +37,7 @@ Locatie: aan bureau's
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{style/images/meeting1mei}
+\includegraphics[width=0.4\textwidth]{style/images/meeting1mei}
 \caption{Flow bij het binnenkomen van nieuwe Passings}
 \label{fig:not1mei}
 \end{figure}
@@ -47,7 +47,7 @@ Locatie: aan bureau's
 
 Opslaan van aggregaties kan in Azure Table Store. De partitie id is de (virtuele) groep en de row is de user. De kolommen zijn de verschillende aggregaties. Wanneer er voor een user een nieuwe aggregatie is gedaan worden de normale groepen geupdate en ook de virtuele groepen zoals de aggregatie specifiek voor passings op de specifieke baan waar de laatste passing van binnenkwam.
 
-\begin{table}
+\begin{table}[h!]
 \begin{tabular}{lccccc}
 \centering
 \textbf{group  } & \textbf{ person } & langste training & snelste ronde & percentage rust/runs \\

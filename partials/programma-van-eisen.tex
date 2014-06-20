@@ -1,11 +1,11 @@
 \newcommand{\programmavaneisen}{}
 \label{sec:programma-van-eisen}
 
-Traditioneel gezien wordt bij software ontwikkeling het MoSCoW model gebruikt. Het MoSCoW model onderscheid functionaliteiten op basis van prioriteiten. De verschillende niveau's zijn must-, should-, could- en won't-haves. De vertaling van deze niveau's spreekt voor zich.
+Traditioneel gezien wordt bij software ontwikkeling het MoSCoW~\cite{moscow-clegg, moscow} model gebruikt. Het MoSCoW model onderscheidt functionaliteiten op basis van prioriteiten. De verschillende niveaus zijn must-, should-, could- en won't-haves. De vertaling van deze niveaus spreekt voor zich.
 
-Wij gebruiken het in combinatie met SCRUM veel gebruikte \acf{mvp} model. Hierbij wordt gedefinieerd wat het product minimaal moet kunnen om bruikbaar te zijn. In die zin komt onze \ac{mvp} dus overeen met de must-haves uit het MoSCoW model. Eventuele tegenslagen mogen er niet toe lijden dat het \ac{mvp} niet gemaakt wordt, daarom is de planning om het \ac{mvp} al in de 4e week af te hebben. Gebruikers kunnen op dat moment met de applicatie spelen en de kern-functionaliteit beoordelen.
+Wij gebruiken het in combinatie met het in SCRUM veel gebruikte \acf{mvp} model~\cite{mvp}. Hierbij wordt gedefinieerd wat het product minimaal moet kunnen om bruikbaar te zijn. In die zin komt onze \ac{mvp} dus overeen met de must-haves uit het MoSCoW model. Eventuele tegenslagen mogen er niet toe lijden dat het \ac{mvp} niet gemaakt wordt, vandaar is de planning om het \ac{mvp} al in de vierde week van het tien weken durende project af te hebben. Gebruikers kunnen op dat moment met de applicatie spelen en de kernfunctionaliteit beoordelen.
 
-Het \ac{mvp} biedt op zich zelf nog niet alle features die zowel wij als de opdrachtgever graag geïmplementeerd zouden willen zien. Het eindproduct zal over enkele bijzondere functies moeten beschikken, de zogenaamde `killer-features' om het product populair te maken. Deze features zijn in die zin dus vergelijkbaar met de should-haves uit het MoSCoW model.
+Het \ac{mvp} biedt op zich zelf nog niet alle features die zowel wij als de opdrachtgever graag geïmplementeerd zouden zien. Het eindproduct zal over enkele bijzondere functies moeten beschikken, de zogenaamde `killer-features', om het product populair te maken. Deze features zijn in die zin dus vergelijkbaar met de should-haves uit het MoSCoW model.
 
 Na het \ac{mvp} en de features die het verschil maken zijn er ook nog een aantal features die niet noodzakelijk zijn en geen groot verschil zouden maken. Deze features zijn te vergelijken met could-haves uit het MoSCoW model. We zullen zeker niet alle could-haves implementeren, en wellicht komen enkele should-features ook niet aan bod. Wellicht volgt uit een user study dat de door ons bedachte could-haves door users erg gewenste features zijn. In overleg met onze begeleiders kunnen we besluiten deze features te implementeren. Bovendien bieden de could-haves een goede leidraad bij toekomstige ontwikkeling na afloop van ons project.
 
@@ -14,11 +14,11 @@ Na het \ac{mvp} en de features die het verschil maken zijn er ook nog een aantal
 \begin{itemize} \parskip0pt \parsep0pt
     \item Bruikbaar als applicatie op smartphone(s)
     \item Architectuur is sport-agnostisch
-    \item De sport-specifieke weergave van tijden is voor schaatsbanen geïmplementeerd
+    \item De sportspecifieke weergave van tijden is voor schaatsbanen geïmplementeerd
     \item Mogelijkheid om een account aan te maken
-    \item Real-time transponder doorkomsten tonen van geselecteerde sporters
+    \item Realtime transponderdoorkomsten tonen van geselecteerde sporters
     \item Historische doorkomsten van een persoon, gegroepeerd per dag of training
-    \item De voor bovenstaande features ontwikkelde API, moet het mogelijk maken om de API uit te breiden en de applicatie aan te passen.
+    \item De voor bovenstaande features ontwikkelde API, moet uitbreidbaar zijn en aangepast kunnen worden.
 \end{itemize}
 
 \subsubsection{Should-haves}
@@ -35,7 +35,7 @@ Na het \ac{mvp} en de features die het verschil maken zijn er ook nog een aantal
         \item snelheid (gemiddelde/snelste)
         \item cumulatieve afstand (per seizoen/week/training)
         \item rust/intensief-ratio (hoeveelheid rondjes, ratio)
-        \item achievements-punten (verbeter jezelf 10\%, voor 7 uur op de baan, 2 trainingen per week)
+        \item achievements (verbeter jezelf 10\%, voor 7 uur op de baan, 2 trainingen per week)
     \end{itemize}
     
     \item Groepen-functionaliteit \begin{itemize}
@@ -45,9 +45,9 @@ Na het \ac{mvp} en de features die het verschil maken zijn er ook nog een aantal
         \item Mogelijkheid om uit een groep te gaan
     \end{itemize}
 
-    \item Zowel leaderboards als real-time doorkomst-schermen kunnen worden gefilterd op groep of baan
+    \item Zowel leaderboards als realtime doorkomstschermen kunnen worden gefilterd op groep of baan
      
-    \item Privacy instellingen bieden aan gebruikers
+    \item Privacy-instellingen bieden aan gebruikers
     \begin{itemize}
         \item Mogelijkheid om een account publiekelijk of anoniem te laten indexeren
         \item Mogelijkheid om eigen data te delen met anderen

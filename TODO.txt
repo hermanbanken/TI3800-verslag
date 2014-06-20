@@ -1,0 +1,3 @@
+- Referenties (Iedereen)
+  - (url -> footnote, paper -> referentie)
+  - signalr / webapi referentie naar voren halen

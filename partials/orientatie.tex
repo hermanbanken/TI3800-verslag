@@ -63,16 +63,16 @@ Het nadeel dat de prijs hoger kan liggen kan worden afgezwakt en mogelijk worden
 
 In tabel~\ref{tab:paas} ziet u een overzicht van de verschillende grote cloud platformen die er momenteel zijn, en de talen en frameworks die ze ondersteunen~\cite{paas-list-tomsitpro, azure-scala, aws}. Zoals in de tabel te zien is ondersteunen de meeste \ac{paas}\'s vele talen en frameworks. Microsoft Azure en Amazon AWS ondersteunen de 4 grote platformen .NET, Java, Python en NodeJS.
 
-De bestaande systemen van Emando zijn gemaakt met het .NET framework en draaien voornamelijk in Microsoft Azure als Cloud Service. Aangezien MyLaps voor ons een belangrijke databron is en de MyLaps SDK alleen voor C\#/.NET beschikbaar is, kan er veel werk bespaard worden door ook deze programmeertaal en runtime te gebruiken. 
+De bestaande systemen van Emando zijn gemaakt met het .NET framework en draaien voornamelijk in Microsoft Azure als Cloud Service. Aangezien \mylaps voor ons een belangrijke databron is en de \mylaps SDK alleen voor C\#/.NET beschikbaar is, kan er veel werk bespaard worden door ook deze programmeertaal en runtime te gebruiken. 
 
-Bovendien heeft Emando een laag over de MyLaps SDK heen geschreven waardoor de SDK bruikbaar is met \acf{rx}. \ac{rx} - mede ontwikkeld door prof.dr. H.J.M. Meijer~\cite{meijer2011world} - is een manier om LINQ te gebruiken voor observeerbare collecties en asynchroon programmeren, twee eigenschappen waar we binnen de applicatie mee te maken gaan krijgen.
+Bovendien heeft Emando een laag over de \mylaps SDK heen geschreven waardoor de SDK bruikbaar is met \acf{rx}. \ac{rx} - mede ontwikkeld door prof.dr. H.J.M. Meijer~\cite{meijer2011world} - is een manier om LINQ te gebruiken voor observeerbare collecties en asynchroon programmeren, twee eigenschappen waar we binnen de applicatie mee te maken gaan krijgen.
 
-Bij onze keuze hebben ook de andere platformen overwogen, maar door de beperkte beschikbaarheid van de MyLaps SDK (alleen binnen .NET) en het gebruik van .NET door Emando waren dit minder bruikbare opties.
+Bij onze keuze hebben ook de andere platformen overwogen, maar door de beperkte beschikbaarheid van de \mylaps SDK (alleen binnen .NET) en het gebruik van .NET door Emando waren dit minder bruikbare opties.
 
-\subsection{Real-time}\label{sec:orientatie-real-time}
-De trainingsapplicatie moet zonder dat de gebruiker de applicatie handmatig ververst de laatste doorkomsten binnenkrijgen en tonen. Ook moet de getoonde rondetijd up to date zijn, en niet een ronde tijd van een vorig rondje. De communicatie tussen de back-end en de clients moet dus real-time zijn. Real-time wil zeggen dat de server een update naar de client kan sturen. In `normaal' web verkeer kan de server niet op elk moment een bericht sturen naar de client. De server kan alleen reageren op een verzoek van de client, omdat de client geen vast IP-adres heeft en er standaard geen poort open staat. Pas wanneer de client een uitgaand verzoek heeft gaat er een poort open.
+\subsection{Realtime}\label{sec:orientatie-real-time}
+De trainingsapplicatie moet zonder dat de gebruiker de applicatie handmatig ververst de laatste doorkomsten binnenkrijgen en tonen. Ook moet de getoonde rondetijd up to date zijn, en niet een ronde tijd van een vorig rondje. De communicatie tussen de back-end en de clients moet dus realtime zijn. Realtime wil zeggen dat de server een update naar de client kan sturen. In `normaal' web verkeer kan de server niet op elk moment een bericht sturen naar de client. De server kan alleen reageren op een verzoek van de client, omdat de client geen vast IP-adres heeft en er standaard geen poort open staat. Pas wanneer de client een uitgaand verzoek heeft gaat er een poort open.
 
-Een oplossing hiervoor is WebSockets: bij WebSockets blijft de verbinding open en dus de poort en kan de server op elk moment een bericht sturen, als er bijvoorbeeld een schaatser voorbij een detectie-lus komt. Een verbinding openhouden kost geheugen op de server en de server heeft dus een maximum aantal verbindingen dat hij kan openhouden. Er bestaan verschillende WebSocket frameworks die je het aanmaken en onderhouden van de verbindingen uit handen nemen. Een hiervan is SignalR voor .NET. Emando heeft SignalR\footnote{\url{http://www.asp.net/signalr}} succesvol gebruikt tijdens de Olympische Spelen van 2014 om \url{http://live.schaatsen.nl} te voorzien van live data. SignalR is inmiddels een officiele ASP.NET library en wordt ontwikkeld en ondersteund door Microsoft ontwikkelaars.
+Een oplossing hiervoor is WebSockets: bij WebSockets blijft de verbinding open en dus de poort en kan de server op elk moment een bericht sturen, als er bijvoorbeeld een schaatser voorbij een detectielus komt. Een verbinding openhouden kost geheugen op de server en de server heeft dus een maximum aantal verbindingen dat hij kan openhouden. Er bestaan verschillende WebSocket frameworks die je het aanmaken en onderhouden van de verbindingen uit handen nemen. Een hiervan is SignalR voor .NET. Emando heeft SignalR\footnote{\url{http://www.asp.net/signalr}} succesvol gebruikt tijdens de Olympische Spelen van 2014 om \url{http://live.schaatsen.nl} te voorzien van live data. SignalR is inmiddels een officiele ASP.NET library en wordt ontwikkeld en ondersteund door Microsoft ontwikkelaars.
 
 \section{Client} \label{sec:orientatie-client}
 Er zijn tegenwoordig diverse manieren om mobiele applicaties te maken, voor diverse platformen (iOS, Android, Windows Phone). Deze verschillende methodes vereisen verschillende programmeertalen en architecturen. Een groot verschil tussen de verschillende methodes is de hoeveelheid code die kan worden hergebruikt tussen verschillende platformen. De uitersten hiervan gebruiken een compleet gescheiden broncode ten opzichte van een volledig gedeelde broncode. De volgende methodes zijn meegenomen in onze ontwerpkeuze:
@@ -108,7 +108,7 @@ Omdat performance en responsetijd een belangrijke rol spelen binnen onze applica
     
 In overleg met de opdrachtgever is besloten de applicatie te ontwikkelen voor \'e\'en platform met een Cross Compiling-implementatie. Het ontwikkelen van deze applicatie (met de gestelde eisen) voor meerdere platformen kost meer tijd dan ontwikkelen voor een enkel plaftform, en zou ten koste gaan van het \ac{mvp}. Door een goede business- en servicelaag op te zetten, is het later mogelijk om de applicatie uit te rollen naar andere platformen, door enkel de platform specifieke views nog te ontwikkelen.
 
-We hebben voor Xamarin boven andere Cross Compiling implementaties gekozen omdat Xamarin werkt met het .NET framework,vanwege de .NET SDK van MyLaps en de .NET implementaties van Emando.Dit brengt een paar belangrijke voordelen met zich meebrengt:
+We hebben voor Xamarin boven andere Cross Compiling implementaties gekozen omdat Xamarin werkt met het .NET framework,vanwege de .NET SDK van \mylaps en de .NET implementaties van Emando.Dit brengt een paar belangrijke voordelen met zich meebrengt:
 
 \begin{itemize}
     \item Het platform .NET biedt LINQ en \acf{rx}. Met LINQ en \ac{rx} kunnen eenvoudig streams aan binnenkomende data efficient afgehandeld worden. Aangezien dit een belangrijk onderdeel is van onze applicatie is dit een groot voordeel.
@@ -128,7 +128,7 @@ Omdat er voor slechts één platform een applicatie uitgerold wordt, is de keuze
 De moeilijkheidsgraad om naar een specifiek platform uit te rollen bleek bij alle platformen nagenoeg even hoog. Platformen als \textit{Windows Phone}\footnote{\url{http://www.windowsphone.com/}} en \textit{BlackBerry}\footnote{\url{http://www.blackberry.com}} hebben niet genoeg market share en aantal gebruikers om het uitrollen van de applicatie rendabel te maken. \textit{Android}\footnote{\url{http://www.android.com/}} en \textit{iOS}\footnote{\url{http://www.apple.com/nl/ios/}} hebben een grote market share en veel actieve gebruikers. Van de medewerkers van de schaatsbond beschikt de meerderheid over een mobiel aparaat dat \textit{iOS} draait, hetgeen de doorslaggevende factor is geweest om aanvankelijk de applicatie eerst voor \textit{iOS} te ontwikkelen.
 
 \section{Entiteiten}
-De data binnen onze applicatie bestaat uit verschillende entiteiten. In figuur~\ref{fig:entities} is de relatie tussen de entiteiten afgebeeld. De entiteit op het kleinste niveau is \textit{Passing}, de doorkomst bij een detectie-lus. Een doorkomst heeft velden voor het moment van registratie, welke lus detecteerde, welke baan de lus staat en welke transponder er bij hoort. Passings komen uit de MyLaps SDK en zijn dus externe data, die we wel zelf moeten opslaan. De MyLaps SDK is namelijk niet bedoeld als database om Passings te selecteren, maar slechts om real-time Passings te verkrijgen.
+De data binnen onze applicatie bestaat uit verschillende entiteiten. In figuur~\ref{fig:entities} is de relatie tussen de entiteiten afgebeeld. De entiteit op het kleinste niveau is een \textit{passing}, de doorkomst bij een detectielus. Een doorkomst heeft velden voor het moment van registratie, welke lus detecteerde, welke baan de lus staat en welke transponder er bij hoort. passings komen uit de \mylaps SDK en zijn dus externe data, die we wel zelf moeten opslaan. De \mylaps SDK is namelijk niet bedoeld als database om passings te selecteren, maar slechts om realtime passings te verkrijgen.
 
 \begin{figure}
 \centering
@@ -138,9 +138,9 @@ De data binnen onze applicatie bestaat uit verschillende entiteiten. In figuur~\
 \end{figure}
 
 
-Wanneer een Passing ons systeem binnenkomt proberen we deze te koppelen aan een gebruiker. Als Passing bij een voor ons onbekende transponder hoort slaan we de Passing op en verwerken we hem later, als we de betreffende transponder wel kennen. Dit kan gebeuren als een gebruiker met terugwerkende kracht een transponder koppelt aan zijn account. Elke gebruikersaccount heeft dus een lijst met transponders en vanaf wanneer tot wanneer deze transponder in het bezit van de gebruiker was. Een transponder kan namelijk ook worden uitgeleend. Per tijdseenheid kan er per gebruiker maar één transponder zijn.
+Wanneer een passing ons systeem binnenkomt proberen we deze te koppelen aan een gebruiker. Als passing bij een voor ons onbekende transponder hoort slaan we de passing op en verwerken we hem later, als we de betreffende transponder wel kennen. Dit kan gebeuren als een gebruiker met terugwerkende kracht een transponder koppelt aan zijn account. Elke gebruikersaccount heeft dus een lijst met transponders en vanaf wanneer tot wanneer deze transponder in het bezit van de gebruiker was. Een transponder kan namelijk ook worden uitgeleend. Per tijdseenheid kan er per gebruiker maar één transponder zijn.
 
-Aan de hand van een lijst met Passings kunnen we enkele berekeningen doen. Met deze berekeningen kunnen we bijvoorbeeld bepalen wanneer een training begint en eindigt. Een groep van de Passings van een training heet een Session. Binnen een training zijn weer Runs te onderscheiden. Runs zijn groepjes van passings waartussen een sporter niet uitreed. Een training in het baansporten kan er bijvoorbeeld bestaan uit het 5 keer rijden van 4 ronden, met tussendoor 2 ronden rust. Er zijn in dat geval binnen de sessie 4 runs te onderscheiden. In figuur~\ref{fig:sessions} is een training van Herman te zien. Bij Herman zijn rondetijden langzamer dan 40 seconden  geen actieve onderdelen, maar zijn uitrijd-rondjes. Dit is per sporter en sport verschillend, dus moet deze grens dynamisch bepaald worden of instelbaar zijn. In de figuur zijn de runs groen gekleurd.
+Aan de hand van een lijst met passings kunnen we enkele berekeningen doen. Met deze berekeningen kunnen we bijvoorbeeld bepalen wanneer een training begint en eindigt. Een groep van de passings van een training heet een Session. Binnen een training zijn weer Runs te onderscheiden. Runs zijn groepjes van passings waartussen een sporter niet uitreed. Een training in het baansporten kan er bijvoorbeeld bestaan uit het 5 keer rijden van 4 ronden, met tussendoor 2 ronden rust. Er zijn in dat geval binnen de sessie 4 runs te onderscheiden. In figuur~\ref{fig:sessions} is een training van Herman te zien. Bij Herman zijn rondetijden langzamer dan 40 seconden  geen actieve onderdelen, maar zijn uitrijd-rondjes. Dit is per sporter en sport verschillend, dus moet deze grens dynamisch bepaald worden of instelbaar zijn. In de figuur zijn de runs groen gekleurd.
 
 \begin{figure}
 \centering
@@ -152,7 +152,7 @@ Aan de hand van een lijst met Passings kunnen we enkele berekeningen doen. Met d
 \section{Database}
 \label{sec:database}
 
-Zoals in figuur~\ref{fig:entities}, is een deel van onze data relationeel. De gebruikers zijn gekoppeld aan transponders en transponders zijn gekoppeld aan Passings. Gebruikers kunnen deel uitmaken van groepen en kunnen een lijst met favoriete gebruikers hebben, welke ze willen volgen. Een deel van de data zullen we opslaan in een relationele database. Data die relatief weinig wordt aangepast zoals de gebruiker-accounts en bijbehorende transponders leent zich hier uitstekend voor. Met een \textit{join} is eenvoudig een lijst van transponders van een gebruiker op te halen. In figuur~\ref{fig:dbengines} is (een abstractie en deel van) de relationele data weergegeven in het blauw. De user-id's uit de account-tabel komen terug in de transponder-tabel.
+Zoals in figuur~\ref{fig:entities}, is een deel van onze data relationeel. De gebruikers zijn gekoppeld aan transponders en transponders zijn gekoppeld aan passings. Gebruikers kunnen deel uitmaken van groepen en kunnen een lijst met favoriete gebruikers hebben, welke ze willen volgen. Een deel van de data zullen we opslaan in een relationele database. Data die relatief weinig wordt aangepast zoals de gebruiker-accounts en bijbehorende transponders leent zich hier uitstekend voor. Met een \textit{join} is eenvoudig een lijst van transponders van een gebruiker op te halen. In figuur~\ref{fig:dbengines} is (een abstractie en deel van) de relationele data weergegeven in het blauw. De user-id's uit de account-tabel komen terug in de transponder-tabel.
 
 \begin{figure}
 \centering
@@ -161,15 +161,15 @@ Zoals in figuur~\ref{fig:entities}, is een deel van onze data relationeel. De ge
 \label{fig:dbengines}
 \end{figure}
 
-Naast de relationele data, genereren we met aggregaties heel veel nieuwe data, zoals de snelste rondetijd, de langste run, of de hoogste snelheid per persoon. Deze data is gebonden aan de groepen waarin een gebruiker zit en de banen waarop de Passing plaatsvond. In de meeting van 1 mei (Appendix~\ref{sec:meeting-1-mei}) is besproken om hiervoor de Azure Table Storage te gebruiken. Table Storage heeft twee keys per rij, de PartitionKey en de RowKey~\cite{azuretablestorage}. Wij slaan de (virtuele) groep op in de PartitionKey (PK) en de gebruikers in de RowKey (RK). Op die manier is snel voor een groep alle data op te halen, voor bijvoorbeeld een Leaderboard. Ook kan bij het opslaan van de aggregaties snel op de RowKey gefilterd worden. De verschillende aggregaties worden opgeslagen in verschillende kolommen. Azure Table Storage biedt de namelijk mogelijkheid arbitraire objecten te koppelen aan een PartitionKey en RowKey (de combinatie van de twee keys is uniek). In figuur~\ref{fig:dbengines} is (abstractie van) de platte data weergegeven in het oranje. In de Passing aggregatie tabel is de unieke key gebaseerd op de transponder en de timestamp van de Passing. Een transponder kan niet twee keer gedetecteerd worden op hetzelfde moment zonder dat het dezelfde Passing is. Aggregaties per passing zoals bij welke run en sessie de Passing hoorde slaan we hier in op.
+Naast de relationele data, genereren we met aggregaties heel veel nieuwe data, zoals de snelste rondetijd, de langste run, of de hoogste snelheid per persoon. Deze data is gebonden aan de groepen waarin een gebruiker zit en de banen waarop de passing plaatsvond. In samenspraak met de opdrachtgever is besproken om hiervoor Azure Table Storage te gebruiken. Azure Table Storage heeft twee keys per rij, de Partition Key en de Row Key~\cite{azuretablestorage}. Wij slaan de (virtuele) groep op in de Partition Key (PK) en de gebruikers in de Row Key (RK). Op die manier is snel voor een groep alle data op te halen, voor bijvoorbeeld een Leaderboard. Ook kan bij het opslaan van de aggregaties snel op de Row Key gefilterd worden. De verschillende aggregaties worden opgeslagen in verschillende kolommen. Azure Table Storage biedt de namelijk mogelijkheid arbitraire objecten te koppelen aan een Partition Key en Row Key (de combinatie van de twee keys is uniek). In figuur~\ref{fig:dbengines} is (abstractie van) de platte data weergegeven in het oranje. In de passing aggregatie tabel is de unieke key gebaseerd op de transponder en de timestamp van de passing. Een transponder kan niet twee keer gedetecteerd worden op hetzelfde moment zonder dat het dezelfde passing is. Aggregaties per passing zoals bij welke run en sessie de passing hoorde slaan we hier in op.
 
-Deze data wordt real-time verwerkt en doorgestuurd naar de client wanneer nodig. Om deze aggregaties snel en onafhankelijk van elkaar te laten verlopen, moet rekening worden gehouden met de mogelijkheid om bij pieken meerdere instanties van deze aggregatie-pijpen te draaien. Elke instantie ontvangt dan andere Passings. Om te zorgen dat de client altijd de laatste versie ontvangt wordt elke aggregatie vergezeld van de \textit{timestamp} van de laatste Passing. Als een client een aggregatie ontvangt met een oudere timestamp dan degene die hij al ontvangen heeft dan kan hij deze negeren.
+Deze data wordt realtime verwerkt en doorgestuurd naar de client wanneer nodig. Om deze aggregaties snel en onafhankelijk van elkaar te laten verlopen, moet rekening worden gehouden met de mogelijkheid om bij pieken meerdere instanties van deze aggregatie-pijpen te draaien. Elke instantie ontvangt dan andere passings. Om te zorgen dat de client altijd de laatste versie ontvangt wordt elke aggregatie vergezeld van de \textit{timestamp} van de laatste passing. Als een client een aggregatie ontvangt met een oudere timestamp dan degene die hij al ontvangen heeft dan kan hij deze negeren.
 
 \section{Architectuur}
 In overleg met de opdrachtgever is gekozen voor een multi-layered architectuur met
-vier lagen: de data-laag, business-laag, service-laag en de presentatie-laag. Deze 
+vier lagen: de datalaag, businesslaag, servicelaag en de presentatielaag. Deze 
 architectuur garandeert een scheiding tussen verschillende stukken logica, zodat 
-alle logica in de verantwoordelijke laag wordt uitgevoerd. In Figuur~\ref{fig:architecture} zijn alle layers en hun componenten weergegeven.
+alle logica in de verantwoordelijke laag wordt uitgevoerd. In figuur~\ref{fig:architecture} zijn alle layers en hun componenten weergegeven.
 
 \begin{figure}
 \centering
@@ -178,27 +178,27 @@ alle logica in de verantwoordelijke laag wordt uitgevoerd. In Figuur~\ref{fig:ar
 \label{fig:architecture}
 \end{figure}
 
-De data-laag bevat componenten die een  verbinding kunnen maken met de databases en 
-andere services zoals MyLaps Cloud en de Facebook API. De data-laag zet ruwe data 
-uit de database om in domein entiteiten en levert deze af bij de business-laag.
+De datalaag bevat componenten die een  verbinding kunnen maken met de databases en 
+andere services zoals \mylaps Cloud en de Facebook API. De datalaag zet ruwe data 
+uit de database om in domein entiteiten en levert deze af bij de businesslaag.
 
-De business-laag bevat alle workflows die op de server uitgevoerd moeten worden. 
+De businesslaag bevat alle workflows die op de server uitgevoerd moeten worden. 
 De workflows zijn in drie categorieen op te delen. Als eerste de Aggregatie
 componenten die diverse aggregaties kunnen uitvoeren op data uit de Practice
 Database. Ten tweede is er de Event Workflow die bepaald wat er moet gebeuren als
-er een event binnenkomt zoals bijvoorbeeld een doorkomst vanaf MyLaps. In het
+er een event binnenkomt zoals bijvoorbeeld een doorkomst vanaf \mylaps. In het
 geval van een doorkomst moet deze bijvoorbeeld worden opgeslagen in de Practice
 Database en moeten de aggregaties een iteratie doorlopen. Als derde is er het User
 Account component dat acties voor gebruikersacccounts mogelijk maakt. Zo is dit
 component belast met het opslaan van nieuwe users, het inloggen met wachtwoord of
 met Facebook, het beheren van groepen en het ophalen van vriendenlijsten.
 
-De service-laag bevat de API. De diverse aanroepen die de clients nodig hebben
-worden in de service-laag gekoppeld aan de goede workflow uit de business-laag. De
-service-laag zorgt ook voor Caching, waar nodig.
+De servicelaag bevat de API. De diverse aanroepen die de clients nodig hebben
+worden in de servicelaag gekoppeld aan de goede workflow uit de businesslaag. De
+servicelaag zorgt ook voor Caching, waar nodig.
 
-De presentatie-laag bevindt zich in de mobiele applicaties. Deze toont de informatie uit de
-service-laag. De presentatie-laag bevat bijvoorbeeld User Interface componenten, 
+De presentatielaag bevindt zich in de mobiele applicaties. Deze toont de informatie uit de
+servicelaag. De presentatielaag bevat bijvoorbeeld User Interface componenten, 
 weergaves voor diverse data types en menu's. Naast de weergave zit er in de apps 
-ook een stuk service-laag om te kunnen communiceren met de service-laag op de 
+ook een stuk servicelaag om te kunnen communiceren met de servicelaag op de 
 server.

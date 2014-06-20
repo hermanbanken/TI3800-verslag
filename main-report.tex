@@ -8,10 +8,13 @@
 \newcolumntype{R}{>{\raggedleft\arraybackslash}p{5cm}}
 \usepackage{subfigure}
 \usepackage{float}
+\usepackage{xspace}
 
 \input{style/sourcecode}
 
 \begin{document}
+
+\def \mylaps {MyLaps\xspace}
 
 %% Use Roman numerals for the page numbers of the title pages and table of
 %% contents.
@@ -36,11 +39,15 @@
 
 \chapter{Inleiding} \label{ch:inleiding} \input{partials/inleiding}
 
+\section*{Opbouw Verslag}
+
+In dit verslag zal allereerst in hoofdstuk~\ref{ch:opdracht-en-omschrijving} de opdracht en het domein van de opdracht worden toegelicht. Vervolgens zal in hoofdstuk~\ref{ch:project-methodologie} de methodologie worden behandeld die tijdens het proces is aangehouden. Hierna zal in hoofdstuk~\ref{ch:systeem-ontwerp-en-implementatie} gedetaileerd worden toegelicht op welke manier het systeem is ontworpen, welke implementatiekeuzes er zijn gemaakt en hoe deze keuzes zijn uitgewerkt. In hoofdstuk~\ref{ch:evaluatie} wordt behandeld hoe de applicatie wordt geëvalueerd met behulp van tests en feedback van verschillende betrokken partijen en mogelijke eindgebruikers. Ten slotte zal in hoofdstuk~\ref{ch:discussie} onder andere worden besproken in hoeverre het project een succes is geweest, wat er moet gebeuren om ook een Android applicatie te kunnen maken en welke invloed bepaalde keuzes hebben gehad op het project. Tenslotte zal in de conclusie, in hoofdstuk~\ref{ch:conclusie} worden aangegeven hoe de applicatie is opgeleverd, zal er een visie gegeven worden op de doorontwikkeling van de applicatie en zal worden besproken welke toekomst wij zien voor de applicatie.
+
 \chapter{Opdracht en Omschrijving} \label{ch:opdracht-en-omschrijving} \input{partials/opdracht-en-omschrijving}
 
-\chapter{Project methodologie} \label{ch:project-methodologie} \input{partials/project-methodologie}
+\chapter{Projectmethodologie} \label{ch:project-methodologie} \input{partials/project-methodologie}
 
-\chapter{Systeem ontwerp en implementatie} \label{ch:systeem-ontwerp-en-implementatie} \input{partials/systeem-ontwerp-en-implementatie}
+\chapter{Systeemontwerp en -implementatie} \label{ch:systeem-ontwerp-en-implementatie} \input{partials/systeem-ontwerp-en-implementatie}
 
 \chapter{Evaluatie} \label{ch:evaluatie} \input{partials/evaluatie}
 
@@ -66,13 +73,14 @@
 
 \chapter{Planning} \label{ch:planning} \input{partials/planning}
 
-\chapter{Notulen van Meetings} \label{ch:notulen-van-meetings} \input{partials/notulen-van-meetings}
+%\chapter{Notulen van Meetings} \label{ch:notulen-van-meetings} %\input{partials/notulen-van-meetings}
 
 \chapter{Oriëntatieverslag} \label{ch:orientatieverslag} \input{partials/orientatie}
 
 \chapter{Interface Ontwerpen} \label{ch:interface-ontwerpen} \input{partials/interface-ontwerpen}
 
-\chapter{Testplan} \label{ch:testplan} \input{partials/testplan}
+\chapter{Testresultaten} \label{ch:testplan}
+    \input{partials/enquete-resultaten}
 
 \chapter{Aggregatie Flow} \label{ch:aggregation-flow}
 

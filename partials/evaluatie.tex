@@ -4,14 +4,28 @@ Om er voor te zorgen dat de applicatie op zowel implementatie als functioneel ni
 Voorafgaand aan het project is niets afgestemd met de \ac{KNSB}. Gaandeweg het project is er vanuit Emando contact opgenomen met de \ac{KNSB} om hun interesse voor dit project te peilen. Hiervoor bleek enorm veel animo. De \ac{KNSB} heeft aangegeven dat een doorontwikkeling van de applicatie wenselijk is. Ook hebben zij aangegeven dat een Android applicatie wenselijk is, om de doelgroep te vergroten.
 
 \section{Enquête \& gebruikerstest}
-Om er zeker van te zijn dat de applicatie aansluit bij de wensen van de doelgroep van onze applicatie, hebben wij een enquête afgenomen om de verwachtingen van de applicatie te peilen vlak na de tweede sprint van het project. Door in een vroeg stadium de verwachtingen van de applicatie te peilen, was het mogelijk om de applicatie gedurende het project aan te passen op deze verwachtingen waar nodig. 
-
-Vlak voor de oplevering van het project hebben we nog een gebruikerstest afgenomen om te kijken hoe de uiteindelijke applicatie hiervan bij de doelgroep bevalt. Hierbij zijn tevens vooraf en achteraf aan de test enquêtes en vragen gesteld aan de gebruikers, om zo een goed beeld te kunnen vormen van hun bevindingen. De verkregen inzichten kunnen gebruikt worden bij de verdere doorontwikkeling en de toekomst van de applicatie. Het testplan en de resultaten zijn te vinden in Appendix~\ref{ch:testplan}
-
-{\par \bigskip \par \color{red} TODO: resultaten van tests bespreken zodra we deze hebben \par \bigskip \par }
+\input{partials/testplan-achteraf}
 
 \section{\acs{sig} feedback}
+Om de code kwaliteit van het project in de kaart te brengen heeft de \ac{sig} onze code anderhalve week voor onze eindpresentatie geëvalueerd: 
+\\\\
+\begin{quotation}
+De code van het systeem scoort bijna 4 sterren op ons onderhoudbaarheidsmodel, wat betekent dat de code bovengemiddeld onderhoudbaar is. De hoogste score is niet behaald door een lagere score voor Unit Interfacing en Unit Size.
 
-De \acf{sig} heeft onze broncode tweemaal geëvalueerd.
+Voor Unit Interfacing wordt er gekeken naar het percentage code in units met een bovengemiddeld aantal parameters. Doorgaans duidt een bovengemiddeld aantal parameters op een gebrek aan abstractie. Daarnaast leidt een groot aantal parameters nogal eens tot verwarring in het aanroepen van de methode en in de meeste gevallen ook tot langere en complexere methoden. In dit systeem valt op dat er op meerdere plekken twee 'DateTime' objecten worden meegegeven. In sommige gevallen representeren deze twee objecten een 'periode', maar in andere gevallen lijken de parameters 'time' en 'sent' iets anders te representeren. Om bij toekomstige aanpassingen duidelijker te maken wat er precies meegegeven moet worden aan deze methodes is het aan te raden een specifiek type te introduceren voor deze concepten.
 
-{\par \bigskip \par \color{red} TODO: SIG code analyse en resultaten toelichten zodra we deze hebben \par \bigskip \par }
+Voor Unit Size wordt er gekeken naar het percentage code dat bovengemiddeld lang is. Het opsplitsen van dit soort methodes in kleinere stukken zorgt ervoor dat elk onderdeel makkelijker te begrijpen, te testen en daardoor eenvoudiger te onderhouden wordt. Binnen de langere methodes in dit systeem, zoals bijvoorbeeld de 'Run'-methode binnen de class 'Program', zijn aparte stukken functionaliteit te vinden welke ge-refactored kunnen worden naar aparte methodes. Commentaarregels zoals bijvoorbeeld '// Create a new passing' zijn een goede indicatie dat er een autonoom stuk functionaliteit te ontdekken is. Het is aan te raden kritisch te kijken naar de langere methodes binnen dit systeem en deze waar mogelijk op te splitsen.
+
+Over het algemeen scoort de code bovengemiddeld, hopelijk lukt het om dit niveau te behouden tijdens de rest van de ontwikkelfase. De aanwezigheid van test-code is in ieder geval veelbelovend, hopelijk zal het volume van de test-code ook groeien op het moment dat er nieuwe functionaliteit toegevoegd wordt. 
+\end{quotation}
+
+Uit deze evaluatie komt naar voren dat de code goed onderhoudbaar is. De genoemde voorbeelden over meerdere DateTime objecten die hetzelfde lijken te representeren, representeren een tijdstip waarop de doorkomst ontvangen is en een tijdstip waarop de transponder langs de lus ging. In de praktijk zijn dit compleet verschillende dingen, omdat er sprake kan zijn van een latency op de \mylaps X2 Cloud omgeving. 
+
+Vanuit Emando wordt gebruik gemaakt van Dependency Injection. Bij het ontwikkelen van de verschillende repositories en controllers is bewust gekozen voor een opsplitsing van belangen volgens het Seperation of Concerns principe~\cite{hursch95separationof, msdnsoc}. Classes maken dus gebruik van relatief ``kleine'' interfaces, maar hebben er daardoor meerdere interfaces nodig in hun contructor. Door het gebruik van Dependency Injection is het niet nodig om bij het gebruik van deze classes de constructors aan te roepen met al hun parameters. 
+
+
+De genoemde Unit Size betreft de run methode van het Console Input Test project. Hoewel deze methode inderdaad aan de lange kant is, is dit geen onderdeel van de productie code. Dit project wordt enkel gebruikt om doorkomsten te genereren en integratie testen uit te voeren.
+
+Ook het genereren van nieuwe doorkomsten in deze run methode is niet opgesplitst naar een aparte methode, omdat het aanmaken van een doorkomst geen aparte functionaliteit is en dit tevens niet meerdere malen gebeurd. Door het genereren van een doorkomst te abstraheren naar een aparte methode, ontstaat een methode met een grote hoeveelheid parameters (Passing bevat een grote hoeveelheid properties), wat de leesbaarheid van de code niet ten goede zou komen.
+
+De bovengenoemde problemen zijn niet direct van toepassing op de productiecode en daarom is in overleg met Emando er voor gekozen om de verkregen feedback van \ac{sig} niet direct te verwerken in de bestaande productiecode. Wel is de feedback meegenomen binnen het verdere ontwikkeltraject van de applicatie en hebben we er op toegezien om verdere functionaliteit van de applicatie conform de genoemde standaarden te ontwikkelen.

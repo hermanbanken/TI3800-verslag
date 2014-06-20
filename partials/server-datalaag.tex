@@ -3,9 +3,9 @@ De applicatie bevat data uit verschillende bronnen, en slaat zijn data in versch
 
 \subsection{Ruwe inkomende data}
 
-De transponderleverancier MYLAPS heeft een SDK beschikbaar gesteld aan Emando, waarmee het mogelijk is om de doorkomsten van transponders realtime binnen te krijgen. Om deze databron te benaderen bevat de datalaag een Data Collector, geïmplementeerd als Azure Cloud Worker Role, welke non-stop draait op één cloud instance. Dit proces onderhoudt de verbinding met de MYLAPS SDK.
+De transponderleverancier \mylaps heeft een SDK beschikbaar gesteld aan Emando, waarmee het mogelijk is om de doorkomsten van transponders realtime binnen te krijgen. Om deze databron te benaderen bevat de datalaag een Data Collector, geïmplementeerd als Azure Cloud Worker Role, welke non-stop draait op één cloud instance. Dit proces onderhoudt de verbinding met de \mylaps SDK.
 
-Vanuit de MyLAPS SDK ontvangt de data laag realtime de doorkomsten van iedere transponder die langs een lus komt. Deze doorkomsten bevatten een tijdstip, een transponder nummer en een plaats op de baan. Zodra een van deze doorkomsten binnen komt, wordt deze direct opgeslagen voor toekomstig gebruik in een doorkomsten tabel in Azure Table Storage. Het kan namelijk voorkomen dat er op dit moment geen gebruiker van onze applicatie is, welke zijn transponder nummer heeft gekoppeld aan zijn account. Wanneer dit het geval is, kunnen er (nog) geen aggregaties uitgevoerd worden op deze data.
+Vanuit de \mylaps SDK ontvangt de data laag realtime de doorkomsten van iedere transponder die langs een lus komt. Deze doorkomsten bevatten een tijdstip, een transpondernummer en een plaats op de baan. Zodra een van deze doorkomsten binnen komt, wordt deze direct opgeslagen voor toekomstig gebruik in een doorkomstentabel in Azure Table Storage. Het kan namelijk voorkomen dat de transponder van de zojuist binnengekomen doorkomst nog niet gekoppeld is aan een gebruikersaccount. Wanneer dit het geval is, kunnen er (nog) geen aggregaties uitgevoerd worden op deze data.
 
 \begin{figure}[ht]
   \begin{center}
@@ -17,14 +17,14 @@ Vanuit de MyLAPS SDK ontvangt de data laag realtime de doorkomsten van iedere tr
 
 Door deze data op te slaan, is het mogelijk om later functionaliteit in te bouwen om alsnog over deze data te kunnen aggregeren.
 
-Nadat de data opgeslagen is, wordt via een Azure Service Bus het Id van de doorkomst doorgestuurt naar het aggregatie process in de businesslaag. Het aggregatie process raadpleegt bij het binnenkrijgen van dit Id opnieuw de doorkomst, om zo minder data over de service bus te versturen en altijd over up to date data te beschikken. Dit process wordt weergegeven in figuur~\ref{fig:datacollector}.
+Nadat de data opgeslagen is, wordt via een Azure Service Bus het Id van de doorkomst doorgestuurt naar het aggregatieproces in de businesslaag. Het aggregatieproces raadpleegt bij het binnenkrijgen van dit Id opnieuw de doorkomst, om zo minder data over de zogenaamde service bus te versturen en altijd over up to date data te beschikken. Dit process wordt weergegeven in figuur~\ref{fig:datacollector}.
 
 \subsection{Entiteiten}
-In Figuur~\ref{fig:entiteiten} wordt een deel van de entiteiten die de applicatie gebruikt getoond, inclusief de onderlinge relaties. De entiteiten die te maken hebben met {\bfseries\color{tudelft-dark-blue} externe data} en {\bfseries\color{tudelft-green} accounts} worden opgeslagen met behulp van Azure SQL, zoals ook besproken in sectie~\ref{sec:database} van het oriëntatieverslag. De entiteiten die te maken hebben met {\bfseries\color{tudelft-orange} passings} en {\bfseries\color{tudelft-warm-purple} aggregaties} worden opgeslagen in Azure Table Storage.
+In figuur~\ref{fig:entiteiten} wordt een deel van de entiteiten die de applicatie gebruikt getoond, inclusief de onderlinge relaties. De entiteiten die te maken hebben met externe data en accounts worden opgeslagen met behulp van Azure SQL, zoals ook besproken in sectie~\ref{sec:database} van het oriëntatieverslag. De entiteiten die te maken hebben met doorkomsten en aggregaties worden opgeslagen in Azure Table Storage.
 
 \begin{figure}[ht]
   \begin{center}
-  \includegraphics[width=.6\textwidth]{style/images/Entiteiten}    
+  \includegraphics[width=.9\textwidth]{style/images/Entiteiten}    
   \end{center}
   \caption{De entiteiten en hun relaties.}
   \label{fig:entiteiten}
@@ -33,28 +33,27 @@ In Figuur~\ref{fig:entiteiten} wordt een deel van de entiteiten die de applicati
 Hoewel de daadwerkelijke structuur van de data in Azure Table Storage anders is dan in de figuur, geeft de figuur toch een goed beeld van deze entiteiten en hun relaties. 
 
 \subsection{Azure SQL \& Entity Framework}
-Azure SQL is de relationele SQL database van Azure en omdat de relaties in onze entiteiten worden beschreven door het Entity Framework~\cite{entityframework-msdn, entityframework-facto}, gebruikt onze applicatie de Entity Framework driver voor Azure SQL. Entity Framework is de defacto standaard voor relationele datalagen in ASP.NET. Het kan bijvoorbeeld relaties tussen entiteiten automatisch opzoeken. Ook hoeft er geen SQL code geschreven te worden, maar kan platformonafhankelijke LINQ code geschreven worden om entiteiten op te halen.
+Azure SQL is de relationele SQL database van Azure en omdat de relaties in onze entiteiten worden beschreven door het Entity Framework~\cite{entityframework-msdn, entityframework-facto}, gebruikt onze applicatie de Entity Framework driver voor Azure SQL. Entity Framework is de de facto standaard voor relationele datalagen in ASP.NET. Het kan bijvoorbeeld relaties tussen entiteiten automatisch opzoeken. Ook hoeft geen SQL code geschreven te worden. Om entiteiten op te kan kan platformonafhankelijke LINQ code geschreven worden.
 
 \subsection{Azure Table Storage}
-De geaggregeerde data kan plat worden opgeslagen met behulp van NoSQL. Dit komt doordat alleen passings (doorkomsten), rondes en leaderboard-waarden entiteiten zijn in de aggregatie database. Zowel de sessie als het zijn van run of dan wel rust zijn eigenschappen van een ronde. De snelheid en segmenten worden niet opgeslagen.
+De geaggregeerde data kan ``plat'' worden opgeslagen met behulp van NoSQL. Door alleen passings (doorkomsten), rondes en leaderboard-waarden entiteiten op te slaan in de aggregatiedatabase, hoeven onderlinge relaties niet bijgehouden te worden en kunnen gegevens goedkoop opgevraagd worden. Gegevens zoals ``rust/run''-ronde en sessies zijn onderdeel van rondes. De snelheid en segmenten worden niet opgeslagen, maar direct verstuurd naar de applicatie.
 
-Vanuit Emando ging de voorkeur voor het opslaan van de geaggregeerde data  uit naar de NoSQL Azure Table Storage. De Table Storage integreert eenvoudig met de reeds bestaande infrastructuur van het bedrijf. Bovendien biedt een gepartitioneerde en gesorteerde Table Storage tabel een groot performance voordeel: het goedkoop en snel kunnen selecteren van de laatste entiteiten per context.
+Vanuit Emando ging de voorkeur voor het opslaan van de geaggregeerde data  uit naar de NoSQL Azure Table Storage. De Azure Table Storage integreert eenvoudig met de reeds bestaande infrastructuur van het bedrijf. Bovendien biedt een gepartitioneerde en gesorteerde Azure Table Storage tabel een groot performancevoordeel: het goedkoop en snel kunnen selecteren van de laatste entiteiten per context.
 
-Bij het gebruik van NoSQL is het belangrijk dat de Partition- en Row Key efficiënt gekozen worden, aangezien dit de snelheid van het zoeken bepaald. Verder is het belangrijk dat de combinatie van Partition en Row Key uniek is. In figuren \ref{fig:passingTableStructure}, \ref{fig:userPassingTableStructure}, \ref{fig:lapTableStructure} en \ref{fig:lapLeaderboardTableStructure} is te zien hoe deze keys gekozen zijn en wat de structuur van deze tabellen is.
+Bij het gebruik van NoSQL is het belangrijk dat de Partition- en Row Key efficiënt gekozen worden, aangezien dit de snelheid van het zoeken bepaalt. Verder is het belangrijk dat de combinatie van Partition en Row Key uniek is. In figuren \ref{fig:passingTableStructure}, \ref{fig:userPassingTableStructure}, \ref{fig:lapTableStructure} en \ref{fig:lapLeaderboardTableStructure} is te zien hoe deze keys gekozen zijn en wat de structuur van deze tabellen is.
 
-Vanuit de Data Collector worden de doorkomsten die realtime binnen komen opgeslagen in Table Storage als backup. De structuur van deze tabel is terug te vinden in figuur \ref{fig:passingTableStructure}. Verderop in het aggregatieproces worden deze doorkomsten gekoppeld aan gebruikers. Deze aggregaties worden vervolgens opgeslagen in een aparte tabel binnen Azure Table Storage. De structuur van deze tabel is terug te vinden in figuur \ref{fig:userPassingTableStructure}.
+Vanuit de Data Collector worden de doorkomsten die realtime binnen komen opgeslagen in Azure Table Storage als backup. De structuur van deze tabel is terug te vinden in figuur \ref{fig:passingTableStructure}. Verderop in het aggregatieproces worden deze doorkomsten gekoppeld aan gebruikers. Deze aggregaties worden vervolgens opgeslagen in een aparte tabel binnen Azure Table Storage. De structuur van deze tabel is terug te vinden in figuur \ref{fig:userPassingTableStructure}.
 
-Verderop in het aggregatieproces worden doorkomsten van gebruikers gekoppeld aan sessies, run/rust periodes en rondes. Deze aggregaties worden opgeslagen in de ronde tabel binnen Azure Table Storage. De structuur hiervan is terug te vinden in figuur \ref{fig:lapTableStructure}.
+Verderop in het aggregatieproces worden doorkomsten van gebruikers gekoppeld aan sessies, rondes en run/rust periodes. Deze aggregaties worden opgeslagen in de rondetabel binnen Azure Table Storage. De structuur hiervan is terug te vinden in figuur \ref{fig:lapTableStructure}.
 
-
-Van snelheden, rondes, run/rust periodes en sessies worden leaderboards bijgehouden in Azure Table Storage. Deze hebben allen een eigen corresponderende tabel, zodat aggregaties parallel aan elkaar leaderboards kunnen updaten.
-Alle leaderboards zijn voorzien van een leaderboard Id en een user Id. Het leaderboard Id houdt bij voor welke context het leaderboard geldig is. Dit kunnen banen, groepen, maar ook gebruikers zijn. Wanneer een gebruiker een ronde rijdt op een baan X, moeten zijn records voor de baan, zijn groepen en zijn eigen totalen geüpdatet worden. Een voorbeeld structuur van deze leaderboards is te vinden in figuur \ref{fig:lapLeaderboardTableStructure}.
+Van snelheden, rondes, run/rust periodes en sessies worden leaderboards bijgehouden in Azure Table Storage. Deze hebben elk een eigen corresponderende tabel, zodat aggregaties parallel aan elkaar leaderboards kunnen updaten.
+Alle leaderboards zijn voorzien van een leaderboard Id en een user Id. Het leaderboard Id houdt bij voor welke context het leaderboard geldig is. Dit kunnen banen, groepen, maar ook gebruikers zijn. Wanneer een gebruiker een ronde rijdt op een baan X, moeten zijn records voor de baan, zijn groepen en zijn eigen totalen geüpdatet worden. Een voorbeeldstructuur van deze leaderboards is te vinden in figuur \ref{fig:lapLeaderboardTableStructure}.
 
 \begin{figure}[h!]
   \begin{center}
   \includegraphics[width=\textwidth]{style/images/passingsStructure}    
   \end{center}
-  \caption{De doorkomsten tabel met voorbeeld records. Hierbij is de Partition Key het type trasponder + transpondernummer en de Row Key het tijdstip waarop de doorkomst binnen kwam.}
+  \caption{De doorkomstentabel met voorbeeld records. Doorkomsten bevatten 2 kernelementen, waar op gefilterd wordt: e transponder (bestaande uit een type en een nummer) en het tijdstip waarin de doorkomst binnen kwam. Door de keys als volgt in te richten kan daarom efficiënt gezocht worden binnen de data: de Partition Key is het type transponder + transpondernummer en de Row Key het tijdstip waarop de doorkomst binnen kwam.}
   \label{fig:passingTableStructure}
 \end{figure}
 
@@ -62,7 +61,7 @@ Alle leaderboards zijn voorzien van een leaderboard Id en een user Id. Het leade
   \begin{center}
   \includegraphics[width=\textwidth]{style/images/userPassingsStructure}    
   \end{center}
-  \caption{De doorkomsten tabel met voorbeeld records. Hierbij is de Partition Key het account Id \\met een prefix voor gebruikers en de Row Key het tijdstip waarop de doorkomst binnen kwam.}
+  \caption{De doorkomstentabel met voorbeeldrecords. Gebruikers doorkomsten bevatten 2 kernelementen, waar op gefilterd wordt: de gebruiker en het tijdstip waarin de doorkomst binnen kwam. Door de keys als volgt in te richten kan daarom efficiënt gezocht worden binnen de data: de Partition Key is het account Id \\met een prefix voor gebruikers en de Row Key het tijdstip waarop de doorkomst binnen kwam.}
   \label{fig:userPassingTableStructure}
 \end{figure}
 
@@ -70,7 +69,7 @@ Alle leaderboards zijn voorzien van een leaderboard Id en een user Id. Het leade
   \begin{center}
   \includegraphics[width=\textwidth]{style/images/aggregationLapsStructure}    
   \end{center}
-  \caption{De ronde tabel met voorbeeld records. Hierbij is de Partition Key het account Id en de Row Key het ronde Id.}
+  \caption{De rondetabel met voorbeeldrecords. Gebruikersdoorkomsten bevatten 2 kernelementen, waar op gefilterd wordt: de gebruiker en het rondenummer zelf. Door de keys als volgt in te richten kan daarom efficiënt gezocht worden binnen de data: de Partition Key is het account Id en de Row Key het ronde Id.}
   \label{fig:lapTableStructure}
 \end{figure}
 
@@ -78,7 +77,7 @@ Alle leaderboards zijn voorzien van een leaderboard Id en een user Id. Het leade
   \begin{center}
   \includegraphics[width=\textwidth]{style/images/lapLeaderboardStructure}    
   \end{center}
-  \caption{De ronde leaderboard tabel, een voorbeeld van een leaderboard tabel. Hierbij is de Partition Key het account Id\\ en de Row Key het context Id (groep, baan of account Id).}
+  \caption{De ronde-leaderboardtabel, een voorbeeld van een leaderboardtabel. Leaderboards bevatten 2 kernelementen, waar op gefilterd wordt: de gebruiker en de context waar het leaderboard voor is (groep, baan of gebruiker). Door de keys als volgt in te richten kan daarom efficiënt gezocht worden binnen de data: de Partition Key het account Id\\ en de Row Key het context Id (groep, baan of account Id).}
   \label{fig:lapLeaderboardTableStructure}
 \end{figure}
 
