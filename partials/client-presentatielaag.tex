@@ -99,7 +99,7 @@ De gebruikersinterface van de applicatie is in twee lagen gestructureerd. Allere
 \label{fig:tab-view}
 \end{figure}
 
-De tweede laag van de interface-structuur bestaat eigenlijk voor een groot deel uit overzicht/detailschermen. Het profielscherm van een gebruiker bevat bijvoorbeeld een overzicht van al zijn sessies, een sessiescherm is weer een overzicht van alle runs, met daarin weer de afzonderlijke rondes. Deze structuur, die ook voorkomt bij de favorieten, groepen en banen, wordt geïmplementeerd met behulp van een NavigationController (figuur~\ref{fig:navigation-view}). Een overzicht van de interface-schetsen van de schermen die in de applicatie bestaan, is te vinden in appendix~\ref{ch:interface-ontwerpen}.
+De tweede laag van de interface-structuur bestaat eigenlijk voor een groot deel uit overzicht- en detailschermen. Het profielscherm van een gebruiker bevat bijvoorbeeld een overzicht van al zijn sessies, een sessiescherm is weer een overzicht van alle runs, met daarin weer de afzonderlijke rondes. Deze structuur, die ook voorkomt bij de favorieten, groepen en banen, wordt geïmplementeerd met behulp van een NavigationController (figuur~\ref{fig:navigation-view}). Een overzicht van de interface-schetsen van de schermen die in de applicatie bestaan, is te vinden in appendix~\ref{ch:interface-ontwerpen}.
 
 \begin{figure}[h!t]
 \centering
@@ -110,7 +110,7 @@ De tweede laag van de interface-structuur bestaat eigenlijk voor een groot deel 
 
 Binnen ongeveer alle schermen wordt er gebruikgemaakt van tabel-views. Om deze views realtime te kunnen voorzien van actuele data, zijn er speciale tabel-viewcontrollers ontwikkeld die aansluiten op de reactive ViewModels. Telkens als er iets wordt aangepast in de ViewModels zal deze tabel-viewcontroller de nodige tabelcellen invoegen, verwijderen, verplaatsen of bijwerken.
 
-Een ander belangrijk deel van de gebruikersinterface is de functionaliteit die ervoor zorgt dat er grafiekjes getekend worden. Dit wordt gedaan met behulp van de CoreGraphics functies in iOS. Voor elke ronde wordt een balkje getekend, waarbij de hoogte van het balkje correspondeert met de bijbehorende rondetijd. De kleur van het balkje geeft aan of de ronde een run-ronde of een rust-ronde was. De balkjes worden geschaald zodat uiteindelijk een overzicht van de volledige sessie te zien is.
+Een ander belangrijk deel van de gebruikersinterface is de functionaliteit die ervoor zorgt dat er grafiekjes getekend worden. Dit wordt gedaan met behulp van de CoreGraphics functies in iOS. Voor elke ronde wordt een balkje getekend, waarbij de hoogte van het balkje correspondeert met de bijbehorende rondetijd. De kleur van het balkje geeft aan of de ronde een run-ronde of een rust-ronde is. De balkjes worden geschaald zodat uiteindelijk een overzicht van de volledige sessie te zien is.
 
 Bij het tekenen van de grafieken is het van groot belang dat de grafieken automatisch bijgewerkt worden als er nieuwe data beschikbaar is, maar dat dit niet te veel impact heeft op de performance van de applicatie. Dit is gedaan door gebruik te maken van de Reactive UI (zie Sectie~\ref{sec:vm-reactive-ui}). Als er een item aan de databron wordt toegevoegd, wordt er automatisch een nieuwe balk toegevoegd. Wanneer er een rondetijd zou veranderen, wat momenteel overigens niet kan voorkomen, wordt de hoogte van het corresponderende balkje direct aangepast.
 
