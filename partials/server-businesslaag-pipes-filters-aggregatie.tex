@@ -6,7 +6,7 @@ Hoewel er meerdere soortgelijke Cloud-oplossingen bestaan, ging vanwege de besta
 
 Omdat de ruwe doorkomsten niet direct betekenis hebben voor gebruikers, dient deze data verrijkt te worden om zo inzicht te geven in trainingen van gebruikers. Dit proces noemen we de aggregatie van data.
 
-Zodra er een doorkomst binnenkomt binnen de datalaag, wordt het Id hiervan naar de aggregatielaag overgestuurd via de Azure Service Bus. Zodra de aggregatielaag deze ontvangt, wordt de bijbehorende doorkomst opgevraagd. Hierna start het aggregatieproces, dat bestaat uit de volgende onderdelen, zoals ook te zien is in figuur~\ref{fig:aggregatie-flow}:
+Zodra een doorkomst de datalaag binnenkomt, wordt het Id hiervan naar de aggregatielaag overgestuurd via de Azure Service Bus. Zodra de aggregatielaag deze ontvangt, wordt de bijbehorende doorkomst opgevraagd. Hierna start het aggregatieproces, dat bestaat uit de volgende onderdelen, zoals ook te zien is in figuur~\ref{fig:aggregatie-flow}:
 
 \begin{itemize}
 \item \textbf{Reguliere filters.}

@@ -43,15 +43,15 @@ Naast deze vier lagen is er ook nog een deel van de code die gedeeld wordt door 
   \input{partials/client-servicelaag}
 
 \section{Presentatielaag}
-  De presentatielaag bevind zich in de mobiele applicatie. Hieronder komen enkele karakteristieke onderdelen aan bod.
+  De presentatielaag bevindt zich in de mobiele applicatie. Hierna komen enkele karakteristieke onderdelen aan bod.
   \input{partials/client-presentatielaag}
 
 \section{Testomgeving}
-Bij elke applicatie is het van belang dat er goed getest wordt. In het geval van onze applicatie was het toch een behoorlijke uitdaging om effectief te testen. Allereerst werkt de applicatie met realtime data van een externe leverancier. Deze data kan gesimuleerd worden, maar het is lastig om unit-tests te maken die realtime en asynchrone datastromen kunnen testen. Daarnaast is het testen van een iOS App vrij lastig en tijdrovend, aangezien het veel tijd kost om vingerbewegingen te simuleren, te controleren of deze de gewenste gevolgen hebben en of de juiste data getoond wordt.
+Bij elke applicatie is het van belang dat er goed getest wordt. In het geval van onze applicatie is het toch een behoorlijke uitdaging om effectief te testen. Allereerst werkt de applicatie met realtime data van een externe leverancier. Deze data kan gesimuleerd worden, maar het is lastig om unit-tests te maken die realtime en asynchrone datastromen kunnen testen. Daarnaast is het testen van een iOS App vrij lastig en tijdrovend, aangezien het veel tijd kost om vingerbewegingen te simuleren, te controleren of deze de gewenste gevolgen hebben en of de juiste data getoond wordt.
 
-Gezien het feit dat de App lastig te testen is, terwijl het grootste gedeelte van de App de data vanuit de server direct overneemt in de views, hebben we besloten de App handmatig te testen. De server daarentegen wordt wel uitgebreid getest met behulp van automatische unit-tests. 
+Gezien het feit dat de iOS App lastig te testen is, terwijl het grootste gedeelte van de iOS App de data vanuit de server direct overneemt in de views, hebben we besloten de iOS App handmatig te testen. De server daarentegen wordt wel uitgebreid getest met behulp van automatische unit-tests. 
 
-Binnen het server-gedeelte van de applicatie worden alle transponder-doorkomsten realtime verwerkt. De filters die te maken hebben met het verwerken van deze doorkomsten worden elk afzonderlijk getest om er zeker van te zijn dat ze correct functioneren. Dit testen wordt gedaan met een set unit-tests die elk van deze filters aanroept met bepaalde input en controleert of de uitvoer overeenkomt met de verwachte uitvoer van deze filters.
+Binnen het servergedeelte van de applicatie worden alle transponderdoorkomsten realtime verwerkt. De filters die te maken hebben met het verwerken van deze doorkomsten worden elk afzonderlijk getest om er zeker van te zijn dat ze correct functioneren. Dit testen wordt gedaan met een set unit-tests die elk van deze filters aanroept met bepaalde input en controleert of de uitvoer overeenkomt met de verwachte uitvoer van deze filters.
 
 Dit houdt in dat in elke test een nep-omgeving wordt gecreëerd. Deze omgeving bevat de gebruikers, groepen en relaties die tijdens de test voor het betreffende filter gebruikt worden. Alle hulpklassen voor het filter worden gemockt, wat inhoudt dat er een gesimuleerd object wordt gemaakt dat het gedrag van de oorspronkelijke klasse nabootst. Tijdens de tests wordt gecontroleerd of de juiste methoden van de hulpklassen worden aangeroepen en of de juiste uitvoer wordt geproduceerd.
 
@@ -66,9 +66,9 @@ Dit houdt in dat in elke test een nep-omgeving wordt gecreëerd. Deze omgeving b
 Al deze tests worden uitgevoerd in de testomgeving van Visual Studio, te zien in figuur~\ref{fig:visual-studio-testing}. In deze omgeving kan men zien welke tests slagen of falen en kan in debug-modus achterhaald worden wat de oorzaak is van falende tests. 
 
 \subsection{Integratietesten van client en server}
-Een bijkomend voordeel van het hebben van een platformonafhankelijke client is dat een deel van de App ook uit te voeren is op hetzelfde platform als waar de server draait. Dit heeft tot gevolg dat er toch integratietests uitgevoerd kunnen worden om te controleren of de App aansluit op de server. Ook maakt dit het debuggen makkelijker, aangezien je  in Visual Studio door de programma's heen kan `steppen' (het regel voor regel door de lopende applicatie heen stappen).
+Een bijkomend voordeel van het hebben van een platform-onafhankelijke client is dat een deel van de iOS App ook uit te voeren is op hetzelfde platform als waar de server draait. Dit heeft tot gevolg dat er toch integratietests uitgevoerd kunnen worden om te controleren of de iOS App aansluit op de server. Ook maakt dit het debuggen makkelijker, aangezien in Visual Studio door de programma's heen kan `gestept' kan worden (het regel voor regel door de lopende applicatie heen stappen).
 
-In figuur~\ref{fig:integratie-project} zijn de schermen te zien die onderdeel uitmaken van het integratietestproject. Het scherm bij \subref{fig:integratie-azure} is de Azure Emulator, hierin worden de datalaag, businesslaag (de Aggregatie) en servicelaag (de API) uitgevoerd. Bij \subref{fig:integratie-passing-input} kunnen er met behulp van het toetsenbord transponderdoorkomsten worden gesimuleerd, die vervolgens in Azure worden verwerkt. Ten slotte wordt in \subref{fig:integratie-client} getoond welke data de API Client binnen krijgt.
+In figuur~\ref{fig:integratie-project} zijn de schermen te zien die onderdeel uitmaken van het integratietestproject. Het scherm bij \subref{fig:integratie-azure} is de Azure Emulator, hierin worden de datalaag, businesslaag (de aggregatie) en servicelaag (de API) uitgevoerd. Bij \subref{fig:integratie-passing-input} kunnen er met behulp van het toetsenbord transponderdoorkomsten worden gesimuleerd, die vervolgens in Azure worden verwerkt. Ten slotte wordt in \subref{fig:integratie-client} getoond welke data de ApiClient binnen krijgt.
 
 \begin{figure}[ht]
 \centering
@@ -90,6 +90,6 @@ In figuur~\ref{fig:integratie-project} zijn de schermen te zien die onderdeel ui
 \label{fig:integratie-project}
 \end{figure}
 
-Het is niet mogelijk een test van het hele platform te automatiseren op zo'n manier dat alles op een test-server draait. Voor het uitvoeren van het Azure project is een Azure Service Bus nodig die alleen in de Cloud bestaat. Azure is alleen te bereiken met de Azure SDK die alleen voor Visual Studio beschikbaar is, en dus alleen op Windows werkt, terwijl de Xamarin projecten voor iOS alleen op een MacBook kunnen opstarten. Om een speciale Mac test-server op te zetten met daarop een virtuele machine met Windows was te veel werk voor dit project, dus worden integratie-tests uitgevoerd op onze persoonlijke MacBooks, waar we deze set-up wel hebben geïnstalleerd.
+Het is niet mogelijk een test van het hele platform te automatiseren op zo'n manier dat alles op een testserver draait. Voor het uitvoeren van het Azure project is een Azure Service Bus nodig die slechts in de Cloud bestaat. Azure is alleen te bereiken met de Azure SDK die exclusief voor Visual Studio beschikbaar is, en dus alleen op Windows werkt, terwijl de Xamarin projecten voor iOS alleen op een MacBook kunnen opstarten. Om een speciale Mac test-server op te zetten met daarop een virtuele machine met Windows voert te ver voor dit project, dus worden integratie-tests uitgevoerd op onze persoonlijke MacBooks, waar we deze set-up wel hebben geïnstalleerd.
 
 % TODO: we moeten nog integratie tests schrijven in iOS.Test
