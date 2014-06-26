@@ -1,0 +1,190 @@
+$icon-font-path: '/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/';
+
+// bower:scss
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+// endbower
+
+body {
+  font-family: Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+
+  background-color: #f8f8f8;
+
+  padding-top: 20px;
+
+  height: 100%;
+
+  font-size: 2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Bookman Old Style';
+}
+
+h1,
+h2 {
+  font-weight: bold;
+}
+
+.tudelft-cyan {
+  color: rgb(55, 151, 225);
+}
+
+li {
+  margin: 5px auto;
+}
+
+div.presentation-container {
+  bottom: 70px;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+div.step {
+  background-color: #fff;
+  border-radius: 5px;
+  min-width: 700px;
+  padding: 30px;
+
+  transition: opacity 1s linear;
+
+  &.title {
+    h1 {
+      font-size: 3em;
+    }
+  }
+
+  &:not(.active) {
+    opacity: .1;
+
+    &.custom {
+      opacity: 0;
+    }
+
+    &.bigstep {
+      opacity: 1;
+    }
+  }
+
+  &.background {
+    opacity: .9;
+  }
+
+  h1 {
+    margin-bottom: 15px;
+  }
+}
+
+.will-fade-screenshots {
+  transition: opacity 0.2s linear;
+}
+
+div.do-fade-screenshots {
+  opacity: .25;
+}
+
+.screenshot-zoom {
+  z-index: 100;
+  opacity: 0;
+
+  position: absolute;
+  top: 30%;
+  width: 500px;
+  margin-left: -250px;
+  left: 50%;
+
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+
+  &.do-fade-screenshots {
+    opacity: 1;
+  }
+
+  &.has-fade-screenshots {
+    opacity: 0;
+  }
+}
+
+#iphone-title {
+  font-family: 'Helvetica Neue';
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 70px;
+}
+
+#laps {
+  font-family: 'Helvetica Neue';
+  font-size: 10px;
+  font-weight: 200;
+  color: #000;
+  position: absolute;
+  overflow: hidden;
+  width: 149px;
+  height: 234px;
+  left: 37px;
+  top: 90px;
+
+  div.lap:nth-child(odd) {
+    background-color: rgb(247, 247, 247);
+  }
+}
+
+.controls {
+  position: absolute;
+  width: 100px;
+  top: 190px;
+  left: 373px;
+}
+
+#demo-buttons {
+  position: absolute;
+  width: 260px;
+  top: 240px;
+  left: 300px;
+}
+
+#live-people {
+  position: absolute;
+  left: 38px;
+  top: 97px;
+  -webkit-transform: scale(0.95,0.95);
+}
+
+div.footer {
+
+  background-color: rgba(255, 255, 255, .6);
+
+  border-top: 3px solid rgb(55, 151, 225);
+
+  bottom: 0;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+
+  z-index: 1000;
+
+  #presentation-progress {
+    transition: width 1s ease;
+
+    position: absolute;
+    top: -6px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: rgb(55, 151, 225);
+  }
+
+  img {
+    height: 50px;
+    margin: 0 30px;
+  }
+}

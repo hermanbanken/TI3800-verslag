@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="534.012px" height="774px" viewBox="1696 0 534.012 774" enable-background="new 1696 0 534.012 774" xml:space="preserve">
+<g>
+	<path fill="none" d="M1698.237,632.36"/>
+</g>
+<g>
+	<path fill="none" d="M1699.237,310.427"/>
+</g>
+<rect x="1861.908" y="317.71" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 2978.5537 1918.7063)" width="49.508" height="49.504"/>
+<g>
+	<rect x="1803.965" y="238.558" fill="#AD016E" width="263.772" height="63.737"/>
+	<g>
+		<rect x="1807.963" y="242.63" fill="#B9CE00" width="50.774" height="54.404"/>
+		<rect x="1897.446" y="242.63" fill="#EE8635" width="78.805" height="24.435"/>
+	</g>
+	<g>
+		<rect x="1897.446" y="272.601" fill="#EE8635" width="79.172" height="24.434"/>
+	</g>
+	<text transform="matrix(1 0 0 1 1921.6648 288.6423)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Vorige</text>
+	<text transform="matrix(1 0 0 1 1917.0798 257.7537)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Huidige</text>
+	<g>
+		<rect x="1982.203" y="242.948" fill="#F6F6F6" width="78.805" height="24.434"/>
+		<text transform="matrix(1 0 0 1 2002.2126 259.1648)" font-family="'MyriadPro-Regular'" font-size="12">Afstand</text>
+	</g>
+	<g>
+		<rect x="1982.204" y="272.972" fill="#F6F6F6" width="78.807" height="24.434"/>
+		<text transform="matrix(1 0 0 1 2012.3767 289.1873)" font-family="'MyriadPro-Regular'" font-size="12">Tijd</text>
+	</g>
+	<g>
+		<g>
+			<rect x="1863.737" y="243.224" fill="#FFFFFF" width="26.87" height="54.403"/>
+		</g>
+		<text transform="matrix(0 -1 1 0 1880.9412 285.7166)" font-family="'MyriadPro-Regular'" font-size="12">Sessie</text>
+	</g>
+	<text transform="matrix(0 -1 1 0 1837.4412 290.7947)" fill="#F6F6F6" font-family="'MyriadPro-Regular'" font-size="12">Account</text>
+</g>
+<g>
+	<rect x="1707.657" y="27.208" fill="#AD016E" width="180" height="50.105"/>
+	<rect x="1721.157" y="36.649" fill="none" width="153" height="35.731"/>
+	<text transform="matrix(1 0 0 1 1748.8572 48.1208)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Practice DB</text>
+	<text transform="matrix(1 0 0 1 1743.2546 67.321)" fill="#FFFFFF" font-family="'BookmanOldStyle'" font-size="16">Azure Storage</text>
+</g>
+<g>
+	<rect x="2093.512" y="27.208" fill="#003B73" width="119.999" height="50.105"/>
+	<rect x="2077.012" y="34.261" fill="none" width="152.999" height="36"/>
+	<text transform="matrix(1 0 0 1 2108.3904 45.7322)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Dispatcher</text>
+	<text transform="matrix(1 0 0 1 2123.4294 64.9324)" fill="#FFFFFF" font-family="'BookmanOldStyle'" font-size="16">SignalR</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="2005.762" y1="54.086" x2="2005.762" y2="144.011"/>
+		<g>
+			<polygon points="2005.762,154.601 1999.664,139.677 2005.762,143.219 2011.859,139.677 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<ellipse fill="#B9CE00" cx="1935.762" cy="110.505" rx="90" ry="21.26"/>
+	<rect x="1854.353" y="103.505" fill="none" width="162.821" height="18"/>
+	<text transform="matrix(1 0 0 1 1860.7126 114.9773)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Account koppelen</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="2045.369" y1="167.091" x2="2191.646" y2="167.091"/>
+		<g>
+			<polygon points="2202.237,167.091 2187.313,173.188 2190.854,167.091 2187.313,160.995 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1972.983" y1="52.261" x2="1898.248" y2="52.261"/>
+		<g>
+			<polygon points="1887.657,52.261 1902.581,46.163 1899.04,52.261 1902.581,58.357 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="2202.237" y1="87.904" x2="2202.237" y2="759.551"/>
+		<g>
+			<polygon points="2202.237,77.313 2196.14,92.237 2202.237,88.696 2208.335,92.237 			"/>
+		</g>
+	</g>
+</g>
+<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1730.668" y1="77.313" x2="1730.668" y2="759.551"/>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1730.667" y1="206.601" x2="1828.613" y2="206.601"/>
+		<g>
+			<polygon points="1839.204,206.601 1824.28,212.698 1827.821,206.601 1824.28,200.505 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1966.158" y1="166.817" x2="1741.259" y2="166.817"/>
+		<g>
+			<polygon points="1730.668,166.817 1745.592,160.72 1742.051,166.817 1745.592,172.915 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<rect x="1796.815" y="438.508" fill="#009FE3" width="177.241" height="63.735"/>
+	<g>
+		<rect x="1890.774" y="443.174" fill="#EE8635" width="78.805" height="24.434"/>
+		<g>
+			<rect x="1801.963" y="442.877" fill="#B9CE00" width="50.774" height="54.403"/>
+		</g>
+		<g>
+			<g>
+				<rect x="1857.737" y="443.47" fill="#FFFFFF" width="26.87" height="54.403"/>
+			</g>
+			<text transform="matrix(0 -1 1 0 1874.9412 485.9626)" font-family="'MyriadPro-Regular'" font-size="12">Sessie</text>
+		</g>
+		<text transform="matrix(0 -1 1 0 1830.4412 492.1033)" fill="#F6F6F6" font-family="'MyriadPro-Regular'" font-size="12">Account</text>
+	</g>
+	<g>
+		<rect x="1890.591" y="473.144" fill="#EE8635" width="79.173" height="24.434"/>
+	</g>
+	<text transform="matrix(1 0 0 1 1899.5505 490.9509)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Vorige finish</text>
+	<text transform="matrix(1 0 0 1 1894.9656 460.0623)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Huidige finish</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1731.157" y1="397.661" x2="1856.515" y2="397.661"/>
+		<g>
+			<polygon points="1867.106,397.661 1852.182,403.76 1855.724,397.661 1852.182,391.563 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="2085.761" y1="457.847" x2="2191.646" y2="457.847"/>
+		<g>
+			<polygon points="2202.237,457.847 2187.313,463.944 2190.854,457.847 2187.313,451.749 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1914.056" y1="596.377" x2="2191.646" y2="596.377"/>
+		<g>
+			<polygon points="2202.237,596.377 2187.313,602.474 2190.854,596.377 2187.313,590.278 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<rect x="1739.944" y="385.554" fill="#EE8635" width="39.586" height="24.434"/>
+	</g>
+	<text transform="matrix(1 0 0 1 1744.9724 402.4861)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Finish</text>
+</g>
+<g>
+	<g>
+		<rect x="1739.944" y="206.601" fill="#EE8635" width="39.586" height="24.434"/>
+	</g>
+	<text transform="matrix(1 0 0 1 1743.3699 223.2205)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Vorige</text>
+</g>
+<g>
+	<g>
+		<rect x="2027.906" y="445.631" fill="#AD016E" width="78.806" height="24.434"/>
+	</g>
+	<text transform="matrix(1 0 0 1 2045.4744 461.8455)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Snelheid</text>
+</g>
+<g>
+	<rect x="1796.815" y="564.215" fill="#009FE3" width="177.241" height="63.735"/>
+	<g>
+		<rect x="1801.292" y="568.881" fill="#B9CE00" width="22.224" height="54.403"/>
+	</g>
+	<g>
+		<rect x="1890.591" y="598.851" fill="#EE8635" width="79.173" height="24.434"/>
+	</g>
+	<text transform="matrix(1 0 0 1 1899.5505 616.658)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Vorige finish</text>
+	<rect x="1890.774" y="568.881" fill="#EE8635" width="78.805" height="24.434"/>
+	<text transform="matrix(1 0 0 1 1894.9656 585.7693)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Huidige finish</text>
+	<g>
+		<g>
+			<rect x="1859.237" y="568.881" fill="#AD016E" width="26.87" height="54.403"/>
+		</g>
+		<text transform="matrix(0 -1 1 0 1876.4412 617.7986)" fill="#F6F6F6" font-family="'MyriadPro-Regular'" font-size="12">Run/rust</text>
+	</g>
+	<g>
+		<g>
+			<rect x="1828.351" y="568.349" fill="#FFFFFF" width="26.87" height="54.404"/>
+		</g>
+		<text transform="matrix(0 -1 1 0 1845.5544 610.8416)" font-family="'MyriadPro-Regular'" font-size="12">Sessie</text>
+	</g>
+	<text transform="matrix(0 -1 1 0 1817.2302 616.8142)" fill="#F6F6F6" font-family="'MyriadPro-Regular'" font-size="12">Account</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1885.438" y1="502.241" x2="1885.438" y2="553.108"/>
+		<g>
+			<polygon points="1885.438,563.698 1879.339,548.774 1885.438,552.315 1891.534,548.774 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="2122.433" y1="604.95" x2="2122.433" y2="670.36"/>
+		<g>
+			<polygon points="2122.433,680.95 2116.336,666.026 2122.433,669.567 2128.53,666.026 			"/>
+		</g>
+	</g>
+</g>
+<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="2122.433" y1="457.551" x2="2122.433" y2="586.551"/>
+<g>
+	<path fill="none" d="M2132.433,632.36"/>
+</g>
+<g>
+	<path fill="none" d="M2129.327,632.22"/>
+</g>
+<g>
+	<path fill="none" d="M2153.511,596.403"/>
+</g>
+<g>
+	<g>
+		<polyline fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" points="2078.737,436.472 2078.737,255.538 
+			2057.737,255.538 		"/>
+		<g>
+			<polygon points="2078.737,447.063 2084.836,432.14 2078.737,435.681 2072.641,432.14 			"/>
+		</g>
+	</g>
+</g>
+<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="2057.737" y1="284.817" x2="2078.737" y2="284.817"/>
+<g>
+	<ellipse fill="#AD016E" cx="2079.307" cy="343.661" rx="90" ry="21.26"/>
+	<rect x="1997.897" y="336.661" fill="none" width="162.822" height="38"/>
+	<text transform="matrix(1 0 0 1 2014.6638 348.1316)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Snelheid berek.</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1731.157" y1="529.313" x2="1854.845" y2="529.313"/>
+		<g>
+			<polygon points="1865.436,529.313 1850.512,535.411 1854.053,529.313 1850.512,523.219 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<rect x="1739.944" y="181.948" fill="#AD016E" width="39.586" height="24.434"/>
+	</g>
+	<text transform="matrix(1 0 0 1 1744.6111 198.5691)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Sessie</text>
+</g>
+<g>
+	<g>
+		<rect x="1737.911" y="517.097" fill="#AD016E" width="60.399" height="24.434"/>
+	</g>
+	<text transform="matrix(1 0 0 1 1743.6248 534.0291)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Threshold</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1797.105" y1="598.054" x2="1741.748" y2="598.054"/>
+		<g>
+			<polygon points="1731.157,598.054 1746.081,591.956 1742.539,598.054 1746.081,604.151 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<rect x="2005.783" y="154.601" fill="#EE8635" width="39.586" height="24.434"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="1966.158" y="154.601" fill="#B9CE00" width="39.586" height="24.434"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<rect x="1973.151" y="40.045" fill="#EE8635" width="65.222" height="24.435"/>
+	</g>
+	<text transform="matrix(1 0 0 1 1977.7439 56.6658)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Doorkomst</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="2005.783" y1="10.55" x2="2005.783" y2="31.891"/>
+		<g>
+			<polygon points="2005.783,42.481 1999.685,27.558 2005.783,31.099 2011.879,27.558 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1887.108" y1="302.292" x2="1887.108" y2="427.915"/>
+		<g>
+			<polygon points="1887.108,438.508 1881.01,423.584 1887.108,427.124 1893.205,423.584 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<ellipse fill="#009FE3" cx="1957.106" cy="397.661" rx="90" ry="21.26"/>
+	<rect x="1875.696" y="390.661" fill="none" width="162.822" height="18"/>
+	<text transform="matrix(1 0 0 1 1890.0603 402.1316)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Ronde koppelen</text>
+</g>
+<g>
+	<ellipse fill="#AD016E" cx="1955.436" cy="530.376" rx="90" ry="21.26"/>
+	<rect x="1874.026" y="523.377" fill="none" width="162.822" height="18"/>
+	<text transform="matrix(1 0 0 1 1900.3982 534.8474)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Run of Rust?</text>
+</g>
+<text transform="matrix(1 0 0 1 1882.3103 337.5017)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">if </text>
+<text transform="matrix(1 0 0 1 1868.1912 351.9011)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">isFinish</text>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="2004.438" y1="179.034" x2="2004.438" y2="228.108"/>
+		<g>
+			<polygon points="2004.438,238.698 1998.34,223.774 2004.438,227.315 2010.534,223.774 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<ellipse fill="#AD016E" cx="1929.204" cy="205.552" rx="90" ry="21.26"/>
+	<rect x="1847.794" y="198.552" fill="none" width="162.823" height="18"/>
+	<text transform="matrix(1 0 0 1 1852.2361 210.0232)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Segment koppelen</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="1730.667" y1="112.505" x2="1835.171" y2="112.505"/>
+		<g>
+			<polygon points="1845.762,112.505 1830.838,118.603 1834.38,112.505 1830.838,106.408 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<rect x="1741.641" y="100.288" fill="#B9CE00" width="52.477" height="24.435"/>
+</g>
+<text transform="matrix(1 0 0 1 1746.9158 116.0271)" fill="#F6F6F6" font-family="'MyriadPro-Regular'" font-size="12">Account</text>
+</svg>

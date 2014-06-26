@@ -1,0 +1,18 @@
+{
+  "name": "public",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "~3.1.0",
+    "jquery": "~1.11.0",
+    "jmpress": "~0.4.5",
+    "underscore": "~1.6.0",
+    "underscore.string": "~2.3.3",
+    "raphael": "~2.1.2"
+  },
+  "devDependencies": {},
+  "overrides": {
+    "underscore.string": {
+      "main": "lib/underscore.string.js"
+    }
+  }
+}

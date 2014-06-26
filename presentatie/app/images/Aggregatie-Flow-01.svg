@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="534.012px" height="774px" viewBox="0 0 534.012 774" enable-background="new 0 0 534.012 774" xml:space="preserve">
+<g>
+	<rect x="11.657" y="27.208" fill="#AD016E" width="180" height="50.105"/>
+	<rect x="25.157" y="36.649" fill="none" width="153" height="35.731"/>
+	<text transform="matrix(1 0 0 1 52.8567 48.1208)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Practice DB</text>
+	<text transform="matrix(1 0 0 1 47.2546 67.321)" fill="#FFFFFF" font-family="'BookmanOldStyle'" font-size="16">Azure Storage</text>
+</g>
+<g>
+	<rect x="397.512" y="27.208" fill="#003B73" width="119.999" height="50.105"/>
+	<rect x="381.012" y="34.261" fill="none" width="152.999" height="36"/>
+	<text transform="matrix(1 0 0 1 412.3904 45.7322)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Dispatcher</text>
+	<text transform="matrix(1 0 0 1 427.4294 64.9324)" fill="#FFFFFF" font-family="'BookmanOldStyle'" font-size="16">SignalR</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="309.762" y1="54.086" x2="309.762" y2="144.011"/>
+		<g>
+			<polygon points="309.762,154.601 303.664,139.677 309.762,143.219 315.859,139.677 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<ellipse fill="#B9CE00" cx="239.762" cy="110.505" rx="90" ry="21.26"/>
+	<rect x="158.353" y="103.505" fill="none" width="162.821" height="18"/>
+	<text transform="matrix(1 0 0 1 164.7131 114.9773)" fill="#FFFFFF" font-family="'BookmanOldStyle-Bold'" font-size="16">Account koppelen</text>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="349.369" y1="167.091" x2="495.646" y2="167.091"/>
+		<g>
+			<polygon points="506.237,167.091 491.313,173.188 494.854,167.091 491.313,160.995 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="276.983" y1="52.261" x2="202.248" y2="52.261"/>
+		<g>
+			<polygon points="191.657,52.261 206.581,46.163 203.04,52.261 206.581,58.357 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="506.237" y1="87.904" x2="506.237" y2="759.551"/>
+		<g>
+			<polygon points="506.237,77.313 500.14,92.237 506.237,88.696 512.335,92.237 			"/>
+		</g>
+	</g>
+</g>
+<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="34.668" y1="77.313" x2="34.668" y2="759.551"/>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="270.158" y1="166.817" x2="45.259" y2="166.817"/>
+		<g>
+			<polygon points="34.668,166.817 49.592,160.72 46.051,166.817 49.592,172.915 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<rect x="309.783" y="154.601" fill="#EE8635" width="39.586" height="24.434"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="270.158" y="154.601" fill="#B9CE00" width="39.586" height="24.434"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<rect x="277.151" y="40.045" fill="#EE8635" width="65.222" height="24.435"/>
+	</g>
+	<text transform="matrix(1 0 0 1 281.7439 56.6658)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="12">Doorkomst</text>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="309.783" y1="10.55" x2="309.783" y2="31.891"/>
+		<g>
+			<polygon points="309.783,42.481 303.685,27.558 309.783,31.099 315.879,27.558 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="308.438" y1="179.034" x2="308.438" y2="228.108"/>
+		<g>
+			<polygon points="308.438,238.698 302.34,223.774 308.438,227.315 314.534,223.774 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" x1="34.667" y1="112.505" x2="139.171" y2="112.505"/>
+		<g>
+			<polygon points="149.762,112.505 134.838,118.603 138.38,112.505 134.838,106.408 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<rect x="45.641" y="100.288" fill="#B9CE00" width="52.477" height="24.435"/>
+	</g>
+	<text transform="matrix(1 0 0 1 50.9153 116.0271)" fill="#F6F6F6" font-family="'MyriadPro-Regular'" font-size="12">Account</text>
+</g>
+</svg>
